@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace YuriGameJam2023.SO
+namespace LewdieJam.SO
 {
     [CreateAssetMenu(menuName = "ScriptableObject/GameInfo", fileName = "GameInfo")]
     public class GameInfo : ScriptableObject

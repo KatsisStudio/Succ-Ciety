@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using YuriGameJam2023.SO;
 
 namespace LewdieJam
 {
@@ -8,7 +7,7 @@ namespace LewdieJam
         public static GameManager Instance { private set; get; }
 
         [SerializeField]
-        private GameInfo _info;
+        private SO.GameInfo _info;
 
         private void Awake()
         {

@@ -1,11 +1,13 @@
 ﻿using UnityEngine;
 
-namespace YuriGameJam2023.SO
+namespace LewdieJam.SO
 {
     [CreateAssetMenu(menuName = "ScriptableObject/PlayerInfo", fileName = "PlayerInfo")]
-    public class PlayerInfo : ScriptableObject
+    public class CharacterInfo : ScriptableObject
     {
         [Tooltip("Speed of the player")]
         public float Speed;
+
+        public int BaseHealth;
     }
 }

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ea08c59177200e64d8fab517d511b36d, type: 3}
-  m_Name: PlayerInfo
+  m_Name: EnemyInfo
   m_EditorClassIdentifier: 
   Speed: 200
-  BaseHealth: 10
+  BaseHealth: 1

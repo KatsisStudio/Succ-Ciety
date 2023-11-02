@@ -1,15 +1,10 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.TextCore.Text;
-using YuriGameJam2023.SO;
 
-namespace LewdieJam
+namespace LewdieJam.Player
 {
-    public class PlayerController : MonoBehaviour
+    public class PlayerController : ACharacter
     {
-        [SerializeField]
-        private PlayerInfo _info;
-
         [SerializeField]
         private GameObject _attackVfx;
 
@@ -19,6 +14,7 @@ namespace LewdieJam
 
         private void Awake()
         {
+            AwakeParent();
             _rb = GetComponent<Rigidbody>();
         }
 
@@ -36,21 +32,24 @@ namespace LewdieJam
         {
             if (value.performed)
             {
-
                 if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out var hit, Mathf.Infinity, 1 << 6))
                 {
+                    // Calculate mouse forward vector
                     var direction = hit.point - transform.position;
                     direction.y = 0f;
-
                     var dirNorm = direction.normalized;
+                    var targetPos = transform.position + dirNorm * 2f;
 
-                    Destroy(Instantiate(_attackVfx, transform.position + dirNorm * 2f, _attackVfx.transform.rotation), 1f);
+                    // Spawn VFX
+                    Destroy(Instantiate(_attackVfx, targetPos, _attackVfx.transform.rotation), 1f);
+
+                    // Damage all enemies in range
+                    var colliders = Physics.OverlapSphere(targetPos, 2f, 1 << 8);
+                    foreach (var collider in colliders)
+                    {
+                        collider.GetComponent<ACharacter>().TakeDamage(1);
+                    }
                 }
-
-                /*var colliders = Physics.OverlapSphere(transform.position, 1f);
-                foreach (var collider in colliders)
-                {
-                }*/
             }
         }
     }
