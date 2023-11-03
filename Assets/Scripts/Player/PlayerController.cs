@@ -10,7 +10,7 @@ namespace LewdieJam.Player
         [SerializeField]
         private GameObject _attackVfx;
 
-        public House CurrentHouse { set; private get; }
+        public IInteractible CurrentInteraction { set; private get; }
 
         private Vector2 _mov;
 
@@ -67,9 +67,9 @@ namespace LewdieJam.Player
 
         public void OnAction(InputAction.CallbackContext value)
         {
-            if (value.performed && CurrentHouse != null && CurrentHouse.CanEnterHouse)
+            if (value.performed && CurrentInteraction != null && CurrentInteraction.CanInteract(this))
             {
-                CurrentHouse.Enter();
+                CurrentInteraction.Interact();
             }
         }
     }

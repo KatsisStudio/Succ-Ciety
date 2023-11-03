@@ -6,7 +6,7 @@ using UnityEngine.Assertions;
 
 namespace LewdieJam.Map
 {
-    public class House : MonoBehaviour
+    public class House : MonoBehaviour, IInteractible
     {
         [SerializeField]
         private HouseInfo _info;
@@ -14,14 +14,8 @@ namespace LewdieJam.Map
         [SerializeField]
         private TMP_Text _requirement;
 
-        public bool CanEnterHouse
+        private bool CanEnterHouse
             => GameManager.Instance.Energy >= _info.EnergyRequired;
-
-        public void Enter()
-        {
-            GameManager.Instance.Energy -= _info.EnergyRequired;
-            GameManager.Instance.ToggleHScene(true);
-        }
 
         private string OpenOkText => "Press E to open the house";
         public string NotEnoughEnergyText => "You don't have enough energy";
@@ -51,7 +45,7 @@ namespace LewdieJam.Map
                     _requirement.color = Color.red;
                     _requirement.text = NotEnoughEnergyText;
                 }
-                other.GetComponent<PlayerController>().CurrentHouse = this;
+                other.GetComponent<PlayerController>().CurrentInteraction = this;
             }
         }
 
@@ -61,8 +55,19 @@ namespace LewdieJam.Map
             {
                 _requirement.color = Color.white;
                 _requirement.text = OpenInfoText;
-                other.GetComponent<PlayerController>().CurrentHouse = null;
+                other.GetComponent<PlayerController>().CurrentInteraction = null;
             }
+        }
+
+        public bool CanInteract(PlayerController pc)
+        {
+            return CanEnterHouse;
+        }
+
+        public void Interact()
+        {
+            GameManager.Instance.Energy -= _info.EnergyRequired;
+            GameManager.Instance.ToggleHScene(true);
         }
     }
 }
