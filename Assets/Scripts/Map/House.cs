@@ -1,4 +1,5 @@
-﻿using LewdieJam.SO;
+﻿using LewdieJam.Player;
+using LewdieJam.SO;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Assertions;
@@ -12,6 +13,15 @@ namespace LewdieJam.Map
 
         [SerializeField]
         private TMP_Text _requirement;
+
+        public bool CanEnterHouse
+            => GameManager.Instance.Energy >= _info.EnergyRequired;
+
+        public void Enter()
+        {
+            GameManager.Instance.Energy -= _info.EnergyRequired;
+            GameManager.Instance.ToggleHScene(true);
+        }
 
         private string OpenOkText => "Press E to open the house";
         public string NotEnoughEnergyText => "You don't have enough energy";
@@ -31,7 +41,7 @@ namespace LewdieJam.Map
         {
             if (other.CompareTag("Player"))
             {
-                if (GameManager.Instance.Energy >= _info.EnergyRequired)
+                if (CanEnterHouse)
                 {
                     _requirement.color = Color.green;
                     _requirement.text = OpenOkText;
@@ -41,13 +51,18 @@ namespace LewdieJam.Map
                     _requirement.color = Color.red;
                     _requirement.text = NotEnoughEnergyText;
                 }
+                other.GetComponent<PlayerController>().CurrentHouse = this;
             }
         }
 
         private void OnTriggerExitEvt(Collider other)
         {
-            _requirement.color = Color.white;
-            _requirement.text = OpenInfoText;
+            if (other.CompareTag("Player"))
+            {
+                _requirement.color = Color.white;
+                _requirement.text = OpenInfoText;
+                other.GetComponent<PlayerController>().CurrentHouse = null;
+            }
         }
     }
 }

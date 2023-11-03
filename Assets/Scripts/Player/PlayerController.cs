@@ -1,4 +1,4 @@
-using TMPro;
+using LewdieJam.Map;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -9,6 +9,8 @@ namespace LewdieJam.Player
     {
         [SerializeField]
         private GameObject _attackVfx;
+
+        public House CurrentHouse { set; private get; }
 
         private Vector2 _mov;
 
@@ -22,7 +24,10 @@ namespace LewdieJam.Player
 
         private void FixedUpdate()
         {
-            _rb.velocity = _info.Speed * Time.fixedDeltaTime * new Vector3(_mov.x, _rb.velocity.y, _mov.y);
+            _rb.velocity =
+                GameManager.Instance.CanPlay
+                ? _info.Speed * Time.fixedDeltaTime * new Vector3(_mov.x, _rb.velocity.y, _mov.y)
+                : new(0f, _rb.velocity.y, 0f);
         }
 
         public override void Die()
@@ -35,7 +40,7 @@ namespace LewdieJam.Player
             _mov = value.ReadValue<Vector2>();
         }
 
-        public void OnAction(InputAction.CallbackContext value)
+        public void OnFire(InputAction.CallbackContext value)
         {
             if (value.performed)
             {
@@ -57,6 +62,14 @@ namespace LewdieJam.Player
                         collider.GetComponent<ACharacter>().TakeDamage(1);
                     }
                 }
+            }
+        }
+
+        public void OnAction(InputAction.CallbackContext value)
+        {
+            if (value.performed && CurrentHouse != null && CurrentHouse.CanEnterHouse)
+            {
+                CurrentHouse.Enter();
             }
         }
     }

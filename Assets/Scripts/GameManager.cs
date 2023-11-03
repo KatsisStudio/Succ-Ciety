@@ -13,6 +13,11 @@ namespace LewdieJam
         [SerializeField]
         private TMP_Text _debugText;
 
+        [SerializeField]
+        private GameObject _hScene;
+
+        public bool CanPlay => !_hScene.activeInHierarchy;
+
         private int _energy;
         public int Energy
         {
@@ -33,6 +38,11 @@ namespace LewdieJam
         private void UpdateUI()
         {
             _debugText.text = $"Energy: {Energy}";
+        }
+
+        public void ToggleHScene(bool value)
+        {
+            _hScene.SetActive(value);
         }
     }
 }
