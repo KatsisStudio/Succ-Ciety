@@ -3,11 +3,11 @@ using UnityEngine.SceneManagement;
 
 namespace LewdieJam.Menu
 {
-    public class MainMenu : MonoBehaviour
+    public class LobbyMenu : MonoBehaviour
     {
-        public void PlayGame()
+        public void LoadGame()
         {
-            SceneManager.LoadScene("Lobby");
+            SceneManager.LoadScene("Main");
         }
     }
 }

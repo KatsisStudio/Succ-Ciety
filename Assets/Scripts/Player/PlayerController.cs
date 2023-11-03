@@ -1,6 +1,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 namespace LewdieJam.Player
 {
@@ -22,6 +23,11 @@ namespace LewdieJam.Player
         private void FixedUpdate()
         {
             _rb.velocity = _info.Speed * Time.fixedDeltaTime * new Vector3(_mov.x, _rb.velocity.y, _mov.y);
+        }
+
+        public override void Die()
+        {
+            SceneManager.LoadScene("Lobby");
         }
 
         public void OnMovement(InputAction.CallbackContext value)
