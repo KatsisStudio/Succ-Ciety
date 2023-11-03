@@ -6,5 +6,10 @@
         {
             AwakeParent();
         }
+
+        public override void Die()
+        {
+            GameManager.Instance.Energy++;
+        }
     }
 }

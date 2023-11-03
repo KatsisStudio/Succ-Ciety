@@ -19,8 +19,12 @@ namespace LewdieJam.Player
             _health -= damage;
             if (_health <= 0)
             {
+                Die();
                 Destroy(gameObject);
             }
         }
+
+        public virtual void Die()
+        { }
     }
 }
