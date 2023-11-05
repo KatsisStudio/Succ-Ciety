@@ -1,13 +1,17 @@
-﻿namespace LewdieJam
+﻿using System.Collections.Generic;
+
+namespace LewdieJam
 {
     public static class PersistentData
     {
-        public static int HornLevel { set; get; }
-        public static int Energy { set; get; }
+        public static int Energy { set; get; } = 1000;
 
-        public static int BaseHealth { set; get; }
-        public static int AtkSpeed { set; get; }
-        public static int AtkPower { set; get; }
-        public static int EnergyScaling { set; get; }
+        public static Dictionary<string, int> Stats { get; } = new();
+
+        public static int GetStatValue(string key)
+        {
+            if (Stats.ContainsKey(key)) return Stats[key];
+            return 0;
+        }
     }
 }
