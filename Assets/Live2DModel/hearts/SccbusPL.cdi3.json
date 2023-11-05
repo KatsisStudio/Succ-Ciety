@@ -1,0 +1,92 @@
+{
+	"Version": 3,
+	"Parameters": [
+		{
+			"Id": "Param22",
+			"GroupId": "",
+			"Name": "X"
+		},
+		{
+			"Id": "ParamBreath",
+			"GroupId": "",
+			"Name": "Breath"
+		},
+		{
+			"Id": "Param",
+			"GroupId": "",
+			"Name": "Shines"
+		},
+		{
+			"Id": "Param2",
+			"GroupId": "",
+			"Name": "Eyebrows"
+		},
+		{
+			"Id": "Param9",
+			"GroupId": "",
+			"Name": "Tattoo"
+		},
+		{
+			"Id": "Param10",
+			"GroupId": "",
+			"Name": "Bangs"
+		},
+		{
+			"Id": "Param11",
+			"GroupId": "",
+			"Name": "EyeTop"
+		},
+		{
+			"Id": "Param12",
+			"GroupId": "",
+			"Name": "EyeBottom"
+		},
+		{
+			"Id": "Param13",
+			"GroupId": "",
+			"Name": "Mouth"
+		},
+		{
+			"Id": "Param14",
+			"GroupId": "",
+			"Name": "SideHair"
+		},
+		{
+			"Id": "Param15",
+			"GroupId": "",
+			"Name": "ChestBounce"
+		},
+		{
+			"Id": "Param4",
+			"GroupId": "",
+			"Name": "ChestSize"
+		},
+		{
+			"Id": "Param16",
+			"GroupId": "",
+			"Name": "Body"
+		},
+		{
+			"Id": "Param18",
+			"GroupId": "",
+			"Name": "LHand"
+		},
+		{
+			"Id": "Param17",
+			"GroupId": "",
+			"Name": "RHand"
+		},
+		{
+			"Id": "Param21",
+			"GroupId": "",
+			"Name": "BackHair"
+		},
+		{
+			"Id": "Param3",
+			"GroupId": "",
+			"Name": "Horns"
+		}
+	],
+	"ParameterGroups": [],
+	"Parts": []
+}
