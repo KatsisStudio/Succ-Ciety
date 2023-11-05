@@ -47,13 +47,13 @@ namespace LewdieJam.Player
                     var direction = hit.point - transform.position;
                     direction.y = 0f;
                     var dirNorm = direction.normalized;
-                    var targetPos = transform.position + dirNorm * 2f;
+                    var targetPos = transform.position + dirNorm * _info.Range;
 
                     // Spawn VFX
                     Destroy(Instantiate(_attackVfx, targetPos, _attackVfx.transform.rotation), 1f);
 
                     // Damage all enemies in range
-                    var colliders = Physics.OverlapSphere(targetPos, 2f, 1 << 8);
+                    var colliders = Physics.OverlapSphere(targetPos, _info.Range, 1 << 8);
                     foreach (var collider in colliders)
                     {
                         if (collider.CompareTag("Enemy"))

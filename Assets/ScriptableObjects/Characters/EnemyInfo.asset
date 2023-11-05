@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Speed: 500
   BaseHealth: 1
+  Range: 2

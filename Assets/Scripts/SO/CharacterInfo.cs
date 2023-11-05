@@ -9,5 +9,7 @@ namespace LewdieJam.SO
         public float Speed;
 
         public int BaseHealth;
+
+        public float Range;
     }
 }

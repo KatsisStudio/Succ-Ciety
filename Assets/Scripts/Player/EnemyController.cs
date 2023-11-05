@@ -13,8 +13,6 @@ namespace LewdieJam.Player
 
         private GameObject _attackTarget;
 
-        private const float _range = 2f;
-
         private void Awake()
         {
             AwakeParent();
@@ -44,9 +42,9 @@ namespace LewdieJam.Player
             }
             else
             {
-                if (Vector3.Distance(_target.transform.position, transform.position) < _range)
+                if (Vector3.Distance(_target.transform.position, transform.position) < _info.Range)
                 {
-                    var pos = transform.position + (_target.transform.position - transform.position).normalized * _range;
+                    var pos = transform.position + (_target.transform.position - transform.position).normalized * _info.Range;
                     pos = new(pos.x, 0.01f, pos.z);
                     _attackTarget = Instantiate(_hintCircle, pos, _hintCircle.transform.rotation);
                     _rb.velocity = new(0f, _rb.velocity.y, 0f);
@@ -69,6 +67,14 @@ namespace LewdieJam.Player
         public override void Die()
         {
             GameManager.Instance.Energy++;
+        }
+
+        private void OnDestroy()
+        {
+            if (_attackTarget != null)
+            {
+                Destroy(_attackTarget);
+            }
         }
     }
 }
