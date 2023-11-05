@@ -60,7 +60,7 @@ namespace LewdieJam.Lobby
                 else
                 {
                     // We get where we are in our cost curve
-                    var val = _gameInfo.CostProgression.Evaluate(stat.Level / _gameInfo.MaxLevel);
+                    var val = _gameInfo.CostProgression.Evaluate(stat.Level / (float)_gameInfo.MaxLevel);
                     // Then do a cross product to get the actual price
                     var prod = Mathf.CeilToInt(val * delta + _gameInfo.MinBuyCost);
                     stat.ToggleButton(PersistentData.Energy >= prod);
