@@ -1,4 +1,6 @@
 ﻿using LewdieJam.SO;
+using System;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -41,7 +43,7 @@ namespace LewdieJam.Lobby
         public void UpdateUI()
         {
             _energy.text = PersistentData.Energy.ToString();
-            _hornLevel.text = "0";
+            _hornLevel.text = Mathf.FloorToInt(PersistentData.Stats.Values.Sum() / ((float)Enum.GetValues(typeof(UpgradableStat)).Length * _gameInfo.MaxLevel) * _gameInfo.MaxHornLevel).ToString();
 
             StatDisplay[] _allStats = new[]
             {
