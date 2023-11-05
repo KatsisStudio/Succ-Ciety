@@ -11,5 +11,10 @@ namespace LewdieJam.Lobby
 
         [SerializeField]
         private Button _add;
+
+        public void UpdateValue(int value)
+        {
+            _value.text = value.ToString();
+        }
     }
 }

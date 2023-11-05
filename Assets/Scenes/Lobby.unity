@@ -610,9 +610,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 414181160}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 52adb45593b52d14394c65c2da61cc6f, type: 3}
+  m_Script: {fileID: 11500000, guid: e9ad6659b505d3c4da2189ee4c9b1a51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _healthStat: {fileID: 9162401688345767965}
+  _atkPowerStat: {fileID: 1503387319}
+  _atkSpeedStat: {fileID: 1802874058}
+  _energyStat: {fileID: 1485203848}
+  _energy: {fileID: 288871032}
+  _hornLevel: {fileID: 1638158840}
 --- !u!1 &463669693
 GameObject:
   m_ObjectHideFlags: 0
@@ -831,7 +837,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 414181162}
-        m_TargetAssemblyTypeName: LewdieJam.Menu.LobbyMenu, Assembly-CSharp
+        m_TargetAssemblyTypeName: LewdieJam.Lobby.LobbyManager, Assembly-CSharp
         m_MethodName: LoadGame
         m_Mode: 1
         m_Arguments:
@@ -2096,6 +2102,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8106606772699370690, guid: e505c50438e057e41b824ac037a08cc2, type: 3}
   m_PrefabInstance: {fileID: 1485203846}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1485203848 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5635795551810795262, guid: e505c50438e057e41b824ac037a08cc2, type: 3}
+  m_PrefabInstance: {fileID: 1485203846}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79f2e5737a6c02244b6bdd99a7de2a24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1503387317
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2202,6 +2219,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8106606772699370690, guid: e505c50438e057e41b824ac037a08cc2, type: 3}
   m_PrefabInstance: {fileID: 1503387317}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1503387319 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5635795551810795262, guid: e505c50438e057e41b824ac037a08cc2, type: 3}
+  m_PrefabInstance: {fileID: 1503387317}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79f2e5737a6c02244b6bdd99a7de2a24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1583026689
 GameObject:
   m_ObjectHideFlags: 0
@@ -2353,7 +2381,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 118.9, y: 7.9}
+  m_AnchoredPosition: {x: 118.9, y: -0.6}
   m_SizeDelta: {x: 92.7983, y: 101.1422}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1638158840
@@ -2596,6 +2624,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8106606772699370690, guid: e505c50438e057e41b824ac037a08cc2, type: 3}
   m_PrefabInstance: {fileID: 1802874056}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1802874058 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5635795551810795262, guid: e505c50438e057e41b824ac037a08cc2, type: 3}
+  m_PrefabInstance: {fileID: 1802874056}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79f2e5737a6c02244b6bdd99a7de2a24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1940459051
 GameObject:
   m_ObjectHideFlags: 0
@@ -2764,6 +2803,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8106606772699370690, guid: e505c50438e057e41b824ac037a08cc2, type: 3}
   m_PrefabInstance: {fileID: 9162401688345767962}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &9162401688345767965 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5635795551810795262, guid: e505c50438e057e41b824ac037a08cc2, type: 3}
+  m_PrefabInstance: {fileID: 9162401688345767962}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79f2e5737a6c02244b6bdd99a7de2a24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
