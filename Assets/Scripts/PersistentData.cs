@@ -4,7 +4,7 @@ namespace LewdieJam
 {
     public static class PersistentData
     {
-        public static int Energy { set; get; } = 1000;
+        public static int Energy { set; get; }
 
         public static Dictionary<string, int> Stats { get; } = new();
 

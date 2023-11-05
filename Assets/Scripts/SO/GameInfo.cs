@@ -13,6 +13,10 @@ namespace LewdieJam.SO
 
         [Header("Horn")]
         public int MaxHornLevel;
+
+        [Header("Energy")]
+        [Tooltip("How much additional energy you earn per energy stat upgrade (multiplied by base amount gained")]
+        public int EnergyMultiplierPerLevel;
     }
 
     public enum UpgradableStat
