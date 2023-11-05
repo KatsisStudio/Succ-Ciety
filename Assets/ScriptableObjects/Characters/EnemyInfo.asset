@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea08c59177200e64d8fab517d511b36d, type: 3}
   m_Name: EnemyInfo
   m_EditorClassIdentifier: 
-  Speed: 200
+  Speed: 500
   BaseHealth: 1

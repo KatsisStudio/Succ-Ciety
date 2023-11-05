@@ -14,12 +14,9 @@ namespace LewdieJam.Player
 
         private Vector2 _mov;
 
-        private Rigidbody _rb;
-
         private void Awake()
         {
             AwakeParent();
-            _rb = GetComponent<Rigidbody>();
         }
 
         private void FixedUpdate()
@@ -59,7 +56,10 @@ namespace LewdieJam.Player
                     var colliders = Physics.OverlapSphere(targetPos, 2f, 1 << 8);
                     foreach (var collider in colliders)
                     {
-                        collider.GetComponent<ACharacter>().TakeDamage(1);
+                        if (collider.CompareTag("Enemy"))
+                        {
+                            collider.GetComponent<ACharacter>().TakeDamage(1);
+                        }
                     }
                 }
             }
