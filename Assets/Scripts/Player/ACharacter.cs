@@ -9,7 +9,7 @@ namespace LewdieJam.Player
 
         protected Rigidbody _rb;
 
-        private int _health;
+        protected int _health;
 
         protected void AwakeParent()
         {
@@ -17,8 +17,15 @@ namespace LewdieJam.Player
             _health = _info.BaseHealth;
         }
 
-        public void TakeDamage(int damage)
+        protected virtual bool CanTakeDamage => true;
+
+        public virtual void TakeDamage(int damage)
         {
+            if (!CanTakeDamage || damage == 0)
+            {
+                return;
+            }
+
             _health -= damage;
             if (_health <= 0)
             {

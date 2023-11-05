@@ -17,6 +17,7 @@ namespace LewdieJam.Player
         {
             AwakeParent();
 
+            // Ignore player if out of range
             var trigger = GetComponentInChildren<TriggerListener>();
             trigger.OnTriggerEnterCallback.AddListener((coll) =>
             {
@@ -36,21 +37,25 @@ namespace LewdieJam.Player
 
         private void Update()
         {
-            if (_target == null || _attackTarget != null)
+            if (_target == null || _attackTarget != null) // Do nothing
             {
                 _rb.velocity = new(0f, _rb.velocity.y, 0f);
             }
             else
             {
-                if (Vector3.Distance(_target.transform.position, transform.position) < _info.Range)
+                if (Vector3.Distance(_target.transform.position, transform.position) < _info.Range) // Start attack toward player
                 {
                     var pos = transform.position + (_target.transform.position - transform.position).normalized * _info.Range;
                     pos = new(pos.x, 0.01f, pos.z);
+
+                    // Display attack hint
                     _attackTarget = Instantiate(_hintCircle, pos, _hintCircle.transform.rotation);
+                    _attackTarget.transform.localScale = new(_info.Range, _info.Range, 1f);
                     _rb.velocity = new(0f, _rb.velocity.y, 0f);
+
                     StartCoroutine(WaitAndAttack());
                 }
-                else
+                else // Move toward player
                 {
                     _rb.velocity = (_target.transform.position - transform.position).normalized * _info.Speed * Time.deltaTime;
                 }
@@ -60,6 +65,14 @@ namespace LewdieJam.Player
         private IEnumerator WaitAndAttack()
         {
             yield return new WaitForSeconds(1f);
+
+            // Attempt to hit player
+            var colliders = Physics.OverlapSphere(_attackTarget.transform.position, _info.Range, 1 << 7);
+            foreach (var collider in colliders)
+            {
+                collider.GetComponent<ACharacter>().TakeDamage(1);
+            }
+
             Destroy(_attackTarget);
             _attackTarget = null;
         }

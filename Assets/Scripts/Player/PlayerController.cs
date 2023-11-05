@@ -1,7 +1,9 @@
 using LewdieJam.Map;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 namespace LewdieJam.Player
 {
@@ -10,13 +12,27 @@ namespace LewdieJam.Player
         [SerializeField]
         private GameObject _attackVfx;
 
+        [SerializeField]
+        private Image _healthBar;
+
         public IInteractible CurrentInteraction { set; private get; }
 
         private Vector2 _mov;
 
+        /// <summary>
+        /// When taking a hit, need to wait a bit before being able to take a new one
+        /// </summary>
+        private bool _isInvulnerabilityFrame;
+
+        private float _invultDuration = 2f;
+        private float _invultFrameIntensity = .5f;
+
+        private SpriteRenderer _sr;
+
         private void Awake()
         {
             AwakeParent();
+            _sr = GetComponentInChildren<SpriteRenderer>();
         }
 
         private void FixedUpdate()
@@ -25,6 +41,34 @@ namespace LewdieJam.Player
                 GameManager.Instance.CanPlay
                 ? _info.Speed * Time.fixedDeltaTime * new Vector3(_mov.x, _rb.velocity.y, _mov.y)
                 : new(0f, _rb.velocity.y, 0f);
+        }
+
+        protected override bool CanTakeDamage => !_isInvulnerabilityFrame;
+
+        public override void TakeDamage(int damage)
+        {
+            base.TakeDamage(damage);
+
+            if (damage > 0)
+            {
+                StartCoroutine(DisplayInvulnerability());
+                _healthBar.transform.localScale = new Vector3(_health / (float)_info.BaseHealth, 1f, 1f);
+            }
+        }
+
+        private IEnumerator DisplayInvulnerability()
+        {
+            _isInvulnerabilityFrame = true;
+            bool state = true;
+            for (float i = 0; i < _invultDuration; i += _invultFrameIntensity)
+            {
+                yield return new WaitForSeconds(_invultFrameIntensity);
+                state = !state;
+                _sr.color = state ? Color.white : new Color(1f, 1f, 1f, 0f);
+            }
+
+            _sr.color = Color.white;
+            _isInvulnerabilityFrame = false;
         }
 
         public override void Die()
