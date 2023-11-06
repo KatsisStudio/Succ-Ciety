@@ -468,6 +468,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 2642649a-2d4a-4a62-a124-0179271bde5e
     m_ActionName: Player/Action[/Keyboard/e]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 177392692}
+        m_TargetAssemblyTypeName: LewdieJam.Player.PlayerController, Assembly-CSharp
+        m_MethodName: OnUltimate
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 5c51cf4b-d0fb-48bd-8713-543f153feaac
+    m_ActionName: Player/AltFire[/Mouse/rightButton]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -2098,7 +2114,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _info: {fileID: 11400000, guid: 66a2e906f076b044484b31030220ec88, type: 2}
-  _energyDisplay: {fileID: 0}
+  _energyDisplay: {fileID: 315675045}
   _hScene: {fileID: 1788053769}
 --- !u!1001 &1536342809
 PrefabInstance:

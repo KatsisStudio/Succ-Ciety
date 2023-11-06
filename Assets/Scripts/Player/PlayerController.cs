@@ -2,6 +2,7 @@ using LewdieJam.Game;
 using LewdieJam.Map;
 using LewdieJam.SO;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -33,12 +34,17 @@ namespace LewdieJam.Player
 
         protected override int MaxHealth => _info.BaseHealth * (int)GameManager.Instance.GetStatValue(UpgradableStat.BaseHealth, GameManager.Instance.Info.MaxHealthCurveGain, GameManager.Instance.Info.MaxHealthMultiplerGain);
 
-        private bool _canUseUltimate;
+        private bool _canUseUltimate = true;
 
         private void Awake()
         {
             AwakeParent();
             _sr = GetComponentInChildren<SpriteRenderer>();
+        }
+
+        private void Start()
+        {
+            StartParent();
         }
 
         private void FixedUpdate()
@@ -89,38 +95,57 @@ namespace LewdieJam.Player
             _mov = value.ReadValue<Vector2>();
         }
 
+        private IEnumerable<ACharacter> FireOnTarget()
+        {
+            if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out var hit, Mathf.Infinity, _floorMask))
+            {
+                Debug.Log("fire in the hole");
+                // Calculate mouse forward vector
+                var direction = hit.point - transform.position;
+                direction.y = 0f;
+                var dirNorm = direction.normalized;
+                var targetPos = transform.position + dirNorm * _info.Range;
+
+                // Spawn VFX
+                Destroy(Instantiate(_attackVfx, targetPos, _attackVfx.transform.rotation), 1f);
+
+                // Damage all enemies in range
+                var colliders = Physics.OverlapSphere(targetPos, _info.Range, _enemyMask);
+                foreach (var collider in colliders)
+                {
+                    if (collider.CompareTag("Enemy"))
+                    {
+                        yield return collider.GetComponent<ACharacter>();
+                    }
+                }
+            }
+        }
+
         public void OnFire(InputAction.CallbackContext value)
         {
             if (value.performed)
             {
-                if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out var hit, Mathf.Infinity, _floorMask))
+                var damage = 1 + Mathf.CeilToInt(GameManager.Instance.GetStatValue(UpgradableStat.AtkPower, GameManager.Instance.Info.AtkCurveGain, GameManager.Instance.Info.MaxAtkMultiplerGain));
+                foreach (var coll in FireOnTarget())
                 {
-                    // Calculate mouse forward vector
-                    var direction = hit.point - transform.position;
-                    direction.y = 0f;
-                    var dirNorm = direction.normalized;
-                    var targetPos = transform.position + dirNorm * _info.Range;
-
-                    // Spawn VFX
-                    Destroy(Instantiate(_attackVfx, targetPos, _attackVfx.transform.rotation), 1f);
-
-                    // Damage all enemies in range
-                    var damage = GameManager.Instance.GetStatValue(UpgradableStat.AtkPower, GameManager.Instance.Info.AtkCurveGain, GameManager.Instance.Info.MaxAtkMultiplerGain);
-                    var colliders = Physics.OverlapSphere(targetPos, _info.Range, _enemyMask);
-                    foreach (var collider in colliders)
-                    {
-                        if (collider.CompareTag("Enemy"))
-                        {
-                            collider.GetComponent<ACharacter>().TakeDamage(1);
-                        }
-                    }
+                    coll.TakeDamage(damage);
                 }
             }
         }
 
         public void OnUltimate(InputAction.CallbackContext value)
         {
-
+            if (value.performed && _canUseUltimate)
+            {
+                foreach (var coll in FireOnTarget())
+                {
+                    var ec = (EnemyController)coll;
+                    if (!ec.IsCharmed)
+                    {
+                        ec.IsCharmed = true;
+                    }
+                }
+            }
         }
 
         public void OnAction(InputAction.CallbackContext value)

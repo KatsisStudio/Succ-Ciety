@@ -24,6 +24,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "AltFire",
+                    "type": "Button",
+                    "id": "5c51cf4b-d0fb-48bd-8713-543f153feaac",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Action",
                     "type": "Button",
                     "id": "2642649a-2d4a-4a62-a124-0179271bde5e",
@@ -185,6 +194,28 @@
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "Action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7f0ef8db-be2f-41c7-8f36-69353434eec1",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "AltFire",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "10af53d7-3431-4242-8a3f-f0beaa5d18b8",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "AltFire",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

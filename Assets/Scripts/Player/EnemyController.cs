@@ -3,9 +3,7 @@ using LewdieJam.Map;
 using LewdieJam.SO;
 using System.Collections;
 using System.Linq;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace LewdieJam.Player
 {
@@ -15,6 +13,9 @@ namespace LewdieJam.Player
 
         [SerializeField]
         private GameObject _hintCircle;
+
+        [SerializeField]
+        private GameObject _charmedPrefab;
 
         private GameObject _attackTarget;
 
@@ -27,6 +28,8 @@ namespace LewdieJam.Player
                 _target = targets.OrderBy(x => Vector3.Distance(transform.position, x.transform.position)).FirstOrDefault().GetComponent<ACharacter>();
 
                 _isCharmed = value;
+
+                Instantiate(_charmedPrefab, transform);
             }
             get => _isCharmed;
         }
@@ -52,6 +55,11 @@ namespace LewdieJam.Player
                     _target = null;
                 }
             });
+        }
+
+        private void Start()
+        {
+            StartParent();
         }
 
         private void Update()
@@ -89,6 +97,7 @@ namespace LewdieJam.Player
             var colliders = Physics.OverlapSphere(_attackTarget.transform.position, _info.Range, IsCharmed ? _enemyMask : _playerMask);
             foreach (var collider in colliders)
             {
+                Debug.Log(collider.name);
                 collider.GetComponent<ACharacter>().TakeDamage(1);
             }
 

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5849956882733140419}
   - component: {fileID: 4141155342502376892}
   - component: {fileID: 3305003419204201671}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Detector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -216,3 +216,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _info: {fileID: 11400000, guid: 3e69f9533ec395341933e2fdc1b47b51, type: 2}
   _hintCircle: {fileID: 4680538537397820172, guid: bbad95053d8d227499b050ebaaa34596, type: 3}
+  _charmedPrefab: {fileID: 7841418112492579079, guid: 6ccf514bdea5d5e4595a0af23cc99241, type: 3}

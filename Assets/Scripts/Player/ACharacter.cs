@@ -19,11 +19,15 @@ namespace LewdieJam.Player
 
         protected void AwakeParent()
         {
-            _floorMask = 1 << LayerMask.GetMask("Floor");
-            _playerMask = 1 << LayerMask.GetMask("Player");
-            _enemyMask = 1 << LayerMask.GetMask("Enemy");
+            _floorMask = 1 << LayerMask.NameToLayer("Floor");
+            _playerMask = 1 << LayerMask.NameToLayer("Player");
+            _enemyMask = 1 << LayerMask.NameToLayer("Enemy");
 
             _rb = GetComponent<Rigidbody>();
+        }
+
+        protected void StartParent()
+        {
             _health = MaxHealth;
         }
 
