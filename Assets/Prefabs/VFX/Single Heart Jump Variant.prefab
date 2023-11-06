@@ -10,7 +10,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2675161466982319349, guid: 8fd6ca9bf14d4d54ea6f35746719d89f, type: 3}
       propertyPath: looping
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2675161466982319349, guid: 8fd6ca9bf14d4d54ea6f35746719d89f, type: 3}
+      propertyPath: lengthInSec
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2675161466982319349, guid: 8fd6ca9bf14d4d54ea6f35746719d89f, type: 3}
       propertyPath: ShapeModule.angle

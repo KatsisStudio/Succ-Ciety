@@ -93,7 +93,7 @@ namespace LewdieJam.Player
         {
             if (value.performed)
             {
-                if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out var hit, Mathf.Infinity, FloorMask))
+                if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out var hit, Mathf.Infinity, _floorMask))
                 {
                     // Calculate mouse forward vector
                     var direction = hit.point - transform.position;
@@ -106,7 +106,7 @@ namespace LewdieJam.Player
 
                     // Damage all enemies in range
                     var damage = GameManager.Instance.GetStatValue(UpgradableStat.AtkPower, GameManager.Instance.Info.AtkCurveGain, GameManager.Instance.Info.MaxAtkMultiplerGain);
-                    var colliders = Physics.OverlapSphere(targetPos, _info.Range, EnemyMask);
+                    var colliders = Physics.OverlapSphere(targetPos, _info.Range, _enemyMask);
                     foreach (var collider in colliders)
                     {
                         if (collider.CompareTag("Enemy"))

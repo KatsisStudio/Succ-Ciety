@@ -23,7 +23,7 @@ namespace LewdieJam.Player
         {
             set
             {
-                var targets = Physics.OverlapSphere(transform.position, transform.GetChild(0).GetComponent<SphereCollider>().radius, IsCharmed ? EnemyMask : PlayerMask);
+                var targets = Physics.OverlapSphere(transform.position, transform.GetChild(0).GetComponent<SphereCollider>().radius, IsCharmed ? _enemyMask : _playerMask);
                 _target = targets.OrderBy(x => Vector3.Distance(transform.position, x.transform.position)).FirstOrDefault().GetComponent<ACharacter>();
 
                 _isCharmed = value;
@@ -86,7 +86,7 @@ namespace LewdieJam.Player
             yield return new WaitForSeconds(1f);
 
             // Attempt to hit player
-            var colliders = Physics.OverlapSphere(_attackTarget.transform.position, _info.Range, IsCharmed ? EnemyMask : PlayerMask);
+            var colliders = Physics.OverlapSphere(_attackTarget.transform.position, _info.Range, IsCharmed ? _enemyMask : _playerMask);
             foreach (var collider in colliders)
             {
                 collider.GetComponent<ACharacter>().TakeDamage(1);
