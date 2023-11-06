@@ -73,7 +73,24 @@ namespace LewdieJam.Lobby
             }
 
             _timers.RemoveAll(x => x.IsDeletionCandidate);
+
+            // Somehow this doesn't work properly if done in UpdateUI (?)
+            _breastsSizeModifierParam.Value = PersistentData.Attachments.HasFlag(Attachment.LargeBreasts) ? _breastsSizeModifierParam.MaximumValue : _breastsSizeModifierParam.MinimumValue;
         }
+
+        private void ToggleAttachment(Attachment attachment)
+        {
+            if (PersistentData.Attachments.HasFlag(attachment))
+            {
+                PersistentData.Attachments &= ~attachment;
+            }
+            else
+            {
+                PersistentData.Attachments |= attachment;
+            }
+            UpdateUI();
+        }
+        public void ToggleLargeBreastsAttachment() => ToggleAttachment(Attachment.LargeBreasts);
 
         public void UpdateUI()
         {
