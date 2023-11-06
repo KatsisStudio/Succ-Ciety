@@ -1,0 +1,177 @@
+{
+	"Version": 3,
+	"Meta": {
+		"PhysicsSettingCount": 1,
+		"TotalInputCount": 1,
+		"TotalOutputCount": 9,
+		"VertexCount": 2,
+		"Fps": 60,
+		"EffectiveForces": {
+			"Gravity": {
+				"X": 0,
+				"Y": -1
+			},
+			"Wind": {
+				"X": 0,
+				"Y": 0
+			}
+		},
+		"PhysicsDictionary": [
+			{
+				"Id": "PhysicsSetting1",
+				"Name": "Breathing"
+			}
+		]
+	},
+	"PhysicsSettings": [
+		{
+			"Id": "PhysicsSetting1",
+			"Input": [
+				{
+					"Source": {
+						"Target": "Parameter",
+						"Id": "ParamBreath"
+					},
+					"Weight": 100,
+					"Type": "Angle",
+					"Reflect": false
+				}
+			],
+			"Output": [
+				{
+					"Destination": {
+						"Target": "Parameter",
+						"Id": "ShinesParam"
+					},
+					"VertexIndex": 1,
+					"Scale": 0.5,
+					"Weight": 100,
+					"Type": "Angle",
+					"Reflect": false
+				},
+				{
+					"Destination": {
+						"Target": "Parameter",
+						"Id": "EyebrowsParam"
+					},
+					"VertexIndex": 1,
+					"Scale": 0.5,
+					"Weight": 100,
+					"Type": "Angle",
+					"Reflect": false
+				},
+				{
+					"Destination": {
+						"Target": "Parameter",
+						"Id": "TattooParam"
+					},
+					"VertexIndex": 1,
+					"Scale": 0.5,
+					"Weight": 100,
+					"Type": "Angle",
+					"Reflect": false
+				},
+				{
+					"Destination": {
+						"Target": "Parameter",
+						"Id": "BangsParam"
+					},
+					"VertexIndex": 1,
+					"Scale": 0.5,
+					"Weight": 100,
+					"Type": "Angle",
+					"Reflect": false
+				},
+				{
+					"Destination": {
+						"Target": "Parameter",
+						"Id": "SideHairParam"
+					},
+					"VertexIndex": 1,
+					"Scale": 0.5,
+					"Weight": 100,
+					"Type": "Angle",
+					"Reflect": false
+				},
+				{
+					"Destination": {
+						"Target": "Parameter",
+						"Id": "ChestBounceParam"
+					},
+					"VertexIndex": 1,
+					"Scale": 0.5,
+					"Weight": 100,
+					"Type": "Angle",
+					"Reflect": false
+				},
+				{
+					"Destination": {
+						"Target": "Parameter",
+						"Id": "LHandParam"
+					},
+					"VertexIndex": 1,
+					"Scale": 0.5,
+					"Weight": 100,
+					"Type": "Angle",
+					"Reflect": false
+				},
+				{
+					"Destination": {
+						"Target": "Parameter",
+						"Id": "RHandParam"
+					},
+					"VertexIndex": 1,
+					"Scale": 0.5,
+					"Weight": 100,
+					"Type": "Angle",
+					"Reflect": false
+				},
+				{
+					"Destination": {
+						"Target": "Parameter",
+						"Id": "BackHairParam"
+					},
+					"VertexIndex": 1,
+					"Scale": 0.5,
+					"Weight": 100,
+					"Type": "Angle",
+					"Reflect": false
+				}
+			],
+			"Vertices": [
+				{
+					"Position": {
+						"X": 0,
+						"Y": 0
+					},
+					"Mobility": 1,
+					"Delay": 1,
+					"Acceleration": 1,
+					"Radius": 0
+				},
+				{
+					"Position": {
+						"X": 0,
+						"Y": 36.3
+					},
+					"Mobility": 0.95,
+					"Delay": 0.8,
+					"Acceleration": 1.5,
+					"Radius": 36.3
+				}
+			],
+			"Normalization": {
+				"Position": {
+					"Minimum": -10,
+					"Default": 0,
+					"Maximum": 10
+				},
+				"Angle": {
+					"Minimum": -10,
+					"Default": 0,
+					"Maximum": 10
+				}
+			}
+		}
+	]
+}

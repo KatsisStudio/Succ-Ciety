@@ -2,7 +2,7 @@
 	"Version": 3,
 	"Parameters": [
 		{
-			"Id": "Param22",
+			"Id": "xParam",
 			"GroupId": "",
 			"Name": "X"
 		},
@@ -12,77 +12,77 @@
 			"Name": "Breath"
 		},
 		{
-			"Id": "Param",
+			"Id": "ShinesParam",
 			"GroupId": "",
 			"Name": "Shines"
 		},
 		{
-			"Id": "Param2",
+			"Id": "EyebrowsParam",
 			"GroupId": "",
 			"Name": "Eyebrows"
 		},
 		{
-			"Id": "Param9",
+			"Id": "TattooParam",
 			"GroupId": "",
 			"Name": "Tattoo"
 		},
 		{
-			"Id": "Param10",
+			"Id": "BangsParam",
 			"GroupId": "",
 			"Name": "Bangs"
 		},
 		{
-			"Id": "Param11",
+			"Id": "EyeTopParam",
 			"GroupId": "",
 			"Name": "EyeTop"
 		},
 		{
-			"Id": "Param12",
+			"Id": "EyeBottomParam",
 			"GroupId": "",
 			"Name": "EyeBottom"
 		},
 		{
-			"Id": "Param13",
+			"Id": "MouthParam",
 			"GroupId": "",
 			"Name": "Mouth"
 		},
 		{
-			"Id": "Param14",
+			"Id": "SideHairParam",
 			"GroupId": "",
 			"Name": "SideHair"
 		},
 		{
-			"Id": "Param15",
+			"Id": "ChestBounceParam",
 			"GroupId": "",
 			"Name": "ChestBounce"
 		},
 		{
-			"Id": "Param4",
+			"Id": "ChestSizeParam",
 			"GroupId": "",
 			"Name": "ChestSize"
 		},
 		{
-			"Id": "Param16",
+			"Id": "BodyParam",
 			"GroupId": "",
 			"Name": "Body"
 		},
 		{
-			"Id": "Param18",
+			"Id": "LHandParam",
 			"GroupId": "",
 			"Name": "LHand"
 		},
 		{
-			"Id": "Param17",
+			"Id": "RHandParam",
 			"GroupId": "",
 			"Name": "RHand"
 		},
 		{
-			"Id": "Param21",
+			"Id": "BackHairParam",
 			"GroupId": "",
 			"Name": "BackHair"
 		},
 		{
-			"Id": "Param3",
+			"Id": "HornsParam",
 			"GroupId": "",
 			"Name": "Horns"
 		}

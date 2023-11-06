@@ -5,6 +5,7 @@
 		"Textures": [
 			"SccbusPL.4096/texture_00.png"
 		],
+		"Physics": "SccbusPL.physics3.json",
 		"DisplayInfo": "SccbusPL.cdi3.json"
 	},
 	"Groups": [
