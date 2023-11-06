@@ -39,4 +39,31 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  MaxHornLevel: 10
+  HornLevels:
+  - 0
+  - 0.2
+  - 0.35
+  - 0.55
+  - 0.75
+  - 1
+  MaxEnergyMultiplierGain: 0
+  EnergyCurveGain:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  MaxAtkMultiplerGain: 0
+  AtkCurveGain:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  MinAtkSpeedGain: 0
+  AtkSpeedCurveGain:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4

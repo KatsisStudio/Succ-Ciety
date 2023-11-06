@@ -35,8 +35,20 @@ namespace LewdieJam.Lobby
         private CubismParameter _breastsBounceParam;
         [SerializeField]
         private CubismParameter _breastsSizeModifierParam;
+        [SerializeField]
+        private CubismParameter _hornParam;
+
+        [Header("Debug")]
+        [SerializeField]
+        private bool _giveLotOfEnergy;
+
+        private bool _live2dDirty;
 
         private readonly List<UpdateTimer> _timers = new();
+
+        private float _hornTimer;
+        private float _hornTimerTarget;
+        private int _hornIndex;
 
         public void OnBreastsClick()
         {
@@ -55,10 +67,22 @@ namespace LewdieJam.Lobby
         {
             Instance = this;
 
+#if UNITY_EDITOR
+            if (_giveLotOfEnergy)
+            {
+                PersistentData.Energy += 100000;
+            }
+#endif
+
             _healthStat.Key = UpgradableStat.BaseHealth.ToString();
             _atkPowerStat.Key = UpgradableStat.AtkPower.ToString();
             _atkSpeedStat.Key = UpgradableStat.AtkSpeed.ToString();
             _energyStat.Key = UpgradableStat.EnergyGained.ToString();
+
+            _hornIndex = Mathf.FloorToInt(Stat01 * (_gameInfo.HornLevels.Length - 1));
+            var tatooDelta = _hornParam.MaximumValue - _hornParam.MinimumValue;
+            _hornTimerTarget = _gameInfo.HornLevels[_hornIndex];
+            _hornParam.Value = _hornTimerTarget * _hornParam.MaximumValue + _hornParam.MinimumValue;
 
             UpdateUI();
 
@@ -74,8 +98,23 @@ namespace LewdieJam.Lobby
 
             _timers.RemoveAll(x => x.IsDeletionCandidate);
 
+            if (_hornTimer < _hornTimerTarget)
+            {
+                _hornTimer += Time.deltaTime * .1f;
+                if (_hornTimer > _hornTimerTarget)
+                {
+                    _hornTimer = _hornTimerTarget;
+                }
+                var tatooDelta = _hornParam.MaximumValue - _hornParam.MinimumValue;
+                _hornParam.Value = _hornTimer * _hornParam.MaximumValue + _hornParam.MinimumValue;
+            }
+
             // Somehow this doesn't work properly if done in UpdateUI (?)
-            _breastsSizeModifierParam.Value = PersistentData.Attachments.HasFlag(Attachment.LargeBreasts) ? _breastsSizeModifierParam.MaximumValue : _breastsSizeModifierParam.MinimumValue;
+            if (_live2dDirty)
+            {
+                _live2dDirty = false;
+                _breastsSizeModifierParam.Value = PersistentData.Attachments.HasFlag(Attachment.LargeBreasts) ? _breastsSizeModifierParam.MaximumValue : _breastsSizeModifierParam.MinimumValue;
+            }
         }
 
         private void ToggleAttachment(Attachment attachment)
@@ -92,10 +131,14 @@ namespace LewdieJam.Lobby
         }
         public void ToggleLargeBreastsAttachment() => ToggleAttachment(Attachment.LargeBreasts);
 
+        private float Stat01 => PersistentData.Stats.Values.Sum() / ((float)Enum.GetValues(typeof(UpgradableStat)).Length * _gameInfo.MaxLevel);
+
         public void UpdateUI()
         {
             _energy.text = PersistentData.Energy.ToString();
-            _hornLevel.text = Mathf.FloorToInt(PersistentData.Stats.Values.Sum() / ((float)Enum.GetValues(typeof(UpgradableStat)).Length * _gameInfo.MaxLevel) * _gameInfo.MaxHornLevel).ToString();
+            _hornIndex = Mathf.FloorToInt(Stat01 * (_gameInfo.HornLevels.Length - 1));
+            _hornTimerTarget = _gameInfo.HornLevels[_hornIndex];
+            _hornLevel.text = _hornIndex.ToString();
 
             StatDisplay[] _allStats = new[]
             {
@@ -121,6 +164,8 @@ namespace LewdieJam.Lobby
                     stat.Cost = prod;
                 }
             }
+
+            _live2dDirty = true;
         }
     }
 

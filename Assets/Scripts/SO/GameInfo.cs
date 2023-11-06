@@ -12,7 +12,7 @@ namespace LewdieJam.SO
         public AnimationCurve CostProgression;
 
         [Header("Horn")]
-        public int MaxHornLevel;
+        public float[] HornLevels;
 
         [Header("Energy")]
         [Tooltip("Max energy multiplier used against based energy gain")]
