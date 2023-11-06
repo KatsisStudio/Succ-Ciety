@@ -14,7 +14,7 @@ namespace LewdieJam
         public GameInfo Info => _info;
 
         [SerializeField]
-        private TMP_Text _debugText;
+        private TMP_Text _energyDisplay;
 
         [SerializeField]
         private GameObject _hScene;
@@ -26,26 +26,15 @@ namespace LewdieJam
 
         public bool CanPlay => !_hScene.activeInHierarchy;
 
-        private int _energy;
-        public int Energy
-        {
-            set
-            {
-                _energy = value;
-                UpdateUI();
-            }
-            get => _energy;
-        }
-
         private void Awake()
         {
             Instance = this;
             UpdateUI();
         }
 
-        private void UpdateUI()
+        public void UpdateUI()
         {
-            _debugText.text = $"Energy: {Energy}";
+            _energyDisplay.text = $"Energy: {PersistentData.Energy} ({PersistentData.PendingEnergy})";
         }
 
         public void ToggleHScene(bool value)

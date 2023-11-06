@@ -5,6 +5,7 @@ namespace LewdieJam.Game
 {
     public static class PersistentData
     {
+        public static int PendingEnergy { set; get; }
         public static int Energy { set; get; }
 
         public static Dictionary<UpgradableStat, int> Stats { get; } = new();

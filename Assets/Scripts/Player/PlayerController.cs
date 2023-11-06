@@ -33,6 +33,8 @@ namespace LewdieJam.Player
 
         protected override int MaxHealth => _info.BaseHealth * (int)GameManager.Instance.GetStatValue(UpgradableStat.BaseHealth, GameManager.Instance.Info.MaxHealthCurveGain, GameManager.Instance.Info.MaxHealthMultiplerGain);
 
+        private bool _canUseUltimate;
+
         private void Awake()
         {
             AwakeParent();
@@ -77,6 +79,8 @@ namespace LewdieJam.Player
 
         public override void Die()
         {
+            PersistentData.Energy += PersistentData.PendingEnergy / 2;
+            PersistentData.PendingEnergy = 0;
             SceneManager.LoadScene("Lobby");
         }
 
@@ -112,6 +116,11 @@ namespace LewdieJam.Player
                     }
                 }
             }
+        }
+
+        public void OnUltimate(InputAction.CallbackContext value)
+        {
+
         }
 
         public void OnAction(InputAction.CallbackContext value)

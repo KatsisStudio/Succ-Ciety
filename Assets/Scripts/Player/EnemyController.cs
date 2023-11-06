@@ -1,4 +1,5 @@
-﻿using LewdieJam.Map;
+﻿using LewdieJam.Game;
+using LewdieJam.Map;
 using LewdieJam.SO;
 using System.Collections;
 using UnityEngine;
@@ -80,7 +81,8 @@ namespace LewdieJam.Player
 
         public override void Die()
         {
-            GameManager.Instance.Energy += Mathf.CeilToInt(1f * GameManager.Instance.GetStatValue(UpgradableStat.EnergyGained, GameManager.Instance.Info.EnergyCurveGain, GameManager.Instance.Info.MaxEnergyMultiplierGain));
+            PersistentData.PendingEnergy += Mathf.CeilToInt(1f * GameManager.Instance.GetStatValue(UpgradableStat.EnergyGained, GameManager.Instance.Info.EnergyCurveGain, GameManager.Instance.Info.MaxEnergyMultiplierGain));
+            GameManager.Instance.UpdateUI();
         }
 
         private void OnDestroy()
