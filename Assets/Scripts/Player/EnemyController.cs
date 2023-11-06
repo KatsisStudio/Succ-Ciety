@@ -2,7 +2,10 @@
 using LewdieJam.Map;
 using LewdieJam.SO;
 using System.Collections;
+using System.Linq;
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace LewdieJam.Player
 {
@@ -15,6 +18,20 @@ namespace LewdieJam.Player
 
         private GameObject _attackTarget;
 
+        private bool _isCharmed;
+        public bool IsCharmed
+        {
+            set
+            {
+                var targets = Physics.OverlapSphere(transform.position, transform.GetChild(0).GetComponent<SphereCollider>().radius, IsCharmed ? EnemyMask : PlayerMask);
+                _target = targets.OrderBy(x => Vector3.Distance(transform.position, x.transform.position)).FirstOrDefault().GetComponent<ACharacter>();
+
+                _isCharmed = value;
+            }
+            get => _isCharmed;
+        }
+
+
         private void Awake()
         {
             AwakeParent();
@@ -23,14 +40,14 @@ namespace LewdieJam.Player
             var trigger = GetComponentInChildren<TriggerListener>();
             trigger.OnTriggerEnterCallback.AddListener((coll) =>
             {
-                if (coll.CompareTag("Player"))
+                if ((!IsCharmed && coll.CompareTag("Player")) || (IsCharmed && coll.CompareTag("Enemy")))
                 {
                     _target = coll.GetComponent<ACharacter>();
                 }
             });
             trigger.OnTriggerExitCallback.AddListener((coll) =>
             {
-                if (coll.CompareTag("Player"))
+                if ((coll.CompareTag("Player") || coll.CompareTag("Enemy")) && coll.gameObject.GetInstanceID() == _target.gameObject.GetInstanceID())
                 {
                     _target = null;
                 }
@@ -69,7 +86,7 @@ namespace LewdieJam.Player
             yield return new WaitForSeconds(1f);
 
             // Attempt to hit player
-            var colliders = Physics.OverlapSphere(_attackTarget.transform.position, _info.Range, 1 << 7);
+            var colliders = Physics.OverlapSphere(_attackTarget.transform.position, _info.Range, IsCharmed ? EnemyMask : PlayerMask);
             foreach (var collider in colliders)
             {
                 collider.GetComponent<ACharacter>().TakeDamage(1);
