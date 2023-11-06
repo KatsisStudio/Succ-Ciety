@@ -15,8 +15,17 @@ namespace LewdieJam.SO
         public int MaxHornLevel;
 
         [Header("Energy")]
-        [Tooltip("How much additional energy you earn per energy stat upgrade (multiplied by base amount gained")]
-        public int EnergyMultiplierPerLevel;
+        [Tooltip("Max energy multiplier used against based energy gain")]
+        public int MaxEnergyMultiplierGain;
+        public AnimationCurve EnergyCurveGain;
+
+        [Header("Attack")]
+        [Tooltip("Max atk multiplier used against current atk")]
+        public int MaxAtkMultiplerGain;
+        public AnimationCurve AtkCurveGain;
+        [Tooltip("Atk speed multiplier, should be under 1")]
+        public float MinAtkSpeedGain;
+        public AnimationCurve AtkSpeedCurveGain;
     }
 
     public enum UpgradableStat
