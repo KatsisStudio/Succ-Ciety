@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using LewdieJam.SO;
+using System.Collections.Generic;
 
 namespace LewdieJam.Game
 {
@@ -6,11 +7,11 @@ namespace LewdieJam.Game
     {
         public static int Energy { set; get; }
 
-        public static Dictionary<string, int> Stats { get; } = new();
+        public static Dictionary<UpgradableStat, int> Stats { get; } = new();
 
         public static Attachment Attachments { set; get; }
 
-        public static int GetStatValue(string key)
+        public static int GetStatValue(UpgradableStat key)
         {
             if (Stats.ContainsKey(key)) return Stats[key];
             return 0;

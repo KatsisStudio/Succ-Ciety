@@ -1,4 +1,5 @@
 ﻿using LewdieJam.Game;
+using LewdieJam.SO;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,7 +8,7 @@ namespace LewdieJam.Lobby
 {
     public class StatDisplay : MonoBehaviour
     {
-        public string Key { get; set; }
+        public UpgradableStat Key { get; set; }
 
         [SerializeField]
         private TMP_Text _value;

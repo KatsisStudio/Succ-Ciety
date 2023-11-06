@@ -74,10 +74,10 @@ namespace LewdieJam.Lobby
             }
 #endif
 
-            _healthStat.Key = UpgradableStat.BaseHealth.ToString();
-            _atkPowerStat.Key = UpgradableStat.AtkPower.ToString();
-            _atkSpeedStat.Key = UpgradableStat.AtkSpeed.ToString();
-            _energyStat.Key = UpgradableStat.EnergyGained.ToString();
+            _healthStat.Key = UpgradableStat.BaseHealth;
+            _atkPowerStat.Key = UpgradableStat.AtkPower;
+            _atkSpeedStat.Key = UpgradableStat.AtkSpeed;
+            _energyStat.Key = UpgradableStat.EnergyGained;
 
             _hornIndex = Mathf.FloorToInt(Stat01 * (_gameInfo.HornLevels.Length - 1));
             var tatooDelta = _hornParam.MaximumValue - _hornParam.MinimumValue;

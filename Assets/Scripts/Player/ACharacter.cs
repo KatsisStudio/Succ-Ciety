@@ -11,10 +11,12 @@ namespace LewdieJam.Player
 
         protected int _health;
 
+        protected virtual int MaxHealth => _info.BaseHealth;
+
         protected void AwakeParent()
         {
             _rb = GetComponent<Rigidbody>();
-            _health = _info.BaseHealth;
+            _health = MaxHealth;
         }
 
         protected virtual bool CanTakeDamage => true;

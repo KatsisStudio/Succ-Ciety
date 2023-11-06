@@ -1,4 +1,6 @@
-﻿using TMPro;
+﻿using LewdieJam.Game;
+using LewdieJam.SO;
+using TMPro;
 using UnityEngine;
 
 namespace LewdieJam
@@ -8,14 +10,19 @@ namespace LewdieJam
         public static GameManager Instance { private set; get; }
 
         [SerializeField]
-        private SO.GameInfo _info;
-        public SO.GameInfo Info => _info;
+        private GameInfo _info;
+        public GameInfo Info => _info;
 
         [SerializeField]
         private TMP_Text _debugText;
 
         [SerializeField]
         private GameObject _hScene;
+
+        public float GetStatValue(UpgradableStat stat, AnimationCurve curve, float maxVal)
+        {
+            return curve.Evaluate(PersistentData.GetStatValue(stat) / (float)_info.MaxLevel) * maxVal;
+        }
 
         public bool CanPlay => !_hScene.activeInHierarchy;
 

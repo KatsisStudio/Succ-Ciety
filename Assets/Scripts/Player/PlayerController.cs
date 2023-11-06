@@ -1,4 +1,6 @@
+using LewdieJam.Game;
 using LewdieJam.Map;
+using LewdieJam.SO;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -29,6 +31,8 @@ namespace LewdieJam.Player
 
         private SpriteRenderer _sr;
 
+        protected override int MaxHealth => _info.BaseHealth * (int)GameManager.Instance.GetStatValue(UpgradableStat.BaseHealth, GameManager.Instance.Info.MaxHealthCurveGain, GameManager.Instance.Info.MaxHealthMultiplerGain);
+
         private void Awake()
         {
             AwakeParent();
@@ -52,7 +56,7 @@ namespace LewdieJam.Player
             if (damage > 0)
             {
                 StartCoroutine(DisplayInvulnerability());
-                _healthBar.transform.localScale = new Vector3(_health / (float)_info.BaseHealth, 1f, 1f);
+                _healthBar.transform.localScale = new Vector3(_health / (float)MaxHealth, 1f, 1f);
             }
         }
 
