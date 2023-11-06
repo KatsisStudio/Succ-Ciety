@@ -1,7 +1,5 @@
 ﻿using LewdieJam.Game;
 using LewdieJam.Player;
-using System.Runtime.CompilerServices;
-using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
