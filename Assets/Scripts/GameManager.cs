@@ -9,6 +9,7 @@ namespace LewdieJam
 
         [SerializeField]
         private SO.GameInfo _info;
+        public SO.GameInfo Info => _info;
 
         [SerializeField]
         private TMP_Text _debugText;

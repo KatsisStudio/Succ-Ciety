@@ -16,16 +16,21 @@ namespace LewdieJam.SO
 
         [Header("Energy")]
         [Tooltip("Max energy multiplier used against based energy gain")]
-        public int MaxEnergyMultiplierGain;
+        public float MaxEnergyMultiplierGain;
         public AnimationCurve EnergyCurveGain;
 
         [Header("Attack")]
         [Tooltip("Max atk multiplier used against current atk")]
-        public int MaxAtkMultiplerGain;
+        public float MaxAtkMultiplerGain;
         public AnimationCurve AtkCurveGain;
         [Tooltip("Atk speed multiplier, should be under 1")]
         public float MinAtkSpeedGain;
+        [Tooltip("Keep the curve going up")]
         public AnimationCurve AtkSpeedCurveGain;
+
+        [Header("Health")]
+        public int MaxHealthMultiplerGain;
+        public AnimationCurve MaxHealthCurveGain;
     }
 
     public enum UpgradableStat
