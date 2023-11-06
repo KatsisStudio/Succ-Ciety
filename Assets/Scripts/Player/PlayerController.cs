@@ -101,6 +101,7 @@ namespace LewdieJam.Player
                     Destroy(Instantiate(_attackVfx, targetPos, _attackVfx.transform.rotation), 1f);
 
                     // Damage all enemies in range
+                    var damage = GameManager.Instance.GetStatValue(UpgradableStat.AtkPower, GameManager.Instance.Info.AtkCurveGain, GameManager.Instance.Info.MaxAtkMultiplerGain);
                     var colliders = Physics.OverlapSphere(targetPos, _info.Range, 1 << 8);
                     foreach (var collider in colliders)
                     {
