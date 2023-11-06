@@ -7,6 +7,7 @@ using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 namespace LewdieJam.Lobby
 {
@@ -27,6 +28,9 @@ namespace LewdieJam.Lobby
 
         [SerializeField]
         private TMP_Text _hornLevel;
+
+        [SerializeField]
+        private Button[] _buttonsPerHornLevels;
 
         [Header("Live2D")]
         [SerializeField]
@@ -80,6 +84,7 @@ namespace LewdieJam.Lobby
             _energyStat.Key = UpgradableStat.EnergyGained;
 
             _hornIndex = Mathf.FloorToInt(Stat01 * (_gameInfo.HornLevels.Length - 1));
+
             var tatooDelta = _hornParam.MaximumValue - _hornParam.MinimumValue;
             _hornTimerTarget = _gameInfo.HornLevels[_hornIndex];
             _hornParam.Value = _hornTimerTarget * _hornParam.MaximumValue + _hornParam.MinimumValue;
@@ -139,6 +144,18 @@ namespace LewdieJam.Lobby
             _hornIndex = Mathf.FloorToInt(Stat01 * (_gameInfo.HornLevels.Length - 1));
             _hornTimerTarget = _gameInfo.HornLevels[_hornIndex];
             _hornLevel.text = _hornIndex.ToString();
+
+            for (int i = 0; i < _buttonsPerHornLevels.Length; i++)
+            {
+                if (_hornIndex > i)
+                {
+                    _buttonsPerHornLevels[i].interactable = true;
+                }
+                else
+                {
+                    break;
+                }
+            }
 
             StatDisplay[] _allStats = new[]
             {
