@@ -1,4 +1,5 @@
-﻿using LewdieJam.SO;
+﻿using LewdieJam.Game;
+using LewdieJam.SO;
 using Live2D.Cubism.Core;
 using System;
 using System.Collections.Generic;
@@ -41,7 +42,7 @@ namespace LewdieJam.Lobby
         {
             if (!_timers.Any(x => x.IsId(_breastsBounceParam.Id)))
             {
-                _timers.Add(new(_breastsBounceParam, 1f, false));
+                _timers.Add(new(_breastsBounceParam, 1.5f, false));
             }
         }
 

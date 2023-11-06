@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using LewdieJam.Game;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
