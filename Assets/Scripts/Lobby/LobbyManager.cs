@@ -61,7 +61,7 @@ namespace LewdieJam.Lobby
 
             UpdateUI();
 
-            _timers.Add(new(_breathParam, 1f, false));
+            _timers.Add(new(_breathParam, .5f, true));
         }
 
         private void Update()
