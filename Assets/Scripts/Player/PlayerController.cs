@@ -3,6 +3,8 @@ using LewdieJam.Map;
 using LewdieJam.SO;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -35,6 +37,8 @@ namespace LewdieJam.Player
         protected override int MaxHealth => _info.BaseHealth * (int)GameManager.Instance.GetStatValue(UpgradableStat.BaseHealth, GameManager.Instance.Info.MaxHealthCurveGain, GameManager.Instance.Info.MaxHealthMultiplerGain);
 
         private bool _canUseUltimate = true;
+
+        private EnemyController _charmed;
 
         private void Awake()
         {
@@ -138,13 +142,18 @@ namespace LewdieJam.Player
         {
             if (value.performed && _canUseUltimate)
             {
-                foreach (var coll in FireOnTarget())
+                var target = FireOnTarget().OrderBy(x => Vector3.Distance(transform.position, x.transform.position)).FirstOrDefault();
+                if (target != null)
                 {
-                    var ec = (EnemyController)coll;
-                    if (!ec.IsCharmed)
+                    // Un-charm the last enemy charmed
+                    if (_charmed != null)
                     {
-                        ec.IsCharmed = true;
+                        _charmed.IsCharmed = false;
                     }
+
+                    // Charm new target
+                    _charmed = (EnemyController)target;
+                    _charmed.IsCharmed = true;
                 }
             }
         }

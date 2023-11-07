@@ -5,7 +5,6 @@ using LewdieJam.SO;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using TMPro;
 using UnityEngine;
 
 namespace LewdieJam.Player
@@ -24,6 +23,8 @@ namespace LewdieJam.Player
 
         private readonly List<ACharacter> _inRange = new();
 
+        private GameObject _charmedEffect;
+
         private bool _isCharmed;
         public bool IsCharmed
         {
@@ -33,7 +34,15 @@ namespace LewdieJam.Player
 
                 EnemyManager.Instance.RefreshAllTargets();
 
-                Instantiate(_charmedPrefab, transform);
+                if (_charmedEffect != null)
+                {
+                    Destroy(_charmedEffect);
+                    _charmedEffect = null;
+                }
+                if (_isCharmed)
+                {
+                    _charmedEffect = Instantiate(_charmedPrefab, transform);
+                }
             }
             get => _isCharmed;
         }
