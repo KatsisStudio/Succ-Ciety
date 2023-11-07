@@ -1,9 +1,29 @@
 fileFormatVersion: 2
-guid: 63a6c4fdcfef43843bb7ee699cd43bb7
+guid: 5f792413111de884bb30a99bd2ceb389
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Building.A_Door1
+    second: {fileID: 2100000, guid: cc00c783c99dd4c42855329edaf3a961, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Building.A_ShopCounter
+    second: {fileID: 2100000, guid: f1a73d443e054c346b457ccfe590d0bc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Building.A_Sign
+    second: {fileID: 2100000, guid: fad35f649d7c2bc488ef77730f86d85c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Building_Small1
+    second: {fileID: 2100000, guid: 7da9ea09383c55742b4fb6cf64a40f90, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

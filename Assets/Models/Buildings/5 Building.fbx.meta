@@ -1,9 +1,39 @@
 fileFormatVersion: 2
-guid: 84f81234bce20c44891ea4535a7cd5ba
+guid: 25fe17639b108984d83c80f3c443029f
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Building.A_AirConditioner
+    second: {fileID: 2100000, guid: b22629be969a41d41804af9caa72bc1f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Building.A_Balconey
+    second: {fileID: 2100000, guid: 994d7e8d83d9c9848a23092b127ddc5b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Building.A_Door1
+    second: {fileID: 2100000, guid: bea172ea310d9ea43ba129e10e7053dc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Building.A_Sign2
+    second: {fileID: 2100000, guid: bfd72ed01389b1a4db044bb821520dd2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Building.A_Window1
+    second: {fileID: 2100000, guid: 8335e7e7b8a793a4286c0041a0e389ba, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Building_Med1
+    second: {fileID: 2100000, guid: 5204763923243644db634ab1cea799fa, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
