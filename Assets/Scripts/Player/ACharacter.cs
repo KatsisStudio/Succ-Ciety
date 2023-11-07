@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Assets.Scripts.Player;
+using UnityEngine;
 
 namespace LewdieJam.Player
 {
@@ -45,6 +46,7 @@ namespace LewdieJam.Player
             {
                 Die();
                 Destroy(gameObject);
+                EnemyManager.Instance.RefreshAllTargets();
             }
         }
 

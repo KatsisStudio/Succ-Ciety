@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: EnemyInfo
   m_EditorClassIdentifier: 
   Speed: 500
-  BaseHealth: 1
+  BaseHealth: 10
   Range: 2
+  AttackForce: 5

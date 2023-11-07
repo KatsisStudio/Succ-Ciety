@@ -11,5 +11,7 @@ namespace LewdieJam.SO
         public int BaseHealth;
 
         public float Range;
+
+        public int AttackForce;
     }
 }

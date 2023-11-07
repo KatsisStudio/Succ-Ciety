@@ -126,7 +126,7 @@ namespace LewdieJam.Player
         {
             if (value.performed)
             {
-                var damage = 1 + Mathf.CeilToInt(GameManager.Instance.GetStatValue(UpgradableStat.AtkPower, GameManager.Instance.Info.AtkCurveGain, GameManager.Instance.Info.MaxAtkMultiplerGain));
+                var damage = _info.AttackForce + Mathf.CeilToInt(GameManager.Instance.GetStatValue(UpgradableStat.AtkPower, GameManager.Instance.Info.AtkCurveGain, GameManager.Instance.Info.MaxAtkMultiplerGain));
                 foreach (var coll in FireOnTarget())
                 {
                     coll.TakeDamage(damage);

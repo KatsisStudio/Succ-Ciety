@@ -131,7 +131,7 @@ namespace LewdieJam.Player
                 var other = collider.GetComponent<ACharacter>();
                 if (other.Team != Team)
                 {
-                    other.TakeDamage(1);
+                    other.TakeDamage(_info.AttackForce);
                 }
             }
 
