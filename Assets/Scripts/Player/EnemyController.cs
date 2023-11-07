@@ -1,9 +1,11 @@
-﻿using LewdieJam.Game;
+﻿using Assets.Scripts.Player;
+using LewdieJam.Game;
 using LewdieJam.Map;
 using LewdieJam.SO;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 
 namespace LewdieJam.Player
@@ -29,10 +31,7 @@ namespace LewdieJam.Player
             {
                 _isCharmed = value;
 
-                _target = _inRange
-                    .Where(x => x != null && x.GetComponent<ACharacter>().Team != Team)
-                    .OrderBy(x => Vector3.Distance(transform.position, x.transform.position))
-                    .FirstOrDefault().GetComponent<ACharacter>();
+                EnemyManager.Instance.RefreshAllTargets();
 
                 Instantiate(_charmedPrefab, transform);
             }
@@ -40,6 +39,14 @@ namespace LewdieJam.Player
         }
 
         public override Team Team => IsCharmed ? Team.Allie : Team.Enemy;
+
+        public void RefreshTarget()
+        {
+            _target = _inRange
+                .Where(x => x.Team != Team)
+                .OrderBy(x => Vector3.Distance(transform.position, x.transform.position))
+                .FirstOrDefault();
+        }
 
         private void Awake()
         {
@@ -61,7 +68,7 @@ namespace LewdieJam.Player
             });
             trigger.OnTriggerExitCallback.AddListener((coll) =>
             {
-                _inRange.RemoveAll(x => x == null || x.gameObject.GetInstanceID() == coll.gameObject.GetInstanceID());
+                _inRange.RemoveAll(x => x.gameObject.GetInstanceID() == coll.gameObject.GetInstanceID());
                 if (_target != null && (coll.CompareTag("Player") || coll.CompareTag("Enemy")) && coll.gameObject.GetInstanceID() == _target.gameObject.GetInstanceID())
                 {
                     _target = null;
@@ -72,6 +79,7 @@ namespace LewdieJam.Player
         private void Start()
         {
             StartParent();
+            EnemyManager.Instance.Register(this);
         }
 
         private void Update()
@@ -99,6 +107,12 @@ namespace LewdieJam.Player
                     _rb.velocity = (_target.transform.position - transform.position).normalized * _info.Speed * Time.deltaTime;
                 }
             }
+        }
+
+        public void OnEnemyUnregistered(EnemyController value)
+        {
+            // Enemy died, we attempt to remove it from our list in case it's there
+            _inRange.Remove(value);
         }
 
         private IEnumerator WaitAndAttack()
@@ -129,6 +143,7 @@ namespace LewdieJam.Player
         {
             PersistentData.PendingEnergy += Mathf.CeilToInt(1f * GameManager.Instance.GetStatValue(UpgradableStat.EnergyGained, GameManager.Instance.Info.EnergyCurveGain, GameManager.Instance.Info.MaxEnergyMultiplierGain));
             GameManager.Instance.UpdateUI();
+            EnemyManager.Instance.Unregister(this);
         }
 
         private void OnDestroy()
