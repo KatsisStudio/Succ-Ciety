@@ -57,6 +57,8 @@ namespace LewdieJam.Player
 
         protected override bool CanTakeDamage => !_isInvulnerabilityFrame;
 
+        public override Team Team => Team.Allie;
+
         public override void TakeDamage(int damage)
         {
             base.TakeDamage(damage);

@@ -39,6 +39,7 @@ namespace LewdieJam.Player
             get => _isCharmed;
         }
 
+        public override Team Team => IsCharmed ? Team.Allie : Team.Enemy;
 
         private void Awake()
         {
@@ -48,9 +49,13 @@ namespace LewdieJam.Player
             var trigger = GetComponentInChildren<TriggerListener>();
             trigger.OnTriggerEnterCallback.AddListener((coll) =>
             {
-                if ((!IsCharmed && coll.CompareTag("Player")) || (IsCharmed && coll.CompareTag("Enemy")))
+                if (coll.CompareTag("Player") || coll.CompareTag("Enemy"))
                 {
-                    _target = coll.GetComponent<ACharacter>();
+                    var other = coll.GetComponent<ACharacter>();
+                    if (other.Team != Team)
+                    {
+                        _target = other;
+                    }
                 }
             });
             trigger.OnTriggerExitCallback.AddListener((coll) =>

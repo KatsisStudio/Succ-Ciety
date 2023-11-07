@@ -17,6 +17,8 @@ namespace LewdieJam.Player
 
         protected virtual int MaxHealth => _info.BaseHealth;
 
+        public abstract Team Team { get; }
+
         protected void AwakeParent()
         {
             _floorMask = 1 << LayerMask.NameToLayer("Floor");
