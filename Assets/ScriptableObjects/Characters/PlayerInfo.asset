@@ -16,3 +16,5 @@ MonoBehaviour:
   BaseHealth: 10
   Range: 2
   AttackForce: 10
+  DashDuration: 0.5
+  DashSpeedMultiplier: 3

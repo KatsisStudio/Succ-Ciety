@@ -13,5 +13,9 @@ namespace LewdieJam.SO
         public float Range;
 
         public int AttackForce;
+
+        [Tooltip("Dash (player only)")]
+        public float DashDuration;
+        public float DashSpeedMultiplier;
     }
 }

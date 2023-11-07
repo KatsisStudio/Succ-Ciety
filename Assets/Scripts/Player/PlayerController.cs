@@ -4,7 +4,6 @@ using LewdieJam.SO;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -22,7 +21,14 @@ namespace LewdieJam.Player
 
         public IInteractible CurrentInteraction { set; private get; }
 
+        /// <summary>
+        /// Current movement
+        /// </summary>
         private Vector2 _mov;
+        /// <summary>
+        /// Last direction we went in, can't be 0;0
+        /// </summary>
+        private Vector2 _dashDirection = Vector2.up;
 
         /// <summary>
         /// When taking a hit, need to wait a bit before being able to take a new one
@@ -34,9 +40,16 @@ namespace LewdieJam.Player
 
         private SpriteRenderer _sr;
 
+        private bool _isDashing;
+
         protected override int MaxHealth => _info.BaseHealth * (int)GameManager.Instance.GetStatValue(UpgradableStat.BaseHealth, GameManager.Instance.Info.MaxHealthCurveGain, GameManager.Instance.Info.MaxHealthMultiplerGain);
 
-        private bool _canUseUltimate = true;
+        private Dictionary<Skill, bool> _skills = new()
+        {
+            { Skill.MainAttack, true },
+            { Skill.SubAttack, true },
+            { Skill.Dash, true }
+        };
 
         private EnemyController _charmed;
 
@@ -53,10 +66,18 @@ namespace LewdieJam.Player
 
         private void FixedUpdate()
         {
-            _rb.velocity =
-                GameManager.Instance.CanPlay
-                ? _info.Speed * Time.fixedDeltaTime * new Vector3(_mov.x, _rb.velocity.y, _mov.y)
-                : new(0f, _rb.velocity.y, 0f);
+            if (!GameManager.Instance.CanPlay)
+            {
+                _rb.velocity = new(0f, _rb.velocity.y, 0f);
+            }
+            else if (_isDashing)
+            {
+                _rb.velocity = new Vector3(_dashDirection.x, 0f, _dashDirection.y) * Time.fixedDeltaTime * _info.Speed * _info.DashSpeedMultiplier;
+            }
+            else
+            {
+                _rb.velocity = _info.Speed * Time.fixedDeltaTime * new Vector3(_mov.x, _rb.velocity.y, _mov.y);
+            }
         }
 
         protected override bool CanTakeDamage => !_isInvulnerabilityFrame;
@@ -99,6 +120,12 @@ namespace LewdieJam.Player
         public void OnMovement(InputAction.CallbackContext value)
         {
             _mov = value.ReadValue<Vector2>();
+
+            // If we are not currently dashing and we are moving, we update next dash direction
+            if (!_isDashing && _mov.magnitude != 0)
+            {
+                _dashDirection = _mov;
+            }
         }
 
         private IEnumerable<ACharacter> FireOnTarget()
@@ -126,21 +153,37 @@ namespace LewdieJam.Player
             }
         }
 
+        private IEnumerator Reload(Skill s, float time)
+        {
+            _skills[s] = false;
+            yield return new WaitForSeconds(time);
+            _skills[s] = true;
+        }
+
+        private IEnumerator Dash(float time)
+        {
+            _isDashing = true;
+            yield return new WaitForSeconds(time);
+            _isDashing = false;
+        }
+
         public void OnFire(InputAction.CallbackContext value)
         {
-            if (value.performed)
+            if (value.performed && _skills[Skill.MainAttack])
             {
                 var damage = _info.AttackForce + Mathf.CeilToInt(GameManager.Instance.GetStatValue(UpgradableStat.AtkPower, GameManager.Instance.Info.AtkCurveGain, GameManager.Instance.Info.MaxAtkMultiplerGain));
                 foreach (var coll in FireOnTarget())
                 {
                     coll.TakeDamage(damage);
                 }
+
+                StartCoroutine(Reload(Skill.MainAttack, .5f));
             }
         }
 
         public void OnUltimate(InputAction.CallbackContext value)
         {
-            if (value.performed && _canUseUltimate)
+            if (value.performed && _skills[Skill.SubAttack])
             {
                 var target = FireOnTarget().OrderBy(x => Vector3.Distance(transform.position, x.transform.position)).FirstOrDefault();
                 if (target != null)
@@ -155,6 +198,16 @@ namespace LewdieJam.Player
                     _charmed = (EnemyController)target;
                     _charmed.IsCharmed = true;
                 }
+                StartCoroutine(Reload(Skill.SubAttack, 1f));
+            }
+        }
+
+        public void OnDash(InputAction.CallbackContext value)
+        {
+            if (value.performed && _skills[Skill.Dash])
+            {
+                StartCoroutine(Dash(_info.DashDuration));
+                StartCoroutine(Reload(Skill.Dash, 2f));
             }
         }
 
@@ -164,6 +217,13 @@ namespace LewdieJam.Player
             {
                 CurrentInteraction.Interact();
             }
+        }
+
+        private enum Skill
+        {
+            MainAttack,
+            SubAttack,
+            Dash
         }
     }
 }
