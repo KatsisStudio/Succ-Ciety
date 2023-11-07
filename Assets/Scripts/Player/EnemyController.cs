@@ -49,6 +49,16 @@ namespace LewdieJam.Player
 
         public override Team Team => IsCharmed ? Team.Allie : Team.Enemy;
 
+        public override void TakeDamage(int damage)
+        {
+            base.TakeDamage(damage);
+
+            if (damage > 0 && IsCharmed)
+            {
+                IsCharmed = false;
+            }
+        }
+
         public void RefreshTarget()
         {
             _target = _inRange
