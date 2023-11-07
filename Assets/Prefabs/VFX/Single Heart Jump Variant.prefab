@@ -21,6 +21,10 @@ PrefabInstance:
       value: 38.2
       objectReference: {fileID: 0}
     - target: {fileID: 2675161466982319349, guid: 8fd6ca9bf14d4d54ea6f35746719d89f, type: 3}
+      propertyPath: SizeModule.enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2675161466982319349, guid: 8fd6ca9bf14d4d54ea6f35746719d89f, type: 3}
       propertyPath: ForceModule.y.scalar
       value: 200
       objectReference: {fileID: 0}
@@ -42,7 +46,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2675161466982319349, guid: 8fd6ca9bf14d4d54ea6f35746719d89f, type: 3}
       propertyPath: InitialModule.startSize.scalar
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2675161466982319349, guid: 8fd6ca9bf14d4d54ea6f35746719d89f, type: 3}
       propertyPath: InitialModule.gravityModifier.scalar
