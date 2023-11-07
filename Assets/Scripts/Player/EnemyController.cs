@@ -24,10 +24,15 @@ namespace LewdieJam.Player
         {
             set
             {
-                var targets = Physics.OverlapSphere(transform.position, transform.GetChild(0).GetComponent<SphereCollider>().radius, IsCharmed ? _enemyMask : _playerMask);
-                _target = targets.OrderBy(x => Vector3.Distance(transform.position, x.transform.position)).FirstOrDefault().GetComponent<ACharacter>();
-
                 _isCharmed = value;
+
+                var targets = Physics.OverlapSphere(transform.position, transform.GetChild(0).GetComponent<SphereCollider>().radius, IsCharmed ? _enemyMask : _playerMask);
+                _target = targets
+                    .OrderBy(x => Vector3.Distance(transform.position, x.transform.position))
+                    .Where(x => x.gameObject.GetInstanceID() != gameObject.GetInstanceID())
+                    .FirstOrDefault().GetComponent<ACharacter>();
+
+                Debug.Log($"Enemy charmed, new target is {_target.name}");
 
                 Instantiate(_charmedPrefab, transform);
             }
@@ -50,7 +55,7 @@ namespace LewdieJam.Player
             });
             trigger.OnTriggerExitCallback.AddListener((coll) =>
             {
-                if ((coll.CompareTag("Player") || coll.CompareTag("Enemy")) && coll.gameObject.GetInstanceID() == _target.gameObject.GetInstanceID())
+                if (_target != null && (coll.CompareTag("Player") || coll.CompareTag("Enemy")) && coll.gameObject.GetInstanceID() == _target.gameObject.GetInstanceID())
                 {
                     _target = null;
                 }
@@ -72,12 +77,12 @@ namespace LewdieJam.Player
             {
                 if (Vector3.Distance(_target.transform.position, transform.position) < _info.Range) // Start attack toward player
                 {
-                    var pos = transform.position + (_target.transform.position - transform.position).normalized * _info.Range;
+                    var pos = transform.position + (_target.transform.position - transform.position).normalized * _info.Range * 1.5f;
                     pos = new(pos.x, 0.01f, pos.z);
 
                     // Display attack hint
                     _attackTarget = Instantiate(_hintCircle, pos, _hintCircle.transform.rotation);
-                    _attackTarget.transform.localScale = new(_info.Range, _info.Range, 1f);
+                    _attackTarget.transform.localScale = new(_info.Range * 2f, _info.Range * 2f, 1f);
                     _rb.velocity = new(0f, _rb.velocity.y, 0f);
 
                     StartCoroutine(WaitAndAttack());
@@ -97,7 +102,11 @@ namespace LewdieJam.Player
             var colliders = Physics.OverlapSphere(_attackTarget.transform.position, _info.Range, IsCharmed ? _enemyMask : _playerMask);
             foreach (var collider in colliders)
             {
-                Debug.Log(collider.name);
+                // DEBUG
+                if (collider.gameObject.GetInstanceID() == gameObject.GetInstanceID())
+                {
+                    Debug.LogWarning("Enemy is attacking himself!");
+                }
                 collider.GetComponent<ACharacter>().TakeDamage(1);
             }
 

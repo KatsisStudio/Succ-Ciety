@@ -41,6 +41,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2675161466982319349, guid: 8fd6ca9bf14d4d54ea6f35746719d89f, type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2675161466982319349, guid: 8fd6ca9bf14d4d54ea6f35746719d89f, type: 3}
       propertyPath: InitialModule.gravityModifier.scalar
       value: 9.8
       objectReference: {fileID: 0}
