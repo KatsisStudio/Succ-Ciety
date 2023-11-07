@@ -12,8 +12,7 @@ namespace LewdieJam.Player
         protected int _health;
 
         protected int _floorMask;
-        protected int _playerMask;
-        protected int _enemyMask;
+        protected int _characterMask;
 
         protected virtual int MaxHealth => _info.BaseHealth;
 
@@ -22,8 +21,7 @@ namespace LewdieJam.Player
         protected void AwakeParent()
         {
             _floorMask = 1 << LayerMask.NameToLayer("Floor");
-            _playerMask = 1 << LayerMask.NameToLayer("Player");
-            _enemyMask = 1 << LayerMask.NameToLayer("Enemy");
+            _characterMask = 1 << LayerMask.NameToLayer("Character");
 
             _rb = GetComponent<Rigidbody>();
         }

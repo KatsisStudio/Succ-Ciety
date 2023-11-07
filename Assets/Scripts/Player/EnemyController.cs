@@ -26,10 +26,10 @@ namespace LewdieJam.Player
             {
                 _isCharmed = value;
 
-                var targets = Physics.OverlapSphere(transform.position, transform.GetChild(0).GetComponent<SphereCollider>().radius, IsCharmed ? _enemyMask : _playerMask);
+                var targets = Physics.OverlapSphere(transform.position, transform.GetChild(0).GetComponent<SphereCollider>().radius, _characterMask);
                 _target = targets
                     .OrderBy(x => Vector3.Distance(transform.position, x.transform.position))
-                    .Where(x => x.gameObject.GetInstanceID() != gameObject.GetInstanceID())
+                    .Where(x => x.GetComponent<ACharacter>().Team != Team)
                     .FirstOrDefault().GetComponent<ACharacter>();
 
                 Debug.Log($"Enemy charmed, new target is {_target.name}");
@@ -104,7 +104,7 @@ namespace LewdieJam.Player
             yield return new WaitForSeconds(1f);
 
             // Attempt to hit player
-            var colliders = Physics.OverlapSphere(_attackTarget.transform.position, _info.Range, IsCharmed ? _enemyMask : _playerMask);
+            var colliders = Physics.OverlapSphere(_attackTarget.transform.position, _info.Range, _characterMask);
             foreach (var collider in colliders)
             {
                 // DEBUG
@@ -112,7 +112,11 @@ namespace LewdieJam.Player
                 {
                     Debug.LogWarning("Enemy is attacking himself!");
                 }
-                collider.GetComponent<ACharacter>().TakeDamage(1);
+                var other = collider.GetComponent<ACharacter>();
+                if (other.Team != Team)
+                {
+                    other.TakeDamage(1);
+                }
             }
 
             Destroy(_attackTarget);

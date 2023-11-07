@@ -112,7 +112,7 @@ namespace LewdieJam.Player
                 Destroy(Instantiate(_attackVfx, targetPos, _attackVfx.transform.rotation), 1f);
 
                 // Damage all enemies in range
-                var colliders = Physics.OverlapSphere(targetPos, _info.Range, _enemyMask);
+                var colliders = Physics.OverlapSphere(targetPos, _info.Range, _characterMask);
                 foreach (var collider in colliders)
                 {
                     if (collider.CompareTag("Enemy"))
