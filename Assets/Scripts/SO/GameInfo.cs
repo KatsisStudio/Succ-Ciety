@@ -23,10 +23,11 @@ namespace LewdieJam.SO
         [Tooltip("Max atk multiplier used against current atk")]
         public float MaxAtkMultiplerGain;
         public AnimationCurve AtkCurveGain;
-        [Tooltip("Atk speed multiplier, should be under 1")]
-        public float MinAtkSpeedGain;
-        [Tooltip("Keep the curve going up")]
-        public AnimationCurve AtkSpeedCurveGain;
+
+        [Header("Charm")]
+        [Tooltip("Max atk multiplier used against current atk")]
+        public float CharmAtkMultiplerGain;
+        public AnimationCurve CharmCurveGain;
 
         [Header("Health")]
         public int MaxHealthMultiplerGain;
@@ -36,7 +37,7 @@ namespace LewdieJam.SO
     public enum UpgradableStat
     {
         BaseHealth,
-        AtkSpeed,
+        CharmPower,
         AtkPower,
         EnergyGained
     }

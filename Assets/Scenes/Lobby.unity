@@ -9299,11 +9299,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5647358897258382, guid: e505c50438e057e41b824ac037a08cc2, type: 3}
       propertyPath: m_Name
-      value: AtkSpeedStat
+      value: CharmPower
       objectReference: {fileID: 0}
     - target: {fileID: 3023379098486231734, guid: e505c50438e057e41b824ac037a08cc2, type: 3}
       propertyPath: m_text
-      value: Atk Speed
+      value: Charm Power
       objectReference: {fileID: 0}
     - target: {fileID: 8106606772699370690, guid: e505c50438e057e41b824ac037a08cc2, type: 3}
       propertyPath: m_Pivot.x

@@ -80,7 +80,7 @@ namespace LewdieJam.Lobby
 
             _healthStat.Key = UpgradableStat.BaseHealth;
             _atkPowerStat.Key = UpgradableStat.AtkPower;
-            _atkSpeedStat.Key = UpgradableStat.AtkSpeed;
+            _atkSpeedStat.Key = UpgradableStat.CharmPower;
             _energyStat.Key = UpgradableStat.EnergyGained;
 
             _hornIndex = Mathf.FloorToInt(Stat01 * (_gameInfo.HornLevels.Length - 1));
