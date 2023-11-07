@@ -2,6 +2,7 @@
 using LewdieJam.Map;
 using LewdieJam.SO;
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -19,6 +20,8 @@ namespace LewdieJam.Player
 
         private GameObject _attackTarget;
 
+        private readonly List<ACharacter> _inRange = new();
+
         private bool _isCharmed;
         public bool IsCharmed
         {
@@ -26,13 +29,10 @@ namespace LewdieJam.Player
             {
                 _isCharmed = value;
 
-                var targets = Physics.OverlapSphere(transform.position, transform.GetChild(0).GetComponent<SphereCollider>().radius, _characterMask);
-                _target = targets
+                _target = _inRange
+                    .Where(x => x != null && x.GetComponent<ACharacter>().Team != Team)
                     .OrderBy(x => Vector3.Distance(transform.position, x.transform.position))
-                    .Where(x => x.GetComponent<ACharacter>().Team != Team)
                     .FirstOrDefault().GetComponent<ACharacter>();
-
-                Debug.Log($"Enemy charmed, new target is {_target.name}");
 
                 Instantiate(_charmedPrefab, transform);
             }
@@ -52,6 +52,7 @@ namespace LewdieJam.Player
                 if (coll.CompareTag("Player") || coll.CompareTag("Enemy"))
                 {
                     var other = coll.GetComponent<ACharacter>();
+                    _inRange.Add(other);
                     if (other.Team != Team)
                     {
                         _target = other;
@@ -60,6 +61,7 @@ namespace LewdieJam.Player
             });
             trigger.OnTriggerExitCallback.AddListener((coll) =>
             {
+                _inRange.RemoveAll(x => x == null || x.gameObject.GetInstanceID() == coll.gameObject.GetInstanceID());
                 if (_target != null && (coll.CompareTag("Player") || coll.CompareTag("Enemy")) && coll.gameObject.GetInstanceID() == _target.gameObject.GetInstanceID())
                 {
                     _target = null;

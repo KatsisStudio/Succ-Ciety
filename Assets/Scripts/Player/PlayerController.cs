@@ -101,7 +101,6 @@ namespace LewdieJam.Player
         {
             if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out var hit, Mathf.Infinity, _floorMask))
             {
-                Debug.Log("fire in the hole");
                 // Calculate mouse forward vector
                 var direction = hit.point - transform.position;
                 direction.y = 0f;
