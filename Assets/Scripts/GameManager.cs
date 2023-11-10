@@ -1,5 +1,8 @@
-﻿using TMPro;
+﻿using LewdieJam.Game;
+using LewdieJam.SO;
+using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace LewdieJam
 {
@@ -8,36 +11,32 @@ namespace LewdieJam
         public static GameManager Instance { private set; get; }
 
         [SerializeField]
-        private SO.GameInfo _info;
+        private GameInfo _info;
+        public GameInfo Info => _info;
 
         [SerializeField]
-        private TMP_Text _debugText;
+        private TMP_Text _energyDisplay;
 
         [SerializeField]
         private GameObject _hScene;
 
-        public bool CanPlay => !_hScene.activeInHierarchy;
-
-        private int _energy;
-        public int Energy
+        public float GetStatValue(UpgradableStat stat, AnimationCurve curve, float maxVal)
         {
-            set
-            {
-                _energy = value;
-                UpdateUI();
-            }
-            get => _energy;
+            return curve.Evaluate(PersistentData.GetStatValue(stat) / (float)_info.MaxLevel) * maxVal;
         }
+
+        public bool CanPlay => !_hScene.activeInHierarchy;
 
         private void Awake()
         {
             Instance = this;
+            SceneManager.LoadScene("Map", LoadSceneMode.Additive);
             UpdateUI();
         }
 
-        private void UpdateUI()
+        public void UpdateUI()
         {
-            _debugText.text = $"Energy: {Energy}";
+            _energyDisplay.text = $"Energy: {PersistentData.Energy} ({PersistentData.PendingEnergy})";
         }
 
         public void ToggleHScene(bool value)

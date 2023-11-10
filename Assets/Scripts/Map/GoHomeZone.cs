@@ -1,6 +1,5 @@
-﻿using LewdieJam.Player;
-using System.Runtime.CompilerServices;
-using TMPro;
+﻿using LewdieJam.Game;
+using LewdieJam.Player;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -36,6 +35,8 @@ namespace LewdieJam.Map
 
         public void Interact()
         {
+            PersistentData.Energy += PersistentData.PendingEnergy;
+            PersistentData.PendingEnergy = 0;
             SceneManager.LoadScene("Lobby");
         }
     }

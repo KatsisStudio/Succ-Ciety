@@ -1,4 +1,5 @@
-﻿using LewdieJam.Player;
+﻿using LewdieJam.Game;
+using LewdieJam.Player;
 using LewdieJam.SO;
 using TMPro;
 using UnityEngine;
@@ -15,7 +16,7 @@ namespace LewdieJam.Map
         private TMP_Text _requirement;
 
         private bool CanEnterHouse
-            => GameManager.Instance.Energy >= _info.EnergyRequired;
+            => PersistentData.Energy + PersistentData.PendingEnergy >= _info.EnergyRequired;
 
         private string OpenOkText => "Press E to open the house";
         public string NotEnoughEnergyText => "You don't have enough energy";
@@ -66,7 +67,16 @@ namespace LewdieJam.Map
 
         public void Interact()
         {
-            GameManager.Instance.Energy -= _info.EnergyRequired;
+            if (_info.EnergyRequired > PersistentData.PendingEnergy)
+            {
+                var rest = _info.EnergyRequired - PersistentData.PendingEnergy;
+                PersistentData.PendingEnergy = 0;
+                PersistentData.Energy -= rest;
+            }
+            else
+            {
+                PersistentData.PendingEnergy -= _info.EnergyRequired;
+            }
             GameManager.Instance.ToggleHScene(true);
         }
     }

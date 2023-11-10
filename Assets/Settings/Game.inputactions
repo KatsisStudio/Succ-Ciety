@@ -24,9 +24,27 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "AltFire",
+                    "type": "Button",
+                    "id": "5c51cf4b-d0fb-48bd-8713-543f153feaac",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Action",
                     "type": "Button",
                     "id": "2642649a-2d4a-4a62-a124-0179271bde5e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Dash",
+                    "type": "Button",
+                    "id": "236dd30e-59da-4b96-b3fc-fde2c2998ae1",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -185,6 +203,50 @@
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "Action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7f0ef8db-be2f-41c7-8f36-69353434eec1",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "AltFire",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "10af53d7-3431-4242-8a3f-f0beaa5d18b8",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "AltFire",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d3c3437c-2179-4063-be2e-094cf86b6f5e",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Dash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a59281bf-90f3-4615-96d4-95564e3ade7d",
+                    "path": "<Keyboard>/leftShift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Dash",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
