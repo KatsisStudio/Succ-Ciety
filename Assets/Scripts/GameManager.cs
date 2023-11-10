@@ -2,6 +2,7 @@
 using LewdieJam.SO;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace LewdieJam
 {
@@ -29,6 +30,7 @@ namespace LewdieJam
         private void Awake()
         {
             Instance = this;
+            SceneManager.LoadScene("Map", LoadSceneMode.Additive);
             UpdateUI();
         }
 
