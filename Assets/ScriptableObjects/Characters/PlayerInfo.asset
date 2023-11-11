@@ -18,5 +18,7 @@ MonoBehaviour:
   AttackForce: 10
   PreAttackWaitTime: 0.4
   PostAttackWaitTime: 0.25
+  MainAttackVfx: {fileID: 8816799232979567605, guid: cabfb51918ebbce498df9d81f7a67c44, type: 3}
+  SubAttackVfx: {fileID: 9064519971208594023, guid: 23b7ad23caeae4048a970c54363ea046, type: 3}
   DashDuration: 0.5
   DashSpeedMultiplier: 3
