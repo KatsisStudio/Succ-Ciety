@@ -242,7 +242,7 @@ namespace LewdieJam.Player
                 else if (GameManager.Instance.CanPlay && _skills[Skill.MainAttack])
                 {
                     _anim.SetInteger("Attack", 3);
-                    StartCoroutine(Attack(Skill.MainAttack, NormalAttack, _info.MainAttackVfx, .5f));
+                    StartCoroutine(Attack(Skill.MainAttack, NormalAttack, _info.MainAttackVfx, 0f));
                 }
             }
         }

@@ -55,7 +55,7 @@ namespace LewdieJam.VN
             Instance = this;
         }
 
-        public bool IsPlayingStory => _container.activeInHierarchy;
+        public bool IsPlayingStory => _container.activeInHierarchy || _openDoorQuestion.activeInHierarchy;
 
         private void Update()
         {
@@ -75,7 +75,7 @@ namespace LewdieJam.VN
             _currHScene = hScene;
             ShowStory(_openDoorAsset, () =>
             {
-                _openDoorQuestion.SetActive(false);
+                _openDoorQuestion.SetActive(true);
             });
         }
 
