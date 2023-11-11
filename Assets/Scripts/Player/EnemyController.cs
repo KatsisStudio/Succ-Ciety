@@ -136,7 +136,7 @@ namespace LewdieJam.Player
 
         private IEnumerator WaitAndAttack()
         {
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(_info.PreAttackWaitTime);
 
             // Attempt to hit player
             var colliders = Physics.OverlapSphere(_attackTarget.transform.position, _info.Range, _characterMask);

@@ -1,6 +1,7 @@
 using LewdieJam.Game;
 using LewdieJam.Map;
 using LewdieJam.SO;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -43,6 +44,10 @@ namespace LewdieJam.Player
 
         private bool _isDashing;
 
+        public bool CanMove => !_isAttacking;
+
+        private bool _isAttacking;
+
         protected override int MaxHealth => _info.BaseHealth * (int)GameManager.Instance.GetStatValue(UpgradableStat.BaseHealth, GameManager.Instance.Info.MaxHealthCurveGain, GameManager.Instance.Info.MaxHealthMultiplerGain);
 
         private Dictionary<Skill, bool> _skills = new()
@@ -68,7 +73,7 @@ namespace LewdieJam.Player
 
         private void FixedUpdate()
         {
-            if (!GameManager.Instance.CanPlay)
+            if (!GameManager.Instance.CanPlay || !CanMove)
             {
                 _rb.velocity = new(0f, _rb.velocity.y, 0f);
                 _anim.SetFloat("Speed", 0f);
@@ -161,33 +166,68 @@ namespace LewdieJam.Player
             }
         }
 
-        private IEnumerator Reload(Skill s, float time)
+        private IEnumerator Attack(Skill s, Action attack, float reloadTime)
         {
             _skills[s] = false;
+            _isAttacking = true;
+            yield return new WaitForSeconds(_info.PreAttackWaitTime);
+            attack();
+            yield return new WaitForSeconds(_info.PostAttackWaitTime);
+            _isAttacking = false;
+            _anim.SetInteger("Attack", 0);
+            yield return Reload(s, reloadTime);
+        }
+
+        private IEnumerator Reload(Skill s, float time)
+        {
             yield return new WaitForSeconds(time);
             _skills[s] = true;
         }
 
-        private IEnumerator Dash(float time)
+        private IEnumerator Dash(float reloadTime)
         {
+            _skills[Skill.Dash] = false;
             _anim.SetBool("IsDashing", true);
             _isDashing = true;
-            yield return new WaitForSeconds(time);
+            yield return new WaitForSeconds(_info.DashDuration);
             _anim.SetBool("IsDashing", false);
             _isDashing = false;
+
+            yield return Reload(Skill.Dash, reloadTime);
+        }
+
+        private void NormalAttack()
+        {
+            var damage = _info.AttackForce + Mathf.CeilToInt(GameManager.Instance.GetStatValue(UpgradableStat.AtkPower, GameManager.Instance.Info.AtkCurveGain, GameManager.Instance.Info.MaxAtkMultiplerGain));
+            foreach (var coll in FireOnTarget())
+            {
+                coll.TakeDamage(damage);
+            }
+        }
+
+        private void CharmAttack()
+        {
+            var target = FireOnTarget().OrderBy(x => Vector3.Distance(transform.position, x.transform.position)).FirstOrDefault();
+            if (target != null)
+            {
+                // Un-charm the last enemy charmed
+                if (_charmed != null)
+                {
+                    _charmed.IsCharmed = false;
+                }
+
+                // Charm new target
+                _charmed = (EnemyController)target;
+                _charmed.IsCharmed = true;
+            }
         }
 
         public void OnFire(InputAction.CallbackContext value)
         {
             if (value.performed && _skills[Skill.MainAttack])
             {
-                var damage = _info.AttackForce + Mathf.CeilToInt(GameManager.Instance.GetStatValue(UpgradableStat.AtkPower, GameManager.Instance.Info.AtkCurveGain, GameManager.Instance.Info.MaxAtkMultiplerGain));
-                foreach (var coll in FireOnTarget())
-                {
-                    coll.TakeDamage(damage);
-                }
-
-                StartCoroutine(Reload(Skill.MainAttack, .5f));
+                _anim.SetInteger("Attack", 3);
+                StartCoroutine(Attack(Skill.MainAttack, NormalAttack, .5f));
             }
         }
 
@@ -195,20 +235,8 @@ namespace LewdieJam.Player
         {
             if (value.performed && _skills[Skill.SubAttack])
             {
-                var target = FireOnTarget().OrderBy(x => Vector3.Distance(transform.position, x.transform.position)).FirstOrDefault();
-                if (target != null)
-                {
-                    // Un-charm the last enemy charmed
-                    if (_charmed != null)
-                    {
-                        _charmed.IsCharmed = false;
-                    }
-
-                    // Charm new target
-                    _charmed = (EnemyController)target;
-                    _charmed.IsCharmed = true;
-                }
-                StartCoroutine(Reload(Skill.SubAttack, 1f));
+                _anim.SetInteger("Attack", 2);
+                StartCoroutine(Attack(Skill.SubAttack, CharmAttack, 1f));
             }
         }
 
@@ -216,8 +244,7 @@ namespace LewdieJam.Player
         {
             if (value.performed && _skills[Skill.Dash])
             {
-                StartCoroutine(Dash(_info.DashDuration));
-                StartCoroutine(Reload(Skill.Dash, 2f));
+                StartCoroutine(Dash(2f));
             }
         }
 

@@ -5,16 +5,17 @@ namespace LewdieJam.SO
     [CreateAssetMenu(menuName = "ScriptableObject/PlayerInfo", fileName = "PlayerInfo")]
     public class CharacterInfo : ScriptableObject
     {
-        [Tooltip("Speed of the player")]
         public float Speed;
 
         public int BaseHealth;
 
         public float Range;
 
+        [Header("Attack")]
         public int AttackForce;
+        public float PreAttackWaitTime, PostAttackWaitTime;
 
-        [Tooltip("Dash (player only)")]
+        [Header("Dash (player only)")]
         public float DashDuration;
         public float DashSpeedMultiplier;
     }
