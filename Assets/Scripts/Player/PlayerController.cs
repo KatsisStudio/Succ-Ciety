@@ -39,6 +39,7 @@ namespace LewdieJam.Player
         private float _invultFrameIntensity = .5f;
 
         private SpriteRenderer _sr;
+        private Animator _anim;
 
         private bool _isDashing;
 
@@ -57,6 +58,7 @@ namespace LewdieJam.Player
         {
             AwakeParent();
             _sr = GetComponentInChildren<SpriteRenderer>();
+            _anim = GetComponentInChildren<Animator>();
         }
 
         private void Start()
@@ -69,6 +71,7 @@ namespace LewdieJam.Player
             if (!GameManager.Instance.CanPlay)
             {
                 _rb.velocity = new(0f, _rb.velocity.y, 0f);
+                _anim.SetFloat("Speed", 0f);
             }
             else if (_isDashing)
             {
@@ -77,6 +80,11 @@ namespace LewdieJam.Player
             else
             {
                 _rb.velocity = _info.Speed * Time.fixedDeltaTime * new Vector3(_mov.x, _rb.velocity.y, _mov.y);
+                _anim.SetFloat("Speed", _mov.magnitude);
+                if (_mov.x != 0f)
+                {
+                    _sr.flipX = _mov.x < 0f; 
+                }
             }
         }
 
@@ -162,8 +170,10 @@ namespace LewdieJam.Player
 
         private IEnumerator Dash(float time)
         {
+            _anim.SetBool("IsDashing", true);
             _isDashing = true;
             yield return new WaitForSeconds(time);
+            _anim.SetBool("IsDashing", false);
             _isDashing = false;
         }
 
