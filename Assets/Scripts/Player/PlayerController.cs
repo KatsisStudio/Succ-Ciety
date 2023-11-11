@@ -15,9 +15,6 @@ namespace LewdieJam.Player
     public class PlayerController : ACharacter
     {
         [SerializeField]
-        private GameObject _attackVfx;
-
-        [SerializeField]
         private Image _healthBar;
 
         public IInteractible CurrentInteraction { set; private get; }
@@ -141,7 +138,7 @@ namespace LewdieJam.Player
             }
         }
 
-        private IEnumerable<ACharacter> FireOnTarget()
+        private IEnumerable<ACharacter> FireOnTarget(GameObject atkVfx)
         {
             if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out var hit, Mathf.Infinity, _floorMask))
             {
@@ -152,7 +149,7 @@ namespace LewdieJam.Player
                 var targetPos = transform.position + dirNorm * _info.Range;
 
                 // Spawn VFX
-                Destroy(Instantiate(_attackVfx, targetPos, _attackVfx.transform.rotation), 1f);
+                Destroy(Instantiate(atkVfx, targetPos, atkVfx.transform.rotation), 1f);
 
                 // Damage all enemies in range
                 var colliders = Physics.OverlapSphere(targetPos, _info.Range, _characterMask);
@@ -199,7 +196,7 @@ namespace LewdieJam.Player
         private void NormalAttack()
         {
             var damage = _info.AttackForce + Mathf.CeilToInt(GameManager.Instance.GetStatValue(UpgradableStat.AtkPower, GameManager.Instance.Info.AtkCurveGain, GameManager.Instance.Info.MaxAtkMultiplerGain));
-            foreach (var coll in FireOnTarget())
+            foreach (var coll in FireOnTarget(_info.MainAttackVfx))
             {
                 coll.TakeDamage(damage);
             }
@@ -207,7 +204,7 @@ namespace LewdieJam.Player
 
         private void CharmAttack()
         {
-            var target = FireOnTarget().OrderBy(x => Vector3.Distance(transform.position, x.transform.position)).FirstOrDefault();
+            var target = FireOnTarget(_info.SubAttackVfx).OrderBy(x => Vector3.Distance(transform.position, x.transform.position)).FirstOrDefault();
             if (target != null)
             {
                 // Un-charm the last enemy charmed
