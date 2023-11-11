@@ -7,8 +7,13 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Building.A_Window1
-    second: {fileID: 2100000, guid: 9a039c62e129c5245b7cc9c754d87224, type: 2}
+      name: Accessory_Door1
+    second: {fileID: 2100000, guid: 0d717c030e4c8244ca8dbd17853c9760, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Accessory_Window1
+    second: {fileID: 2100000, guid: c509e1cadf139e14fa30504570b8025a, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
