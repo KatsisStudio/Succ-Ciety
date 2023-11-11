@@ -1,5 +1,6 @@
 ﻿using LewdieJam.Game;
 using LewdieJam.SO;
+using LewdieJam.VN;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -25,7 +26,7 @@ namespace LewdieJam
             return curve.Evaluate(PersistentData.GetStatValue(stat) / (float)_info.MaxLevel) * maxVal;
         }
 
-        public bool CanPlay => !_hScene.activeInHierarchy;
+        public bool CanPlay => !_hScene.activeInHierarchy && !VNManager.Instance.IsPlayingStory;
 
         private void Awake()
         {

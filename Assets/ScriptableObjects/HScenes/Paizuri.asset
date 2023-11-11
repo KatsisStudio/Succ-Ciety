@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9eb92e4a910681f438ea4fba4365456a, type: 3}
+  m_Name: Paizuri
+  m_EditorClassIdentifier: 
+  Name: Paizuri
+  Story: {fileID: 4900000, guid: 19f3520e2f3c3af48b13e33f5cf88e39, type: 3}
+  Sprites:
+  - {fileID: 21300000, guid: 5583ad261183d0d40b475449e0443839, type: 3}
+  - {fileID: 21300000, guid: f6b95117bb2a92f4e87b873e13596aaf, type: 3}
+  - {fileID: 21300000, guid: 21ca464d6632d3648ac2927ccbf8e7e6, type: 3}
+  - {fileID: 21300000, guid: aa26bc778d134394f82897bbfc66bd84, type: 3}

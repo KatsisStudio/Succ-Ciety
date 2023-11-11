@@ -232,7 +232,7 @@ namespace LewdieJam.Player
 
         public void OnFire(InputAction.CallbackContext value)
         {
-            if (value.performed && _skills[Skill.MainAttack])
+            if (value.performed && GameManager.Instance.CanPlay && _skills[Skill.MainAttack])
             {
                 _anim.SetInteger("Attack", 3);
                 StartCoroutine(Attack(Skill.MainAttack, NormalAttack, _info.MainAttackVfx, .5f));
@@ -241,7 +241,7 @@ namespace LewdieJam.Player
 
         public void OnUltimate(InputAction.CallbackContext value)
         {
-            if (value.performed && _skills[Skill.SubAttack])
+            if (value.performed && GameManager.Instance.CanPlay && _skills[Skill.SubAttack])
             {
                 _anim.SetInteger("Attack", 2);
                 StartCoroutine(Attack(Skill.SubAttack, CharmAttack, _info.SubAttackVfx, 1f));
@@ -250,7 +250,7 @@ namespace LewdieJam.Player
 
         public void OnDash(InputAction.CallbackContext value)
         {
-            if (value.performed && _skills[Skill.Dash])
+            if (value.performed && GameManager.Instance.CanPlay && _skills[Skill.Dash])
             {
                 StartCoroutine(Dash(2f));
             }
@@ -258,7 +258,7 @@ namespace LewdieJam.Player
 
         public void OnAction(InputAction.CallbackContext value)
         {
-            if (value.performed && CurrentInteraction != null && CurrentInteraction.CanInteract(this))
+            if (value.performed && GameManager.Instance.CanPlay && CurrentInteraction != null && CurrentInteraction.CanInteract(this))
             {
                 CurrentInteraction.Interact();
             }

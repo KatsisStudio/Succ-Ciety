@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9eb92e4a910681f438ea4fba4365456a, type: 3}
+  m_Name: Pregnant
+  m_EditorClassIdentifier: 
+  Name: Pregnant
+  Story: {fileID: 4900000, guid: d580c0dfbccd46e47b296c655abd2e69, type: 3}
+  Sprites:
+  - {fileID: 21300000, guid: e9f76726798d0f04984d9d949895d1ea, type: 3}
+  - {fileID: 21300000, guid: 47fc0b2553d67dc46836d29930095ea3, type: 3}
+  - {fileID: 21300000, guid: b1b62cdd4043b0947b4e33f62c23beb3, type: 3}
+  - {fileID: 21300000, guid: 281c96748a35625408bc1e5efed44c05, type: 3}
