@@ -165,15 +165,25 @@ namespace LewdieJam.Player
             _isAttacking = true;
 
             var atk = FireOnTarget();
-            _sr.flipX = transform.position.x - atk.Point.x > 0f;
 
-            yield return new WaitForSeconds(_info.PreAttackWaitTime);
-            Destroy(Instantiate(vfx, atk.Point, vfx.transform.rotation), 1f);
-            attack(atk.Hits);
-            yield return new WaitForSeconds(_info.PostAttackWaitTime);
-            _isAttacking = false;
-            _anim.SetInteger("Attack", 0);
-            yield return Reload(s, reloadTime);
+            if (atk == null) // We fired outside of the map, not supposed to happen...
+            {
+                _isAttacking = false;
+                _skills[s] = true;
+                _anim.SetInteger("Attack", 0);
+            }
+            else
+            {
+                _sr.flipX = transform.position.x - atk.Point.x > 0f;
+
+                yield return new WaitForSeconds(_info.PreAttackWaitTime);
+                Destroy(Instantiate(vfx, atk.Point, vfx.transform.rotation), 1f);
+                attack(atk.Hits);
+                yield return new WaitForSeconds(_info.PostAttackWaitTime);
+                _isAttacking = false;
+                _anim.SetInteger("Attack", 0);
+                yield return Reload(s, reloadTime);
+            }
         }
 
         private IEnumerator Reload(Skill s, float time)
