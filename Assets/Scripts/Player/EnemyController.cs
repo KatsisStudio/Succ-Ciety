@@ -43,6 +43,12 @@ namespace LewdieJam.Player
                 {
                     _charmedEffect = Instantiate(_charmedPrefab, transform);
                 }
+
+                if (_attackTarget != null)
+                {
+                    Destroy(_attackTarget);
+                    _attackTarget = null;
+                }
             }
             get => _isCharmed;
         }
@@ -138,24 +144,27 @@ namespace LewdieJam.Player
         {
             yield return new WaitForSeconds(_info.PreAttackWaitTime);
 
-            // Attempt to hit player
-            var colliders = Physics.OverlapSphere(_attackTarget.transform.position, _info.Range, _characterMask);
-            foreach (var collider in colliders)
+            if (_attackTarget != null) // We didn't got charmed mid attack
             {
-                // DEBUG
-                if (collider.gameObject.GetInstanceID() == gameObject.GetInstanceID())
+                // Attempt to hit player
+                var colliders = Physics.OverlapSphere(_attackTarget.transform.position, _info.Range, _characterMask);
+                foreach (var collider in colliders)
                 {
-                    Debug.LogWarning("Enemy is attacking himself!");
+                    // DEBUG
+                    if (collider.gameObject.GetInstanceID() == gameObject.GetInstanceID())
+                    {
+                        Debug.LogWarning("Enemy is attacking himself!");
+                    }
+                    var other = collider.GetComponent<ACharacter>();
+                    if (other.Team != Team)
+                    {
+                        other.TakeDamage(_info.AttackForce);
+                    }
                 }
-                var other = collider.GetComponent<ACharacter>();
-                if (other.Team != Team)
-                {
-                    other.TakeDamage(_info.AttackForce);
-                }
-            }
 
-            Destroy(_attackTarget);
-            _attackTarget = null;
+                Destroy(_attackTarget);
+                _attackTarget = null;
+            }
         }
 
         public override void Die()
