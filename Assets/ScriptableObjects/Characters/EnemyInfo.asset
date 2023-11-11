@@ -16,6 +16,9 @@ MonoBehaviour:
   BaseHealth: 10
   Range: 2
   AttackForce: 5
-  AttackDuration: 1
+  PreAttackWaitTime: 1
+  PostAttackWaitTime: 0
+  MainAttackVfx: {fileID: 0}
+  SubAttackVfx: {fileID: 0}
   DashDuration: 0
   DashSpeedMultiplier: 0

@@ -138,7 +138,7 @@ namespace LewdieJam.Player
             }
         }
 
-        private IEnumerable<ACharacter> FireOnTarget(GameObject atkVfx)
+        private SpellHitInfo FireOnTarget(GameObject atkVfx)
         {
             if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out var hit, Mathf.Infinity, _floorMask))
             {
@@ -153,22 +153,25 @@ namespace LewdieJam.Player
 
                 // Damage all enemies in range
                 var colliders = Physics.OverlapSphere(targetPos, _info.Range, _characterMask);
-                foreach (var collider in colliders)
+                return new SpellHitInfo()
                 {
-                    if (collider.CompareTag("Enemy"))
-                    {
-                        yield return collider.GetComponent<ACharacter>();
-                    }
-                }
+                    Hits = colliders.Where(x => x.CompareTag("Enemy")).Select(x => x.GetComponent<ACharacter>()),
+                    Point = targetPos
+                };
             }
+            return null;
         }
 
-        private IEnumerator Attack(Skill s, Action attack, float reloadTime)
+        private IEnumerator Attack(Skill s, Action<IEnumerable<ACharacter>> attack, float reloadTime)
         {
             _skills[s] = false;
             _isAttacking = true;
+
+            var atk = FireOnTarget(_info.MainAttackVfx);
+            _sr.flipX = transform.position.x - atk.Point.x > 0f;
+
             yield return new WaitForSeconds(_info.PreAttackWaitTime);
-            attack();
+            attack(atk.Hits);
             yield return new WaitForSeconds(_info.PostAttackWaitTime);
             _isAttacking = false;
             _anim.SetInteger("Attack", 0);
@@ -193,18 +196,18 @@ namespace LewdieJam.Player
             yield return Reload(Skill.Dash, reloadTime);
         }
 
-        private void NormalAttack()
+        private void NormalAttack(IEnumerable<ACharacter> targets)
         {
             var damage = _info.AttackForce + Mathf.CeilToInt(GameManager.Instance.GetStatValue(UpgradableStat.AtkPower, GameManager.Instance.Info.AtkCurveGain, GameManager.Instance.Info.MaxAtkMultiplerGain));
-            foreach (var coll in FireOnTarget(_info.MainAttackVfx))
+            foreach (var coll in targets)
             {
                 coll.TakeDamage(damage);
             }
         }
 
-        private void CharmAttack()
+        private void CharmAttack(IEnumerable<ACharacter> targets)
         {
-            var target = FireOnTarget(_info.SubAttackVfx).OrderBy(x => Vector3.Distance(transform.position, x.transform.position)).FirstOrDefault();
+            var target = targets.OrderBy(x => Vector3.Distance(transform.position, x.transform.position)).FirstOrDefault();
             if (target != null)
             {
                 // Un-charm the last enemy charmed
@@ -258,6 +261,12 @@ namespace LewdieJam.Player
             MainAttack,
             SubAttack,
             Dash
+        }
+
+        private class SpellHitInfo
+        {
+            public IEnumerable<ACharacter> Hits { set; get; }
+            public Vector2 Point { set; get; }
         }
     }
 }
