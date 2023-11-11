@@ -40,16 +40,7 @@ namespace LewdieJam.Map
         {
             if (other.CompareTag("Player"))
             {
-                if (CanEnterHouse)
-                {
-                    _requirement.color = Color.green;
-                    _requirement.text = OpenOkText;
-                }
-                else
-                {
-                    _requirement.color = Color.red;
-                    _requirement.text = NotEnoughEnergyText;
-                }
+                UpdateCanEnterUI();
                 other.GetComponent<PlayerController>().CurrentInteraction = this;
             }
         }
@@ -61,6 +52,20 @@ namespace LewdieJam.Map
                 _requirement.color = Color.white;
                 _requirement.text = OpenInfoText;
                 other.GetComponent<PlayerController>().CurrentInteraction = null;
+            }
+        }
+
+        private void UpdateCanEnterUI()
+        {
+            if (CanEnterHouse)
+            {
+                _requirement.color = Color.green;
+                _requirement.text = OpenOkText;
+            }
+            else
+            {
+                _requirement.color = Color.red;
+                _requirement.text = NotEnoughEnergyText;
             }
         }
 
@@ -82,6 +87,7 @@ namespace LewdieJam.Map
                 PersistentData.PendingEnergy -= _info.EnergyRequired;
             }
             VNManager.Instance.ShowOpenDoorQuestion(_hScene);
+            UpdateCanEnterUI();
         }
     }
 }
