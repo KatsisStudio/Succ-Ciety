@@ -155,7 +155,7 @@ namespace LewdieJam.Player
                 var colliders = Physics.OverlapSphere(targetPos, _info.Range, _characterMask);
                 return new SpellHitInfo()
                 {
-                    Hits = colliders.Where(x => x.CompareTag("Enemy")).Select(x => x.GetComponent<ACharacter>()),
+                    Hits = colliders.Where(x => x.CompareTag("Enemy") && x != null).Select(x => x.GetComponent<ACharacter>()),
                     Point = targetPos
                 };
             }
