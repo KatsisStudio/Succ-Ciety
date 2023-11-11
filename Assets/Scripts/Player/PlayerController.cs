@@ -138,7 +138,7 @@ namespace LewdieJam.Player
             }
         }
 
-        private SpellHitInfo FireOnTarget(GameObject atkVfx)
+        private SpellHitInfo FireOnTarget()
         {
             if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out var hit, Mathf.Infinity, _floorMask))
             {
@@ -147,9 +147,6 @@ namespace LewdieJam.Player
                 direction.y = 0f;
                 var dirNorm = direction.normalized;
                 var targetPos = transform.position + dirNorm * _info.Range;
-
-                // Spawn VFX
-                Destroy(Instantiate(atkVfx, targetPos, atkVfx.transform.rotation), 1f);
 
                 // Damage all enemies in range
                 var colliders = Physics.OverlapSphere(targetPos, _info.Range, _characterMask);
@@ -162,15 +159,16 @@ namespace LewdieJam.Player
             return null;
         }
 
-        private IEnumerator Attack(Skill s, Action<IEnumerable<ACharacter>> attack, float reloadTime)
+        private IEnumerator Attack(Skill s, Action<IEnumerable<ACharacter>> attack, GameObject vfx, float reloadTime)
         {
             _skills[s] = false;
             _isAttacking = true;
 
-            var atk = FireOnTarget(_info.MainAttackVfx);
+            var atk = FireOnTarget();
             _sr.flipX = transform.position.x - atk.Point.x > 0f;
 
             yield return new WaitForSeconds(_info.PreAttackWaitTime);
+            Destroy(Instantiate(vfx, atk.Point, vfx.transform.rotation), 1f);
             attack(atk.Hits);
             yield return new WaitForSeconds(_info.PostAttackWaitTime);
             _isAttacking = false;
@@ -227,7 +225,7 @@ namespace LewdieJam.Player
             if (value.performed && _skills[Skill.MainAttack])
             {
                 _anim.SetInteger("Attack", 3);
-                StartCoroutine(Attack(Skill.MainAttack, NormalAttack, .5f));
+                StartCoroutine(Attack(Skill.MainAttack, NormalAttack, _info.MainAttackVfx, .5f));
             }
         }
 
@@ -236,7 +234,7 @@ namespace LewdieJam.Player
             if (value.performed && _skills[Skill.SubAttack])
             {
                 _anim.SetInteger("Attack", 2);
-                StartCoroutine(Attack(Skill.SubAttack, CharmAttack, 1f));
+                StartCoroutine(Attack(Skill.SubAttack, CharmAttack, _info.SubAttackVfx, 1f));
             }
         }
 
@@ -266,7 +264,7 @@ namespace LewdieJam.Player
         private class SpellHitInfo
         {
             public IEnumerable<ACharacter> Hits { set; get; }
-            public Vector2 Point { set; get; }
+            public Vector3 Point { set; get; }
         }
     }
 }
