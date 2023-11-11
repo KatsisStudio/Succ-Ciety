@@ -7,23 +7,23 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Building.A_Door1
-    second: {fileID: 2100000, guid: cc00c783c99dd4c42855329edaf3a961, type: 2}
+      name: Accessory_Door1
+    second: {fileID: 2100000, guid: 0d717c030e4c8244ca8dbd17853c9760, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Building.A_ShopCounter
-    second: {fileID: 2100000, guid: f1a73d443e054c346b457ccfe590d0bc, type: 2}
+      name: Accessory_ShopCounter
+    second: {fileID: 2100000, guid: f8e281e85ac9fe74aa2dc0dff933d536, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Building.A_Sign
-    second: {fileID: 2100000, guid: fad35f649d7c2bc488ef77730f86d85c, type: 2}
+      name: Accessory_Sign
+    second: {fileID: 2100000, guid: 9d92084066416d44abff748776f0315c, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Building_Small1
-    second: {fileID: 2100000, guid: 7da9ea09383c55742b4fb6cf64a40f90, type: 2}
+      name: Building_Small2
+    second: {fileID: 2100000, guid: 027fd2fc146cd1142af63a0b91a801c4, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

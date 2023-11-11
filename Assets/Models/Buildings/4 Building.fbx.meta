@@ -7,33 +7,33 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Building.A_AirConditioner
-    second: {fileID: 2100000, guid: 217721082c4016b44ac126f0c2deb3d0, type: 2}
+      name: Accessory_AirConditioner
+    second: {fileID: 2100000, guid: bfa081c54d4243c4586c537539c04072, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Building.A_Balconey
-    second: {fileID: 2100000, guid: 1faf0c37007311d4f8f60dad8cd64baa, type: 2}
+      name: Accessory_Balconey
+    second: {fileID: 2100000, guid: e7f37a9c16e79fe48922bbda522e79db, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Building.A_Door1
-    second: {fileID: 2100000, guid: 2169e2d8fee9c874a807922e96bb25ab, type: 2}
+      name: Accessory_Door1
+    second: {fileID: 2100000, guid: 0d717c030e4c8244ca8dbd17853c9760, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Building.A_Vent
-    second: {fileID: 2100000, guid: 3f97dc9addba22144817f0345a4d4a66, type: 2}
+      name: Accessory_Vent
+    second: {fileID: 2100000, guid: b50fb3e7bc59783498fb627d5b60af2c, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Building.A_Window1
-    second: {fileID: 2100000, guid: 739ac2a3b9e70ec43b652f1c2fd98e4f, type: 2}
+      name: Accessory_Window1
+    second: {fileID: 2100000, guid: c509e1cadf139e14fa30504570b8025a, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Building_Small1
-    second: {fileID: 2100000, guid: 02611ed77b1f4d24eaf3b8aebb1d0ea1, type: 2}
+      name: Building_Small3
+    second: {fileID: 2100000, guid: f9578d446647042458dd45c34d1fbc4e, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
