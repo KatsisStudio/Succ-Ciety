@@ -1,6 +1,7 @@
 using LewdieJam.Game;
 using LewdieJam.Map;
 using LewdieJam.SO;
+using LewdieJam.VN;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -232,10 +233,17 @@ namespace LewdieJam.Player
 
         public void OnFire(InputAction.CallbackContext value)
         {
-            if (value.performed && GameManager.Instance.CanPlay && _skills[Skill.MainAttack])
+            if (value.performed)
             {
-                _anim.SetInteger("Attack", 3);
-                StartCoroutine(Attack(Skill.MainAttack, NormalAttack, _info.MainAttackVfx, .5f));
+                if (VNManager.Instance.IsPlayingStory)
+                {
+                    VNManager.Instance.OnNextDialogue();
+                }
+                else if (GameManager.Instance.CanPlay && _skills[Skill.MainAttack])
+                {
+                    _anim.SetInteger("Attack", 3);
+                    StartCoroutine(Attack(Skill.MainAttack, NormalAttack, _info.MainAttackVfx, .5f));
+                }
             }
         }
 

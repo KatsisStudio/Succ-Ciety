@@ -1,6 +1,7 @@
 ﻿using LewdieJam.Game;
 using LewdieJam.Player;
 using LewdieJam.SO;
+using LewdieJam.VN;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Assertions;
@@ -14,6 +15,9 @@ namespace LewdieJam.Map
 
         [SerializeField]
         private TMP_Text _requirement;
+
+        [SerializeField]
+        private HSceneInfo _hScene;
 
         private bool CanEnterHouse
             => PersistentData.Energy + PersistentData.PendingEnergy >= _info.EnergyRequired;
@@ -77,7 +81,7 @@ namespace LewdieJam.Map
             {
                 PersistentData.PendingEnergy -= _info.EnergyRequired;
             }
-            GameManager.Instance.ToggleHScene(true);
+            VNManager.Instance.ShowOpenDoorQuestion(_hScene);
         }
     }
 }

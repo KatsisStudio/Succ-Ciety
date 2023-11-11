@@ -1,0 +1,2 @@
+Explain that the character noticed that the house is different(?) or smth, making that she can enter inside
+Ask something like: "Are you sure you want to enter the house (and consume the energy by doing an H scene)?

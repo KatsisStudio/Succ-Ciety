@@ -18,15 +18,12 @@ namespace LewdieJam
         [SerializeField]
         private TMP_Text _energyDisplay;
 
-        [SerializeField]
-        private GameObject _hScene;
-
         public float GetStatValue(UpgradableStat stat, AnimationCurve curve, float maxVal)
         {
             return curve.Evaluate(PersistentData.GetStatValue(stat) / (float)_info.MaxLevel) * maxVal;
         }
 
-        public bool CanPlay => !_hScene.activeInHierarchy && !VNManager.Instance.IsPlayingStory;
+        public bool CanPlay => !VNManager.Instance.IsPlayingStory;
 
         private void Awake()
         {
@@ -38,11 +35,6 @@ namespace LewdieJam
         public void UpdateUI()
         {
             _energyDisplay.text = $"Energy: {PersistentData.Energy} ({PersistentData.PendingEnergy})";
-        }
-
-        public void ToggleHScene(bool value)
-        {
-            _hScene.SetActive(value);
         }
     }
 }

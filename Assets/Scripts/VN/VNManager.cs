@@ -1,9 +1,11 @@
 ﻿using Ink.Runtime;
+using LewdieJam.SO;
 using System;
 using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 namespace LewdieJam.VN
 {
@@ -14,6 +16,12 @@ namespace LewdieJam.VN
 
         [SerializeField]
         private TextDisplay _display;
+
+        [SerializeField]
+        private HSceneInfo _houseNotEnter;
+
+        [SerializeField]
+        private TextAsset _openDoorAsset;
 
         private string _currentCharacter;
 
@@ -28,11 +36,19 @@ namespace LewdieJam.VN
         [SerializeField]
         private TMP_Text _nameText;
 
+        [SerializeField]
+        private GameObject _openDoorQuestion;
+
+        [SerializeField]
+        private Image _hSceneVisual;
+
         private bool _isSkipEnabled;
         private float _skipTimer;
         private float _skipTimerRef = .1f;
 
         private Action _onDone;
+
+        private HSceneInfo _currHScene;
 
         private void Awake()
         {
@@ -52,6 +68,32 @@ namespace LewdieJam.VN
                     DisplayNextDialogue();
                 }
             }
+        }
+
+        public void ShowOpenDoorQuestion(HSceneInfo hScene)
+        {
+            _currHScene = hScene;
+            ShowStory(_openDoorAsset, () =>
+            {
+                _openDoorQuestion.SetActive(false);
+            });
+        }
+
+        public void ShowDoorRefuseStory()
+        {
+            _openDoorQuestion.SetActive(false);
+            _currHScene = _houseNotEnter;
+            _hSceneVisual.gameObject.SetActive(true);
+            _hSceneVisual.sprite = _currHScene.Sprites[0];
+            ShowStory(_currHScene.Story, null);
+        }
+
+        public void ShowHSceneStory()
+        {
+            _openDoorQuestion.SetActive(false);
+            _hSceneVisual.gameObject.SetActive(true);
+            _hSceneVisual.sprite = _currHScene.Sprites[0];
+            ShowStory(_currHScene.Story, null);
         }
 
         public void ShowStory(TextAsset asset, Action onDone)
@@ -123,6 +165,7 @@ namespace LewdieJam.VN
             else if (!_story.canContinue && !_story.currentChoices.Any())
             {
                 _container.SetActive(false);
+                _hSceneVisual.gameObject.SetActive(false);
                 _onDone?.Invoke();
             }
         }
@@ -130,12 +173,9 @@ namespace LewdieJam.VN
         public void ToggleSkip(bool value)
             => _isSkipEnabled = value;
 
-        public void OnNextDialogue(InputAction.CallbackContext value)
+        public void OnNextDialogue()
         {
-            if (value.performed)
-            {
-                DisplayNextDialogue();
-            }
+            DisplayNextDialogue();
         }
     }
 }
