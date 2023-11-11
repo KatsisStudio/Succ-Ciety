@@ -86,6 +86,7 @@ namespace LewdieJam.Map
             {
                 PersistentData.PendingEnergy -= _info.EnergyRequired;
             }
+            GameManager.Instance.UpdateUI();
             VNManager.Instance.ShowOpenDoorQuestion(_hScene);
             UpdateCanEnterUI();
         }

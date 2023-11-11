@@ -49,6 +49,7 @@ namespace LewdieJam.VN
         private Action _onDone;
 
         private HSceneInfo _currHScene;
+        private int _backgroundIndex;
 
         private void Awake()
         {
@@ -73,6 +74,7 @@ namespace LewdieJam.VN
         public void ShowOpenDoorQuestion(HSceneInfo hScene)
         {
             _currHScene = hScene;
+            _backgroundIndex = 0;
             ShowStory(_openDoorAsset, () =>
             {
                 _openDoorQuestion.SetActive(true);
@@ -126,7 +128,8 @@ namespace LewdieJam.VN
                         break;
 
                     case "background":
-                        // TODO
+                        _backgroundIndex++;
+                        _hSceneVisual.sprite = _currHScene.Sprites[_backgroundIndex];
                         break;
 
                     default:
@@ -135,7 +138,7 @@ namespace LewdieJam.VN
                 }
             }
             _display.ToDisplay = text;
-            if (_currentCharacter == null)
+            if (string.IsNullOrEmpty(_currentCharacter))
             {
                 _namePanel.SetActive(false);
             }
