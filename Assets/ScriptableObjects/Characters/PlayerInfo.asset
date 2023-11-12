@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PlayerInfo
   m_EditorClassIdentifier: 
   Speed: 5
-  BaseHealth: 10
+  BaseHealth: 30
   Range: 2
   AnimController: {fileID: 0}
   AttackForce: 10
