@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea08c59177200e64d8fab517d511b36d, type: 3}
   m_Name: PlayerInfo
   m_EditorClassIdentifier: 
+  Name: Nova
   Speed: 5
   BaseHealth: 30
   Range: 2
@@ -24,3 +25,4 @@ MonoBehaviour:
   DashDuration: 0.5
   DashSpeedMultiplier: 3
   CanBeCharmed: 0
+  IsBoss: 0

@@ -5,6 +5,8 @@ namespace LewdieJam.SO
     [CreateAssetMenu(menuName = "ScriptableObject/PlayerInfo", fileName = "PlayerInfo")]
     public class CharacterInfo : ScriptableObject
     {
+        public string Name;
+
         public float Speed;
 
         public int BaseHealth;
