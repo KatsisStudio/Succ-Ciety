@@ -78,11 +78,11 @@ namespace LewdieJam.Player
             }
             else if (_isDashing)
             {
-                _rb.velocity = new Vector3(_dashDirection.x, 0f, _dashDirection.y) * Time.fixedDeltaTime * _info.Speed * _info.DashSpeedMultiplier;
+                _rb.velocity = new Vector3(_dashDirection.x, 0f, _dashDirection.y)  * _info.Speed * _info.DashSpeedMultiplier;
             }
             else
             {
-                _rb.velocity = _info.Speed * Time.fixedDeltaTime * new Vector3(_mov.x, _rb.velocity.y, _mov.y);
+                _rb.velocity = _info.Speed * new Vector3(_mov.x, _rb.velocity.y, _mov.y);
                 _anim.SetFloat("Speed", _mov.magnitude);
                 if (_mov.x != 0f)
                 {

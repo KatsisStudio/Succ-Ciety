@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea08c59177200e64d8fab517d511b36d, type: 3}
   m_Name: BossInfo
   m_EditorClassIdentifier: 
-  Speed: 300
+  Speed: 2.5
   BaseHealth: 200
   Range: 4
+  AnimController: {fileID: 22100000, guid: 2f3e6df983fecad4198a8c250da6eafc, type: 2}
   AttackForce: 15
   PreAttackWaitTime: 2
   PostAttackWaitTime: 1
@@ -22,3 +23,4 @@ MonoBehaviour:
   SubAttackVfx: {fileID: 0}
   DashDuration: 0
   DashSpeedMultiplier: 0
+  CanBeCharmed: 0

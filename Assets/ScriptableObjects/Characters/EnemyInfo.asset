@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea08c59177200e64d8fab517d511b36d, type: 3}
   m_Name: EnemyInfo
   m_EditorClassIdentifier: 
-  Speed: 500
+  Speed: 4
   BaseHealth: 10
   Range: 2
+  AnimController: {fileID: 9100000, guid: 3b04c1dca40fc8a46a228bb58f91e7f4, type: 2}
   AttackForce: 5
   PreAttackWaitTime: 1
   PostAttackWaitTime: 0

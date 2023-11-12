@@ -6,6 +6,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using static UnityEditor.PlayerSettings;
 
 namespace LewdieJam.Player
 {
@@ -24,6 +25,9 @@ namespace LewdieJam.Player
         private readonly List<ACharacter> _inRange = new();
 
         private GameObject _charmedEffect;
+
+        private Animator _anim;
+        private SpriteRenderer _sr;
 
         private bool _isCharmed;
         public bool IsCharmed
@@ -79,6 +83,9 @@ namespace LewdieJam.Player
         {
             AwakeParent();
 
+            _anim = GetComponentInChildren<Animator>();
+            _sr = GetComponentInChildren<SpriteRenderer>();
+
             // Ignore player if out of range
             var trigger = GetComponentInChildren<TriggerListener>();
             trigger.OnTriggerEnterCallback.AddListener((coll) =>
@@ -121,6 +128,7 @@ namespace LewdieJam.Player
                 {
                     var pos = transform.position + (_target.transform.position - transform.position).normalized * _info.Range * 1.5f;
                     pos = new(pos.x, 0.19f, pos.z);
+                    _sr.flipX = transform.position.x - pos.x > 0f;
 
                     // Display attack hint
                     _attackTarget = Instantiate(_hintCircle, pos, _hintCircle.transform.rotation);
@@ -131,7 +139,12 @@ namespace LewdieJam.Player
                 }
                 else // Move toward player
                 {
-                    _rb.velocity = (_target.transform.position - transform.position).normalized * _info.Speed * Time.deltaTime;
+                    var dir = (_target.transform.position - transform.position).normalized;
+                    _rb.velocity = dir * _info.Speed;
+                    if (dir.x != 0f)
+                    {
+                        _sr.flipX = dir.x < 0f;
+                    }
                 }
             }
         }
@@ -144,7 +157,9 @@ namespace LewdieJam.Player
 
         private IEnumerator WaitAndAttack()
         {
+            _anim.SetBool("IsAttacking", true);
             yield return new WaitForSeconds(_info.PreAttackWaitTime);
+            _anim.SetBool("IsAttacking", false);
 
             if (_attackTarget != null) // We didn't got charmed mid attack
             {
