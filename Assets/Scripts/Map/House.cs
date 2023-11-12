@@ -16,15 +16,16 @@ namespace LewdieJam.Map
         [SerializeField]
         private TMP_Text _requirement;
 
-        [SerializeField]
-        private HSceneInfo _hScene;
+        private bool HaveEnoughEnergy => PersistentData.Energy + PersistentData.PendingEnergy >= _info.EnergyRequired;
+        private bool HaveRightAttachments => PersistentData.Attachments.HasFlag(_info.RequiredAttachment);
 
         private bool CanEnterHouse
-            => PersistentData.Energy + PersistentData.PendingEnergy >= _info.EnergyRequired;
+            => HaveEnoughEnergy && HaveRightAttachments;
 
         private string OpenOkText => "Press E to open the house";
+        public string IncorrectAttachmentText => "You don't have the right attachment";
         public string NotEnoughEnergyText => "You don't have enough energy";
-        public string OpenInfoText => $"{_info.EnergyRequired} energy required";
+        public string OpenInfoText => $"{_info.EnergyRequired} energy required" + (_info.RequiredAttachment != Attachment.None ? $"\n{_info.RequiredAttachment} required" : string.Empty);
 
         private void Awake()
         {
@@ -65,7 +66,14 @@ namespace LewdieJam.Map
             else
             {
                 _requirement.color = Color.red;
-                _requirement.text = NotEnoughEnergyText;
+                if (!HaveRightAttachments)
+                {
+                    _requirement.text = IncorrectAttachmentText;
+                }
+                else
+                {
+                    _requirement.text = NotEnoughEnergyText;
+                }
             }
         }
 
@@ -87,7 +95,7 @@ namespace LewdieJam.Map
                 PersistentData.PendingEnergy -= _info.EnergyRequired;
             }
             GameManager.Instance.UpdateUI();
-            VNManager.Instance.ShowOpenDoorQuestion(_hScene);
+            VNManager.Instance.ShowOpenDoorQuestion(_info.HScene);
             UpdateCanEnterUI();
         }
     }

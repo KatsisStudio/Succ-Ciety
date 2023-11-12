@@ -6,8 +6,10 @@ namespace LewdieJam.Game
     public enum Attachment
     {
         None = 0,
-        LargeBreasts,
-        Futanari,
-        Pregnant
+        LargeBreasts = 1,
+        Futanari = 2,
+        Pregnant = 4,
+
+        Everything = ~0
     }
 }

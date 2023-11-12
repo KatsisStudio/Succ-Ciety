@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0d145586c6cd734db00f0c8b434213e, type: 3}
+  m_Name: BigBreastsHouse
+  m_EditorClassIdentifier: 
+  EnergyRequired: 20
+  RequiredAttachment: 1
+  HScene: {fileID: 11400000, guid: 347e617d14250ef4392451101ad52fb1, type: 2}

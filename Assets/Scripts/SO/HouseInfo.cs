@@ -8,5 +8,6 @@ namespace LewdieJam.SO
     {
         public int EnergyRequired;
         public Attachment RequiredAttachment;
+        public HSceneInfo HScene;
     }
 }

@@ -2,6 +2,7 @@
 using LewdieJam.Game;
 using LewdieJam.Map;
 using LewdieJam.SO;
+using LewdieJam.VN;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -118,7 +119,7 @@ namespace LewdieJam.Player
 
         private void Update()
         {
-            if (_target == null || _attackTarget != null) // Do nothing
+            if (_target == null || _attackTarget != null || VNManager.Instance.IsPlayingStory) // Do nothing
             {
                 _rb.velocity = new(0f, _rb.velocity.y, 0f);
             }
@@ -164,23 +165,26 @@ namespace LewdieJam.Player
 
             if (_attackTarget != null) // We didn't got charmed mid attack
             {
-                if (_info.MainAttackVfx)
+                if (!VNManager.Instance.IsPlayingStory) // Only hit if the player didn't load a story meanwhile
                 {
-                    Destroy(Instantiate(_info.MainAttackVfx, _attackTarget.transform.position, _info.MainAttackVfx.transform.rotation), 1f);
-                }
-                // Attempt to hit player
-                var colliders = Physics.OverlapSphere(_attackTarget.transform.position, _info.Range, _characterMask);
-                foreach (var collider in colliders)
-                {
-                    // DEBUG
-                    if (collider.gameObject.GetInstanceID() == gameObject.GetInstanceID())
+                    if (_info.MainAttackVfx)
                     {
-                        Debug.LogWarning("Enemy is attacking himself!");
+                        Destroy(Instantiate(_info.MainAttackVfx, _attackTarget.transform.position, _info.MainAttackVfx.transform.rotation), 1f);
                     }
-                    var other = collider.GetComponent<ACharacter>();
-                    if (other.Team != Team)
+                    // Attempt to hit player
+                    var colliders = Physics.OverlapSphere(_attackTarget.transform.position, _info.Range, _characterMask);
+                    foreach (var collider in colliders)
                     {
-                        other.TakeDamage(_info.AttackForce);
+                        // DEBUG
+                        if (collider.gameObject.GetInstanceID() == gameObject.GetInstanceID())
+                        {
+                            Debug.LogWarning("Enemy is attacking himself!");
+                        }
+                        var other = collider.GetComponent<ACharacter>();
+                        if (other.Team != Team)
+                        {
+                            other.TakeDamage(_info.AttackForce);
+                        }
                     }
                 }
 
