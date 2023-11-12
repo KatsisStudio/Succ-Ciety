@@ -135,6 +135,8 @@ namespace LewdieJam.Lobby
             UpdateUI();
         }
         public void ToggleLargeBreastsAttachment() => ToggleAttachment(Attachment.LargeBreasts);
+        public void ToggleFutanariAttachment() => ToggleAttachment(Attachment.Futanari);
+        public void TogglePregnantAttachment() => ToggleAttachment(Attachment.Pregnant);
 
         private float Stat01 => PersistentData.Stats.Values.Sum() / ((float)Enum.GetValues(typeof(UpgradableStat)).Length * _gameInfo.MaxLevel);
 
@@ -147,7 +149,7 @@ namespace LewdieJam.Lobby
 
             for (int i = 0; i < _buttonsPerHornLevels.Length; i++)
             {
-                if (_hornIndex > i)
+                if (_hornIndex > i * 2)
                 {
                     _buttonsPerHornLevels[i].interactable = true;
                 }

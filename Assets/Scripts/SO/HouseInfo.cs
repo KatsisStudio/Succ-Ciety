@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using LewdieJam.Game;
+using UnityEngine;
 
 namespace LewdieJam.SO
 {
@@ -6,5 +7,6 @@ namespace LewdieJam.SO
     public class HouseInfo : ScriptableObject
     {
         public int EnergyRequired;
+        public Attachment RequiredAttachment;
     }
 }
