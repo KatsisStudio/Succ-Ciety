@@ -37,7 +37,6 @@ namespace LewdieJam.Player
         private float _invultDuration = 2f;
         private float _invultFrameIntensity = .5f;
 
-        private SpriteRenderer _sr;
         private Animator _anim;
 
         private bool _isDashing;
@@ -60,13 +59,17 @@ namespace LewdieJam.Player
         private void Awake()
         {
             AwakeParent();
-            _sr = GetComponentInChildren<SpriteRenderer>();
             _anim = GetComponentInChildren<Animator>();
         }
 
         private void Start()
         {
             StartParent();
+        }
+
+        private void Update()
+        {
+            UpdateParent();
         }
 
         private void FixedUpdate()

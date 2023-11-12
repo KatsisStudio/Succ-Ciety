@@ -7,7 +7,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using static UnityEditor.PlayerSettings;
 
 namespace LewdieJam.Player
 {
@@ -28,7 +27,6 @@ namespace LewdieJam.Player
         private GameObject _charmedEffect;
 
         private Animator _anim;
-        private SpriteRenderer _sr;
 
         private bool _isCharmed;
         public bool IsCharmed
@@ -66,6 +64,12 @@ namespace LewdieJam.Player
         {
             base.TakeDamage(damage);
 
+            if (_info.IsBoss)
+            {
+                // TODO: Might cause issues if we have many boss
+                GameManager.Instance.UpdateHealthBar(_health / (float)_info.BaseHealth);
+            }
+
             if (damage > 0 && IsCharmed)
             {
                 IsCharmed = false;
@@ -85,7 +89,6 @@ namespace LewdieJam.Player
             AwakeParent();
 
             _anim = GetComponentInChildren<Animator>();
-            _sr = GetComponentInChildren<SpriteRenderer>();
 
             // Ignore player if out of range
             var trigger = GetComponentInChildren<TriggerListener>();
@@ -93,6 +96,11 @@ namespace LewdieJam.Player
             {
                 if (coll.CompareTag("Player") || coll.CompareTag("Enemy"))
                 {
+                    if (coll.CompareTag("Player") && _info.IsBoss)
+                    {
+                        GameManager.Instance.EnableBossHealthBar("Boss Name");
+                    }
+
                     var other = coll.GetComponent<ACharacter>();
                     _inRange.Add(other);
                     if (other.Team != Team)
@@ -106,6 +114,10 @@ namespace LewdieJam.Player
                 _inRange.RemoveAll(x => x.gameObject.GetInstanceID() == coll.gameObject.GetInstanceID());
                 if (_target != null && (coll.CompareTag("Player") || coll.CompareTag("Enemy")) && coll.gameObject.GetInstanceID() == _target.gameObject.GetInstanceID())
                 {
+                    if (coll.CompareTag("Player") && _info.IsBoss)
+                    {
+                        GameManager.Instance.DisableBossHealthBar();
+                    }
                     _target = null;
                 }
             });
@@ -119,6 +131,8 @@ namespace LewdieJam.Player
 
         private void Update()
         {
+            UpdateParent();
+
             if (_target == null || _attackTarget != null || VNManager.Instance.IsPlayingStory) // Do nothing
             {
                 _rb.velocity = new(0f, _rb.velocity.y, 0f);

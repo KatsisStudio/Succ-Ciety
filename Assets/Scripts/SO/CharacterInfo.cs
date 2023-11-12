@@ -24,5 +24,6 @@ namespace LewdieJam.SO
 
         [Header("Enemy Behavior")]
         public bool CanBeCharmed;
+        public bool IsBoss;
     }
 }

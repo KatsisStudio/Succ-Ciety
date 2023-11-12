@@ -9,6 +9,7 @@ namespace LewdieJam.Player
         protected SO.CharacterInfo _info;
 
         protected Rigidbody _rb;
+        protected SpriteRenderer _sr;
 
         protected int _health;
 
@@ -25,11 +26,17 @@ namespace LewdieJam.Player
             _characterMask = 1 << LayerMask.NameToLayer("Character");
 
             _rb = GetComponent<Rigidbody>();
+            _sr = GetComponentInChildren<SpriteRenderer>();
         }
 
         protected void StartParent()
         {
             _health = MaxHealth;
+        }
+
+        protected void UpdateParent()
+        {
+            _sr.sortingOrder = (int)(-transform.position.z * 1000f);
         }
 
         protected virtual bool CanTakeDamage => true;

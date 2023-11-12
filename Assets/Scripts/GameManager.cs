@@ -13,10 +13,37 @@ namespace LewdieJam
 
         [SerializeField]
         private GameInfo _info;
+
+        [SerializeField]
+        private GameObject _healthBarContainer;
+
+        [SerializeField]
+        private TMP_Text _bossNameText;
+
+        [SerializeField]
+        private RectTransform _healthBar;
+
         public GameInfo Info => _info;
 
         [SerializeField]
         private TMP_Text _energyDisplay;
+
+        public void EnableBossHealthBar(string enemyName)
+        {
+            _healthBarContainer.SetActive(true);
+            _bossNameText.text = enemyName;
+            _healthBar.localScale = Vector3.one;
+        }
+
+        public void UpdateHealthBar(float value)
+        {
+            _healthBar.localScale = new(value, 1f, 1f);
+        }
+
+        public void DisableBossHealthBar()
+        {
+            _healthBarContainer.SetActive(false);
+        }
 
         public float GetStatValue(UpgradableStat stat, AnimationCurve curve, float maxVal)
         {
