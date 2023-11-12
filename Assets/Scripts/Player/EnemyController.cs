@@ -120,7 +120,7 @@ namespace LewdieJam.Player
                 if (Vector3.Distance(_target.transform.position, transform.position) < _info.Range) // Start attack toward player
                 {
                     var pos = transform.position + (_target.transform.position - transform.position).normalized * _info.Range * 1.5f;
-                    pos = new(pos.x, 0.01f, pos.z);
+                    pos = new(pos.x, 0.19f, pos.z);
 
                     // Display attack hint
                     _attackTarget = Instantiate(_hintCircle, pos, _hintCircle.transform.rotation);
