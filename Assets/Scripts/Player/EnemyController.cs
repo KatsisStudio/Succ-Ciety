@@ -30,6 +30,8 @@ namespace LewdieJam.Player
         {
             set
             {
+                if (!_info.CanBeCharmed) return;
+
                 _isCharmed = value;
 
                 EnemyManager.Instance.RefreshAllTargets();
@@ -146,6 +148,10 @@ namespace LewdieJam.Player
 
             if (_attackTarget != null) // We didn't got charmed mid attack
             {
+                if (_info.MainAttackVfx)
+                {
+                    Destroy(Instantiate(_info.MainAttackVfx, _attackTarget.transform.position, _info.MainAttackVfx.transform.rotation), 1f);
+                }
                 // Attempt to hit player
                 var colliders = Physics.OverlapSphere(_attackTarget.transform.position, _info.Range, _characterMask);
                 foreach (var collider in colliders)

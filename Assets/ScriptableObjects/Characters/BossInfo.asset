@@ -10,16 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ea08c59177200e64d8fab517d511b36d, type: 3}
-  m_Name: EnemyInfo
+  m_Name: BossInfo
   m_EditorClassIdentifier: 
-  Speed: 500
-  BaseHealth: 10
-  Range: 2
-  AttackForce: 5
-  PreAttackWaitTime: 1
-  PostAttackWaitTime: 0
-  MainAttackVfx: {fileID: 0}
+  Speed: 300
+  BaseHealth: 200
+  Range: 4
+  AttackForce: 15
+  PreAttackWaitTime: 2
+  PostAttackWaitTime: 1
+  MainAttackVfx: {fileID: 7927164206457417737, guid: a9b307a3ad822824b84bc67a3aeb2035, type: 3}
   SubAttackVfx: {fileID: 0}
   DashDuration: 0
   DashSpeedMultiplier: 0
-  CanBeCharmed: 1

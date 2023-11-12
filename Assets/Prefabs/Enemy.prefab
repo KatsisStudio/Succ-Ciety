@@ -216,4 +216,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _info: {fileID: 11400000, guid: 3e69f9533ec395341933e2fdc1b47b51, type: 2}
   _hintCircle: {fileID: 4680538537397820172, guid: bbad95053d8d227499b050ebaaa34596, type: 3}
-  _charmedPrefab: {fileID: 7841418112492579079, guid: 6ccf514bdea5d5e4595a0af23cc99241, type: 3}
+  _charmedPrefab: {fileID: 4912311785788535902, guid: 4d8fbcf0ba14bf644879fd4dbfe8b871, type: 3}

@@ -19,5 +19,8 @@ namespace LewdieJam.SO
         [Header("Dash (player only)")]
         public float DashDuration;
         public float DashSpeedMultiplier;
+
+        [Header("Enemy Behavior")]
+        public bool CanBeCharmed;
     }
 }
