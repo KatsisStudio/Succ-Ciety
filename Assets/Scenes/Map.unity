@@ -6144,6 +6144,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1206026066141002874, guid: 26e076680889b64448b388065c392b81, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1206026066141002874, guid: 26e076680889b64448b388065c392b81, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 1252295511559547627, guid: 26e076680889b64448b388065c392b81, type: 3}
       propertyPath: m_Name
       value: Boss
@@ -6154,7 +6162,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2526844413659459528, guid: 26e076680889b64448b388065c392b81, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.1376019
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2526844413659459528, guid: 26e076680889b64448b388065c392b81, type: 3}
       propertyPath: m_LocalPosition.z
@@ -6187,6 +6195,10 @@ PrefabInstance:
     - target: {fileID: 2526844413659459528, guid: 26e076680889b64448b388065c392b81, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8608560427307810561, guid: 26e076680889b64448b388065c392b81, type: 3}
+      propertyPath: m_Radius
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
