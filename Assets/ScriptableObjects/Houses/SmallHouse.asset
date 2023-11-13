@@ -13,3 +13,5 @@ MonoBehaviour:
   m_Name: SmallHouse
   m_EditorClassIdentifier: 
   EnergyRequired: 5
+  RequiredAttachment: 0
+  HScene: {fileID: 11400000, guid: 985cbf877ca4f424b85a1f2c145de3b7, type: 2}
