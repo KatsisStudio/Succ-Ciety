@@ -16,6 +16,9 @@ namespace LewdieJam.Player
         [SerializeField]
         private GameObject _charmedPrefab;
 
+        [SerializeField]
+        private SphereCollider _detector;
+
         private readonly List<ACharacter> _inRange = new();
 
         private GameObject _charmedEffect;
@@ -82,6 +85,7 @@ namespace LewdieJam.Player
             AwakeParent();
 
             _anim = GetComponentInChildren<Animator>();
+            _detector.radius = _info.DetectionRange;
 
             // Store all potential targets that are in range
             var trigger = GetComponentInChildren<TriggerListener>();

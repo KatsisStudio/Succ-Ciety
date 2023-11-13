@@ -65,7 +65,7 @@ namespace LewdieJam.Player.EnemyImpl
                 // We wait for the projectile to hit or timeout
                 IsWaitingForProjectile = true;
                 HookTarget = null;
-                _pendingProjectileTimer = _info.ProjectileMaxDistance / _info.ProjectileSpeed;
+                _pendingProjectileTimer = _info.ProjectileSpeed / _info.ProjectileMaxDistance;
                 while (IsWaitingForProjectile && _pendingProjectileTimer > 0f)
                 {
                     yield return new WaitForNextFrameUnit();

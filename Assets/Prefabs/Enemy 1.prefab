@@ -143,6 +143,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _info: {fileID: 11400000, guid: 45a775f968460444f9e7b7e2b381afe2, type: 2}
   _charmedPrefab: {fileID: 4912311785788535902, guid: 4d8fbcf0ba14bf644879fd4dbfe8b871, type: 3}
+  _detector: {fileID: 4141155342502376892}
 --- !u!135 &6830886887430689240
 SphereCollider:
   m_ObjectHideFlags: 0

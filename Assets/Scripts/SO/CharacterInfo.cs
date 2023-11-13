@@ -28,6 +28,7 @@ namespace LewdieJam.SO
         [Header("Enemy Behavior")]
         public bool CanBeCharmed;
         public bool IsBoss;
+        public float DetectionRange;
 
         [Header("Attack Projectile (if relevant)")]
         public float ProjectileSpeed;
