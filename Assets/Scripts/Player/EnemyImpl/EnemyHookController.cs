@@ -1,4 +1,5 @@
-﻿using LewdieJam.VN;
+﻿using LewdieJam.Player.Attack;
+using LewdieJam.VN;
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -16,7 +17,7 @@ namespace LewdieJam.Player.EnemyImpl
 
         protected override void Attack(Vector3 dir)
         {
-            var pos = transform.position + (dir * _info.Range) + (dir * _sr.transform.localScale.x * 15f);
+            var pos = transform.position + (dir * _sr.transform.localScale.x * 15f);
             _sr.flipX = transform.position.x - pos.x > 0f;
 
             StartCoroutine(WaitAndAttack(pos));
@@ -58,6 +59,7 @@ namespace LewdieJam.Player.EnemyImpl
                 // Spawn and throw projectile
                 _hookProjectile = Instantiate(_info.MainAttackVfx, atkPos, _info.MainAttackVfx.transform.rotation);
                 _hookProjectile.GetComponent<Rigidbody>().AddForce(transform.forward * _info.ProjectileSpeed);
+                _hookProjectile.GetComponent<Projectile>().Owner = this;
 
                 // We wait for the projectile to hit or timeout
                 IsWaitingForProjectile = true;
