@@ -8,14 +8,14 @@ namespace Assets.Scripts.Player
     {
         public static EnemyManager Instance {  get; private set; }
 
-        private readonly List<EnemyController> _enemies = new();
+        private readonly List<AEnemyController> _enemies = new();
 
         private void Awake()
         {
             Instance = this;
         }
 
-        public IEnumerable<EnemyController> ToEnumerable()
+        public IEnumerable<AEnemyController> ToEnumerable()
         {
             foreach (var e in _enemies)
             {
@@ -23,7 +23,7 @@ namespace Assets.Scripts.Player
             }
         }
 
-        public void Register(EnemyController character)
+        public void Register(AEnemyController character)
         {
             _enemies.Add(character);
         }
@@ -36,7 +36,7 @@ namespace Assets.Scripts.Player
             }
         }
 
-        public void Unregister(EnemyController character)
+        public void Unregister(AEnemyController character)
         {
             _enemies.Remove(character);
             foreach (var e in _enemies)

@@ -27,19 +27,11 @@ namespace LewdieJam.SO
         [Header("Enemy Behavior")]
         public bool CanBeCharmed;
         public bool IsBoss;
-        public AIAttack AttackType;
 
         [Header("Attack Projectile (if relevant)")]
         public float ProjectileSpeed;
         public float ProjectileMaxDistance;
         public float HookSpeed;
-    }
-
-    public enum AIAttack
-    {
-        None,
-        Punch,
-        Hook
     }
 
 }

@@ -1,10 +1,11 @@
-﻿using UnityEngine;
+﻿using LewdieJam.Player.EnemyImpl;
+using UnityEngine;
 
 namespace LewdieJam.Player.Attack
 {
     public class Projectile : MonoBehaviour
     {
-        public EnemyController Owner { set; get; }
+        public EnemyHookController Owner { set; get; }
 
         private void OnCollisionEnter(Collision collision)
         {

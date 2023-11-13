@@ -54,7 +54,7 @@ namespace LewdieJam.Player
             { Skill.Dash, true }
         };
 
-        private EnemyController _charmed;
+        private AEnemyController _charmed;
 
         public bool IsStunned { private get; set; }
 
@@ -238,7 +238,7 @@ namespace LewdieJam.Player
                 }
 
                 // Charm new target
-                _charmed = (EnemyController)target;
+                _charmed = (AEnemyController)target;
                 _charmed.IsCharmed = true;
             }
         }
