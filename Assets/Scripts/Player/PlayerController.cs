@@ -41,7 +41,7 @@ namespace LewdieJam.Player
 
         private bool _isDashing;
 
-        public bool CanMove => !_isAttacking;
+        public bool CanMove => !_isAttacking && !IsStunned;
 
         private bool _isAttacking;
 
@@ -55,6 +55,8 @@ namespace LewdieJam.Player
         };
 
         private EnemyController _charmed;
+
+        public bool IsStunned { private get; set; }
 
         private void Awake()
         {

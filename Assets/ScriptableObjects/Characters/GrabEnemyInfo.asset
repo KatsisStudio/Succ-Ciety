@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ea08c59177200e64d8fab517d511b36d, type: 3}
-  m_Name: EnemyInfo
+  m_Name: GrabEnemyInfo
   m_EditorClassIdentifier: 
   Name: 
   Speed: 6.5
@@ -20,12 +20,13 @@ MonoBehaviour:
   AttackForce: 5
   PreAttackWaitTime: 1
   PostAttackWaitTime: 0
-  MainAttackVfx: {fileID: 0}
+  MainAttackVfx: {fileID: 2841006284498070730, guid: 4ed3520961ca6494dbc473159266eb0f, type: 3}
   SubAttackVfx: {fileID: 0}
   DashDuration: 0
   DashSpeedMultiplier: 0
   CanBeCharmed: 1
   IsBoss: 0
-  AttackType: 1
-  ProjectileSpeed: 0
-  ProjectileMaxDistance: 0
+  AttackType: 2
+  ProjectileSpeed: 10
+  ProjectileMaxDistance: 2
+  HookSpeed: 10

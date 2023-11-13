@@ -3,10 +3,13 @@ using LewdieJam.Game;
 using LewdieJam.Map;
 using LewdieJam.SO;
 using LewdieJam.VN;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 namespace LewdieJam.Player
 {
@@ -27,6 +30,15 @@ namespace LewdieJam.Player
         private GameObject _charmedEffect;
 
         private Animator _anim;
+
+        // PROJECTILE MANAGEMENT
+
+        /// <summary>
+        /// If we throwed a projectile, are we waiting for it to collide with something
+        /// </summary>
+        public bool IsWaitingForProjectile { set; private get; }
+        public PlayerController HookTarget { set; private get; }
+        private float _pendingProjectileTimer;
 
         private bool _isCharmed;
         public bool IsCharmed
@@ -133,7 +145,29 @@ namespace LewdieJam.Player
         {
             UpdateParent();
 
-            if (_target == null || _attackTarget != null || VNManager.Instance.IsPlayingStory) // Do nothing
+            // Update timer
+            if (_pendingProjectileTimer > 0f)
+            {
+                _pendingProjectileTimer -= Time.deltaTime;
+            }
+
+            // Movements & attacks
+            if (VNManager.Instance.IsPlayingStory) // Whatever the situation, we don't do anything the VN phase!
+            {
+                _rb.velocity = new(0f, _rb.velocity.y, 0f);
+            }
+            else if (HookTarget != null) // Our hook grabbed a fish
+            {
+                var dir = (HookTarget.transform.position - transform.position).normalized;
+                HookTarget.transform.Translate(dir * _info.HookSpeed);
+
+                if (Vector3.Distance(transform.position, HookTarget.transform.position) < 1f)
+                {
+                    HookTarget.IsStunned = false;
+                    HookTarget = null;
+                }
+            }
+            else if (_target == null || _attackTarget != null) // Do nothing
             {
                 _rb.velocity = new(0f, _rb.velocity.y, 0f);
             }
@@ -181,24 +215,56 @@ namespace LewdieJam.Player
             {
                 if (!VNManager.Instance.IsPlayingStory) // Only hit if the player didn't load a story meanwhile
                 {
-                    if (_info.MainAttackVfx)
+                    if (_info.AttackType == AIAttack.Punch)
                     {
-                        Destroy(Instantiate(_info.MainAttackVfx, _attackTarget.transform.position, _info.MainAttackVfx.transform.rotation), 1f);
+                        if (_info.MainAttackVfx)
+                        {
+                            Destroy(Instantiate(_info.MainAttackVfx, _attackTarget.transform.position, _info.MainAttackVfx.transform.rotation), 1f);
+                        }
+
+                        // Attempt to hit player
+                        var colliders = Physics.OverlapSphere(_attackTarget.transform.position, _info.Range, _characterMask);
+                        foreach (var collider in colliders)
+                        {
+                            // DEBUG
+                            if (collider.gameObject.GetInstanceID() == gameObject.GetInstanceID())
+                            {
+                                Debug.LogWarning("Enemy is attacking himself!");
+                            }
+                            var other = collider.GetComponent<ACharacter>();
+                            if (other.Team != Team)
+                            {
+                                other.TakeDamage(_info.AttackForce);
+                            }
+                        }
                     }
-                    // Attempt to hit player
-                    var colliders = Physics.OverlapSphere(_attackTarget.transform.position, _info.Range, _characterMask);
-                    foreach (var collider in colliders)
+                    else if (_info.AttackType == AIAttack.Hook)
                     {
-                        // DEBUG
-                        if (collider.gameObject.GetInstanceID() == gameObject.GetInstanceID())
+                        Assert.IsNotNull(_info.MainAttackVfx, "Projectile must be set in Main Attack Vfx");
+
+                        // Spawn and throw projectile
+                        var projectile = Instantiate(_info.MainAttackVfx, _attackTarget.transform.position + Vector3.up, _info.MainAttackVfx.transform.rotation);
+                        projectile.GetComponent<Rigidbody>().AddForce(transform.forward * _info.ProjectileSpeed);
+
+                        // We wait for the projectile to hit or timeout
+                        IsWaitingForProjectile = true;
+                        HookTarget = null;
+                        _pendingProjectileTimer = _info.ProjectileMaxDistance / _info.ProjectileSpeed;
+                        while (IsWaitingForProjectile && _pendingProjectileTimer > 0f)
                         {
-                            Debug.LogWarning("Enemy is attacking himself!");
+                            yield return new WaitForNextFrameUnit();
                         }
-                        var other = collider.GetComponent<ACharacter>();
-                        if (other.Team != Team)
+                        Destroy(projectile);
+
+                        // Grab target if we hit it
+                        if (HookTarget != null)
                         {
-                            other.TakeDamage(_info.AttackForce);
+                            HookTarget.IsStunned = true;
                         }
+                    }
+                    else
+                    {
+                        throw new NotImplementedException($"Unknown attack type {_info.AttackType}");
                     }
                 }
 
