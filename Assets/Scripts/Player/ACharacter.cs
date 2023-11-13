@@ -39,7 +39,7 @@ namespace LewdieJam.Player
             var targetPos = (transform.rotation.eulerAngles.y > 45 && transform.rotation.eulerAngles.y < 135f)
                 || (transform.rotation.eulerAngles.y > 225 && transform.rotation.eulerAngles.y < 315)
                 ? transform.position.x : transform.position.z;
-            _sr.sortingOrder = (int)(-targetPos * 1000f);
+            _sr.sortingOrder = (int)(-targetPos * 100f);
         }
 
         protected virtual bool CanTakeDamage => true;
