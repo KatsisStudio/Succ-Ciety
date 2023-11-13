@@ -142,7 +142,7 @@ namespace LewdieJam.Player
                 if (Vector3.Distance(_target.transform.position, transform.position) < _info.Range) // Start attack toward player
                 {
                     var dir = (_target.transform.position - transform.position).normalized;
-                    var pos = transform.position + (dir * _info.Range) + dir;
+                    var pos = transform.position + (dir * _info.Range) + (dir * _sr.transform.localScale.x * 10f);
                     pos = new(pos.x, 0.19f, pos.z);
                     _sr.flipX = transform.position.x - pos.x > 0f;
 
