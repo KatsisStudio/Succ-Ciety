@@ -31,4 +31,4 @@ MonoBehaviour:
   DetectionRange: 10
   ProjectileSpeed: 10
   ProjectileMaxDistance: 2
-  HookSpeed: 10
+  HookSpeed: 20

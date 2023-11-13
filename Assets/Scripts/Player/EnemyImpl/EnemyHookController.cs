@@ -20,7 +20,7 @@ namespace LewdieJam.Player.EnemyImpl
             var pos = transform.position + (dir * _sr.transform.localScale.x * 15f);
             _sr.flipX = transform.position.x - pos.x > 0f;
 
-            StartCoroutine(WaitAndAttack(pos));
+            StartCoroutine(WaitAndAttack(dir, pos));
         }
 
         protected override bool UpdateSetAction()
@@ -33,8 +33,8 @@ namespace LewdieJam.Player.EnemyImpl
 
             if (HookTarget != null) // Our hook grabbed a fish
             {
-                var dir = (HookTarget.transform.position - transform.position).normalized;
-                HookTarget.transform.Translate(dir * _info.HookSpeed);
+                var dir = (transform.position - HookTarget.transform.position).normalized;
+                HookTarget.transform.Translate(dir * _info.HookSpeed * Time.deltaTime);
 
                 if (Vector3.Distance(transform.position, HookTarget.transform.position) < 1f)
                 {
@@ -46,7 +46,7 @@ namespace LewdieJam.Player.EnemyImpl
             return false;
         }
 
-        private IEnumerator WaitAndAttack(Vector3 atkPos)
+        private IEnumerator WaitAndAttack(Vector3 dir, Vector3 atkPos)
         {
             _isAttacking = true;
             _anim.SetBool("IsAttacking", true);
@@ -59,7 +59,7 @@ namespace LewdieJam.Player.EnemyImpl
 
                 // Spawn and throw projectile
                 _hookProjectile = Instantiate(_info.MainAttackVfx, atkPos, _info.MainAttackVfx.transform.rotation);
-                _hookProjectile.GetComponent<Rigidbody>().AddForce(transform.forward * _info.ProjectileSpeed);
+                _hookProjectile.GetComponent<Rigidbody>().AddForce(dir * _info.ProjectileSpeed, ForceMode.Impulse);
                 _hookProjectile.GetComponent<Projectile>().Owner = this;
 
                 // We wait for the projectile to hit or timeout
