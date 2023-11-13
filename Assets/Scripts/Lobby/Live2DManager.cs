@@ -66,7 +66,15 @@ namespace LewdieJam.Lobby
                 {
                     _hornTimer = _hornTimerTarget;
                 }
-                var tatooDelta = _hornParam.MaximumValue - _hornParam.MinimumValue;
+                _hornParam.Value = _hornTimer * _hornParam.MaximumValue + _hornParam.MinimumValue;
+            }
+            else if (_hornTimer > _hornTimerTarget)
+            {
+                _hornTimer -= Time.deltaTime * .1f;
+                if (_hornTimer < _hornTimerTarget)
+                {
+                    _hornTimer = _hornTimerTarget;
+                }
                 _hornParam.Value = _hornTimer * _hornParam.MaximumValue + _hornParam.MinimumValue;
             }
 
