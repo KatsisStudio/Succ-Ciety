@@ -247,7 +247,7 @@ namespace LewdieJam.Player
             {
                 if (VNManager.Instance.IsPlayingStory)
                 {
-                    VNManager.Instance.OnNextDialogue();
+                    VNManager.Instance.DisplayNextDialogue();
                 }
                 else if (GameManager.Instance.CanPlay && _skills[Skill.MainAttack])
                 {

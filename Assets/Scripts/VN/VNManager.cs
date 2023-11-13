@@ -4,7 +4,6 @@ using System;
 using System.Linq;
 using TMPro;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 namespace LewdieJam.VN
@@ -88,6 +87,13 @@ namespace LewdieJam.VN
             _hSceneVisual.gameObject.SetActive(true);
             _hSceneVisual.sprite = _currHScene.Sprites[0];
             ShowStory(_currHScene.Story, null);
+        }
+
+        public void ShowHSceneStory(HSceneInfo hScene)
+        {
+            _currHScene = hScene;
+            _backgroundIndex = 0;
+            ShowHSceneStory();
         }
 
         public void ShowHSceneStory()
@@ -175,10 +181,5 @@ namespace LewdieJam.VN
 
         public void ToggleSkip(bool value)
             => _isSkipEnabled = value;
-
-        public void OnNextDialogue()
-        {
-            DisplayNextDialogue();
-        }
     }
 }
