@@ -1,4 +1,6 @@
-﻿using LewdieJam.Game;
+﻿using Assets.Scripts.Player;
+using LewdieJam.Game;
+using LewdieJam.Player;
 using LewdieJam.SO;
 using LewdieJam.VN;
 using TMPro;
@@ -23,10 +25,58 @@ namespace LewdieJam
         [SerializeField]
         private RectTransform _healthBar;
 
+        [SerializeField]
+        private PlayerController _player;
+
         public GameInfo Info => _info;
 
         [SerializeField]
         private TMP_Text _energyDisplay;
+
+        private float _currentAngle;
+        private bool _goUp;
+
+        private void Awake()
+        {
+            Instance = this;
+            SceneManager.LoadScene("Map", LoadSceneMode.Additive);
+            UpdateUI();
+        }
+
+        private void Update()
+        {
+            if (_player.transform.rotation.eulerAngles.y != _currentAngle)
+            {
+                float a;
+                if (_goUp)
+                {
+                    a = _player.transform.rotation.eulerAngles.y + Time.deltaTime * 100f;
+                    if (a > _currentAngle)
+                    {
+                        a = _currentAngle;
+                    }
+                }
+                else
+                {
+                    a = _player.transform.rotation.eulerAngles.y - Time.deltaTime * 100f;
+                    if (a < _currentAngle)
+                    {
+                        a = _currentAngle;
+                    }
+                }
+                _player.transform.rotation = Quaternion.Euler(_player.transform.rotation.x, a, _player.transform.rotation.z);
+                foreach (var e in EnemyManager.Instance.ToEnumerable())
+                {
+                    e.transform.rotation = Quaternion.Euler(_player.transform.rotation.x, a, _player.transform.rotation.z);
+                }
+            }
+        }
+
+        public void SetRotationAngle(float angle)
+        {
+            _goUp = angle > _currentAngle;
+            _currentAngle = angle;
+        }
 
         public void EnableBossHealthBar(string enemyName)
         {
@@ -51,13 +101,6 @@ namespace LewdieJam
         }
 
         public bool CanPlay => !VNManager.Instance.IsPlayingStory;
-
-        private void Awake()
-        {
-            Instance = this;
-            SceneManager.LoadScene("Map", LoadSceneMode.Additive);
-            UpdateUI();
-        }
 
         public void UpdateUI()
         {

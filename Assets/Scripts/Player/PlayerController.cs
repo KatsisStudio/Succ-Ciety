@@ -88,7 +88,17 @@ namespace LewdieJam.Player
             }
             else
             {
-                _rb.velocity = new Vector3(_mov.x * _info.Speed, _rb.velocity.y, _mov.y * _info.Speed);
+                var dir = _mov.y * transform.forward + _mov.x * transform.right;
+
+                if (!_isDashing && _mov.magnitude != 0)
+                {
+                    _dashDirection = new(dir.x, dir.z);
+                }
+
+                dir *= _info.Speed;
+                dir.y = _rb.velocity.y;
+
+                _rb.velocity = dir;
                 _anim.SetFloat("Speed", _mov.magnitude);
                 if (_mov.x != 0f)
                 {
@@ -137,12 +147,6 @@ namespace LewdieJam.Player
         public void OnMovement(InputAction.CallbackContext value)
         {
             _mov = value.ReadValue<Vector2>();
-
-            // If we are not currently dashing and we are moving, we update next dash direction
-            if (!_isDashing && _mov.magnitude != 0)
-            {
-                _dashDirection = _mov;
-            }
         }
 
         private SpellHitInfo FireOnTarget()

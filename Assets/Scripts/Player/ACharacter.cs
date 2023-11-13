@@ -36,7 +36,10 @@ namespace LewdieJam.Player
 
         protected void UpdateParent()
         {
-            _sr.sortingOrder = (int)(-transform.position.z * 1000f);
+            var targetPos = (transform.rotation.eulerAngles.y > 45 && transform.rotation.eulerAngles.y < 135f)
+                || (transform.rotation.eulerAngles.y > 225 && transform.rotation.eulerAngles.y < 315)
+                ? transform.position.x : transform.position.z;
+            _sr.sortingOrder = (int)(-targetPos * 1000f);
         }
 
         protected virtual bool CanTakeDamage => true;
@@ -52,6 +55,7 @@ namespace LewdieJam.Player
             if (_health <= 0)
             {
                 Die();
+
                 Destroy(gameObject);
                 EnemyManager.Instance.RefreshAllTargets();
             }

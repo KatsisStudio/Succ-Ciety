@@ -15,6 +15,14 @@ namespace Assets.Scripts.Player
             Instance = this;
         }
 
+        public IEnumerable<EnemyController> ToEnumerable()
+        {
+            foreach (var e in _enemies)
+            {
+                yield return e;
+            }
+        }
+
         public void Register(EnemyController character)
         {
             _enemies.Add(character);

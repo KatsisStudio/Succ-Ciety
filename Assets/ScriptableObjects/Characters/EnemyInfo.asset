@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: EnemyInfo
   m_EditorClassIdentifier: 
   Name: 
-  Speed: 7
+  Speed: 6.5
   BaseHealth: 10
   Range: 2
   AnimController: {fileID: 9100000, guid: 3b04c1dca40fc8a46a228bb58f91e7f4, type: 2}

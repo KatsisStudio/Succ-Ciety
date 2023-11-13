@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - SpawnPoint
+  - CameraZone
   layers:
   - Default
   - TransparentFX
@@ -17,7 +18,7 @@ TagManager:
   - Character
   - 
   - Detector
-  - 
+  - CameraZone
   - 
   - 
   - 
