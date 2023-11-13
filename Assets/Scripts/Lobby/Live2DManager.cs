@@ -59,9 +59,7 @@ namespace LewdieJam.Lobby
             if (_live2dDirty)
             {
                 _live2dDirty = false;
-                Debug.Log("Update breasts size");
                 _breastsSizeModifierParam.Value = PersistentData.Attachments.HasFlag(Attachment.LargeBreasts) ? _breastsSizeModifierParam.MaximumValue : _breastsSizeModifierParam.MinimumValue;
-                Debug.Log(_breastsSizeModifierParam.Value);
             }
         }
 
