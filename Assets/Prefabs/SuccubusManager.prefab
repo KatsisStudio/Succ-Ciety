@@ -250,7 +250,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 0}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8193067873860656466}
+        m_TargetAssemblyTypeName: LewdieJam.Lobby.Live2DManager, Assembly-CSharp
+        m_MethodName: OnBreastsClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6998081983962667355
 GameObject:
   m_ObjectHideFlags: 0
@@ -341,6 +353,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6756951935901451891}
+  - component: {fileID: 8193067873860656466}
   m_Layer: 0
   m_Name: SuccubusManager
   m_TagString: Untagged
@@ -365,6 +378,23 @@ Transform:
   - {fileID: 4564129787449895404}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8193067873860656466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8885181389863518637}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f484a9dfd69d19c4fa09373dac2e111e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gameInfo: {fileID: 11400000, guid: 66a2e906f076b044484b31030220ec88, type: 2}
+  _breathParam: {fileID: 6248693330537545328}
+  _breastsBounceParam: {fileID: 2844583264245511229}
+  _breastsSizeModifierParam: {fileID: 7556286462694084730}
+  _hornParam: {fileID: 4131568453289279779}
 --- !u!1001 &3145056056673379843
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -910,8 +940,52 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d16ebbc40ae8a0c4eb2a58aff0db6a57, type: 3}
+--- !u!114 &2844583264245511229 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 926763758228525630, guid: d16ebbc40ae8a0c4eb2a58aff0db6a57, type: 3}
+  m_PrefabInstance: {fileID: 3145056056673379843}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dafbb7ec1700e8147a48dbed2e4e543c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &3606305606380039889 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1849097106757585106, guid: d16ebbc40ae8a0c4eb2a58aff0db6a57, type: 3}
   m_PrefabInstance: {fileID: 3145056056673379843}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &4131568453289279779 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1365501410333009696, guid: d16ebbc40ae8a0c4eb2a58aff0db6a57, type: 3}
+  m_PrefabInstance: {fileID: 3145056056673379843}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dafbb7ec1700e8147a48dbed2e4e543c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6248693330537545328 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9012453443486341235, guid: d16ebbc40ae8a0c4eb2a58aff0db6a57, type: 3}
+  m_PrefabInstance: {fileID: 3145056056673379843}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dafbb7ec1700e8147a48dbed2e4e543c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7556286462694084730 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4861681233086412409, guid: d16ebbc40ae8a0c4eb2a58aff0db6a57, type: 3}
+  m_PrefabInstance: {fileID: 3145056056673379843}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dafbb7ec1700e8147a48dbed2e4e543c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
