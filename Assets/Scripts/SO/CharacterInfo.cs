@@ -18,6 +18,7 @@ namespace LewdieJam.SO
         [Header("Attack")]
         public int AttackForce;
         public float PreAttackWaitTime, PostAttackWaitTime;
+        public float MainAttackReloadTime, SubAttackReloadTime;
         public GameObject MainAttackVfx, SubAttackVfx;
 
         [Header("Dash (player only)")]

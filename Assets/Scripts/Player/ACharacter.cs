@@ -20,6 +20,8 @@ namespace LewdieJam.Player
 
         public abstract Team Team { get; }
 
+        protected bool _isAttacking;
+
         protected void AwakeParent()
         {
             _floorMask = 1 << LayerMask.NameToLayer("Floor");

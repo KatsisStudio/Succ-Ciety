@@ -48,6 +48,7 @@ namespace LewdieJam.Player.EnemyImpl
 
         private IEnumerator WaitAndAttack(Vector3 atkPos)
         {
+            _isAttacking = true;
             _anim.SetBool("IsAttacking", true);
             yield return new WaitForSeconds(_info.PreAttackWaitTime);
             _anim.SetBool("IsAttacking", false);
@@ -77,6 +78,9 @@ namespace LewdieJam.Player.EnemyImpl
                     HookTarget.IsStunned = true;
                 }
             }
+
+            yield return new WaitForSeconds(_info.MainAttackReloadTime);
+            _isAttacking = false;
         }
 
         private void OnDestroy()

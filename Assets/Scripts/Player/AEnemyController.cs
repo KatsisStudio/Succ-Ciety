@@ -133,7 +133,7 @@ namespace LewdieJam.Player
             }
             else if (UpdateSetAction())
             { }
-            else if (_target == null) // Do nothing
+            else if (_target == null || _isAttacking) // Do nothing
             {
                 _rb.velocity = new(0f, _rb.velocity.y, 0f);
             }
@@ -158,7 +158,8 @@ namespace LewdieJam.Player
         }
 
         protected abstract void Attack(Vector3 dir);
-        protected abstract bool UpdateSetAction();
+        protected virtual bool UpdateSetAction()
+            => false;
 
         protected virtual void OnCharmed()
         { }

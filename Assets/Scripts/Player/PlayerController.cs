@@ -43,8 +43,6 @@ namespace LewdieJam.Player
 
         public bool CanMove => !_isAttacking && !IsStunned;
 
-        private bool _isAttacking;
-
         protected override int MaxHealth => _info.BaseHealth + _info.BaseHealth * (int)GameManager.Instance.GetStatValue(UpgradableStat.BaseHealth, GameManager.Instance.Info.MaxHealthCurveGain, GameManager.Instance.Info.MaxHealthMultiplerGain);
 
         private Dictionary<Skill, bool> _skills = new()
@@ -254,7 +252,7 @@ namespace LewdieJam.Player
                 else if (GameManager.Instance.CanPlay && _skills[Skill.MainAttack])
                 {
                     _anim.SetInteger("Attack", 3);
-                    StartCoroutine(Attack(Skill.MainAttack, NormalAttack, _info.MainAttackVfx, 0f));
+                    StartCoroutine(Attack(Skill.MainAttack, NormalAttack, _info.MainAttackVfx, _info.MainAttackReloadTime));
                 }
             }
         }
@@ -264,7 +262,7 @@ namespace LewdieJam.Player
             if (value.performed && GameManager.Instance.CanPlay && _skills[Skill.SubAttack])
             {
                 _anim.SetInteger("Attack", 2);
-                StartCoroutine(Attack(Skill.SubAttack, CharmAttack, _info.SubAttackVfx, 1f));
+                StartCoroutine(Attack(Skill.SubAttack, CharmAttack, _info.SubAttackVfx, _info.SubAttackReloadTime));
             }
         }
 

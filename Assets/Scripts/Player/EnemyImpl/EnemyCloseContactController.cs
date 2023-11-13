@@ -25,16 +25,6 @@ namespace LewdieJam.Player.EnemyImpl
             StartCoroutine(WaitAndAttack());
         }
 
-        protected override bool UpdateSetAction()
-        {
-            if (_attackTarget != null) // Do nothing
-            {
-                _rb.velocity = new(0f, _rb.velocity.y, 0f);
-                return true;
-            }
-            return false;
-        }
-
         protected override void OnCharmed()
         {
             base.OnCharmed();
@@ -48,6 +38,8 @@ namespace LewdieJam.Player.EnemyImpl
 
         private IEnumerator WaitAndAttack()
         {
+            _isAttacking = true;
+
             _anim.SetBool("IsAttacking", true);
             yield return new WaitForSeconds(_info.PreAttackWaitTime);
             _anim.SetBool("IsAttacking", false);
@@ -80,6 +72,9 @@ namespace LewdieJam.Player.EnemyImpl
 
                 Destroy(_attackTarget);
                 _attackTarget = null;
+
+                yield return new WaitForSeconds(_info.MainAttackReloadTime);
+                _isAttacking = false;
             }
         }
 

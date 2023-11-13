@@ -20,12 +20,14 @@ MonoBehaviour:
   AttackForce: 15
   PreAttackWaitTime: 2
   PostAttackWaitTime: 1
+  MainAttackReloadTime: 1
+  SubAttackReloadTime: 0
   MainAttackVfx: {fileID: 7927164206457417737, guid: a9b307a3ad822824b84bc67a3aeb2035, type: 3}
   SubAttackVfx: {fileID: 0}
   DashDuration: 0
   DashSpeedMultiplier: 0
   CanBeCharmed: 0
   IsBoss: 1
-  AttackType: 1
   ProjectileSpeed: 0
   ProjectileMaxDistance: 0
+  HookSpeed: 0
