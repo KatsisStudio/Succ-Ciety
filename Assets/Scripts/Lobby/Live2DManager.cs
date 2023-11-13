@@ -42,6 +42,7 @@ namespace LewdieJam.Lobby
             {
                 Attachments |= attachment;
             }
+            SetDirty();
         }
 
         private void Awake()
@@ -73,7 +74,7 @@ namespace LewdieJam.Lobby
             if (_live2dDirty)
             {
                 _live2dDirty = false;
-                _breastsSizeModifierParam.Value = PersistentData.Attachments.HasFlag(Attachment.LargeBreasts) ? _breastsSizeModifierParam.MaximumValue : _breastsSizeModifierParam.MinimumValue;
+                _breastsSizeModifierParam.Value = Attachments.HasFlag(Attachment.LargeBreasts) ? _breastsSizeModifierParam.MaximumValue : _breastsSizeModifierParam.MinimumValue;
             }
         }
 
