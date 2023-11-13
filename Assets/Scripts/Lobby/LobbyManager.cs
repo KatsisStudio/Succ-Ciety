@@ -63,14 +63,8 @@ namespace LewdieJam.Lobby
 
         private void ToggleAttachment(Attachment attachment)
         {
-            if (PersistentData.Attachments.HasFlag(attachment))
-            {
-                PersistentData.Attachments &= ~attachment;
-            }
-            else
-            {
-                PersistentData.Attachments |= attachment;
-            }
+            ToggleAttachment(attachment);
+            PersistentData.Attachments = _live2D.Attachments;
             UpdateUI();
         }
         public void ToggleLargeBreastsAttachment() => ToggleAttachment(Attachment.LargeBreasts);

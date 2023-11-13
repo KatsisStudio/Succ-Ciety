@@ -30,6 +30,20 @@ namespace LewdieJam.Lobby
         private float _hornTimer;
         private int _hornIndex;
 
+        public Attachment Attachments { private set; get; }
+
+        public void ToggleAttachment(Attachment attachment)
+        {
+            if (Attachments.HasFlag(attachment))
+            {
+                Attachments &= ~attachment;
+            }
+            else
+            {
+                Attachments |= attachment;
+            }
+        }
+
         private void Awake()
         {
             _timers.Add(new(_breathParam, .5f, true));
