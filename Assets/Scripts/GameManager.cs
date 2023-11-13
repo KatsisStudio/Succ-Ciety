@@ -40,6 +40,7 @@ namespace LewdieJam
         {
             Instance = this;
             SceneManager.LoadScene("Map", LoadSceneMode.Additive);
+            SceneManager.LoadScene("VN", LoadSceneMode.Additive);
             UpdateUI();
         }
 

@@ -9,5 +9,10 @@ namespace LewdieJam.Menu
         {
             SceneManager.LoadScene("Lobby");
         }
+
+        public void LoadGallery()
+        {
+            SceneManager.LoadScene("Gallery");
+        }
     }
 }

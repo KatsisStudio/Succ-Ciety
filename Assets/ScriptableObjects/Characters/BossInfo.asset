@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Dickens
   Speed: 5
-  BaseHealth: 200
+  BaseHealth: 100
   Range: 4
   AnimController: {fileID: 22100000, guid: 2f3e6df983fecad4198a8c250da6eafc, type: 2}
   AttackForce: 15
