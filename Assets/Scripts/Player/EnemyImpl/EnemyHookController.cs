@@ -85,6 +85,10 @@ namespace LewdieJam.Player.EnemyImpl
 
         private void OnDestroy()
         {
+            if (HookTarget != null)
+            {
+                HookTarget.IsStunned = false;
+            }
             if (_hookProjectile != null)
             {
                 Destroy(_hookProjectile);
