@@ -98,10 +98,14 @@ namespace LewdieJam.VN
 
         public void ShowHSceneStory()
         {
+            GameManager.Instance.EnableHSceneBgm();
             _openDoorQuestion.SetActive(false);
             _hSceneVisual.gameObject.SetActive(true);
             _hSceneVisual.sprite = _currHScene.Sprites[0];
-            ShowStory(_currHScene.Story, null);
+            ShowStory(_currHScene.Story, () =>
+            {
+                GameManager.Instance.EnableGameBgm();
+            });
         }
 
         public void ShowStory(TextAsset asset, Action onDone)

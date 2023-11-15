@@ -28,6 +28,12 @@ namespace LewdieJam
         [SerializeField]
         private PlayerController _player;
 
+        [SerializeField]
+        private AudioSource _bgmGame, _bgmHScene;
+
+        private float _bgmTimer;
+        private float _bgmTimerTarget;
+
         public GameInfo Info => _info;
 
         [SerializeField]
@@ -46,6 +52,32 @@ namespace LewdieJam
 
         private void Update()
         {
+            if (_bgmTimer != _bgmTimerTarget)
+            {
+                if (_bgmTimer < _bgmTimerTarget)
+                {
+                    _bgmTimer += Time.deltaTime * .1f;
+                    if (_bgmTimer > _bgmTimerTarget)
+                    {
+                        _bgmTimer = _bgmTimerTarget;
+                    }
+                }
+                else
+                {
+                    _bgmTimer -= Time.deltaTime * .1f;
+                    if (_bgmTimer < _bgmTimerTarget)
+                    {
+                        _bgmTimer = _bgmTimerTarget;
+                    }
+                }
+
+                _bgmGame.volume = .4f - _bgmTimer;
+                _bgmHScene.volume = _bgmTimer;
+
+                if (_bgmGame.volume == 0f) _bgmGame.Pause();
+                if (_bgmHScene.volume == 0f) _bgmHScene.Stop();
+            }
+
             if (_player.transform.rotation.eulerAngles.y != _currentAngle)
             {
                 float a;
@@ -71,6 +103,18 @@ namespace LewdieJam
                     e.transform.rotation = Quaternion.Euler(_player.transform.rotation.x, a, _player.transform.rotation.z);
                 }
             }
+        }
+
+        public void EnableGameBgm()
+        {
+            _bgmTimerTarget = 0f;
+            _bgmGame.UnPause();
+        }
+
+        public void EnableHSceneBgm()
+        {
+            _bgmTimerTarget = .4f;
+            _bgmHScene.Play();
         }
 
         public void SetRotationAngle(float angle)
