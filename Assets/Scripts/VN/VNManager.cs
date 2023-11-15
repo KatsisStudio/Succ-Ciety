@@ -121,11 +121,11 @@ namespace LewdieJam.VN
 
             foreach (var tag in _story.currentTags)
             {
-                var s = tag.Split(' ');
+                var s = tag.ToUpperInvariant().Split(' ');
                 var content = string.Join(' ', s.Skip(1)).ToUpperInvariant();
                 switch (s[0])
                 {
-                    case "speaker":
+                    case "SPEAKER":
                         if (content == "NONE") _currentCharacter = string.Empty;
                         else
                         {
@@ -133,7 +133,7 @@ namespace LewdieJam.VN
                         }
                         break;
 
-                    case "background":
+                    case "BACKGROUND":
                         _backgroundIndex++;
                         _hSceneVisual.sprite = _currHScene.Sprites[_backgroundIndex];
                         break;

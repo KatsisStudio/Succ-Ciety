@@ -13,11 +13,20 @@ namespace LewdieJam.Menu
         [SerializeField]
         private Live2DManager _live2d;
 
+        [SerializeField]
+        private AudioSource _bgm;
+
         private int _hornLevel;
 
         private void Awake()
         {
             SceneManager.LoadScene("VN", LoadSceneMode.Additive);
+        }
+
+        public void PlayBGM(AudioClip clip)
+        {
+            _bgm.clip = clip;
+            _bgm.Play();
         }
 
         public void BackToMenu()
