@@ -397,15 +397,13 @@ MonoBehaviour:
   - {fileID: 8300000, guid: d11594ba04775fe4d96e04ddb8b4a58b, type: 3}
   - {fileID: 8300000, guid: 7d9b9ce3bd673b044a26559702136dc6, type: 3}
   _kissSounds:
-  - {fileID: 8300000, guid: a1d8d3402ad04de429175a9d29515f12, type: 3}
-  - {fileID: 8300000, guid: 62df968f58b88704493c9ca779eb88cd, type: 3}
-  - {fileID: 8300000, guid: f3a9ad4698dbd7842a861d2a0a471fd9, type: 3}
-  - {fileID: 8300000, guid: 0bacd903580eca745abc8f27d257520c, type: 3}
-  - {fileID: 8300000, guid: bf928698adfd3ee4684296a18de300f3, type: 3}
-  - {fileID: 8300000, guid: a32acb68f798ab94e87566e102225254, type: 3}
-  - {fileID: 8300000, guid: 8a092d5406f899e4cb83221127660ac4, type: 3}
-  - {fileID: 8300000, guid: 81fe4af914eb7854a9246f15aa9d8cb0, type: 3}
-  - {fileID: 8300000, guid: c184b56529d13b541a6dc5c3f6315b6c, type: 3}
+  - {fileID: 8300000, guid: 61a0974ae4bd0c345b139b97f8c4096c, type: 3}
+  - {fileID: 8300000, guid: 68400213610935944a98dc3b3af6b103, type: 3}
+  - {fileID: 8300000, guid: 9fb33c13729ee8a43864d7347e5ecd4e, type: 3}
+  - {fileID: 8300000, guid: b6a74e86112c967459a8a6c237fa59ec, type: 3}
+  - {fileID: 8300000, guid: 0ec17f943b660f54e835be4a00ae3cf1, type: 3}
+  - {fileID: 8300000, guid: 28820004d085d81428cc86bebe2f683a, type: 3}
+  - {fileID: 8300000, guid: 439d11a2c627122409a54a8e9bd163cf, type: 3}
 --- !u!135 &177392693
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1074,7 +1072,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 6ed2b1a0e1f577d49a49a5e9dad85180, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.4
+  m_Volume: 0.15
   m_Pitch: 1
   Loop: 1
   Mute: 0
