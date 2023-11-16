@@ -19,7 +19,7 @@ namespace LewdieJam.Player
         private Image _healthBar;
 
         [SerializeField]
-        private AudioClip[] _atkSounds;
+        private AudioClip[] _atkSounds, _kissSounds;
 
         public IInteractible CurrentInteraction { set; private get; }
 
@@ -269,7 +269,7 @@ namespace LewdieJam.Player
             if (value.performed && GameManager.Instance.CanPlay && _skills[Skill.SubAttack])
             {
                 _anim.SetInteger("Attack", 2);
-                StartCoroutine(Attack(Skill.SubAttack, CharmAttack, _info.SubAttackVfx, _info.SubAttackReloadTime, null));
+                StartCoroutine(Attack(Skill.SubAttack, CharmAttack, _info.SubAttackVfx, _info.SubAttackReloadTime, _kissSounds[UnityEngine.Random.Range(0, _kissSounds.Length)]));
             }
         }
 
