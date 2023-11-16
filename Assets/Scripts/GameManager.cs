@@ -29,10 +29,7 @@ namespace LewdieJam
         private PlayerController _player;
 
         [SerializeField]
-        private AudioSource _bgmGame, _bgmHScene;
-
-        private float _bgmTimer;
-        private float _bgmTimerTarget;
+        private AudioSource _bgmGame;
 
         public GameInfo Info => _info;
 
@@ -52,32 +49,6 @@ namespace LewdieJam
 
         private void Update()
         {
-            if (_bgmTimer != _bgmTimerTarget)
-            {
-                if (_bgmTimer < _bgmTimerTarget)
-                {
-                    _bgmTimer += Time.deltaTime * .1f;
-                    if (_bgmTimer > _bgmTimerTarget)
-                    {
-                        _bgmTimer = _bgmTimerTarget;
-                    }
-                }
-                else
-                {
-                    _bgmTimer -= Time.deltaTime * .1f;
-                    if (_bgmTimer < _bgmTimerTarget)
-                    {
-                        _bgmTimer = _bgmTimerTarget;
-                    }
-                }
-
-                _bgmGame.volume = .4f - _bgmTimer;
-                _bgmHScene.volume = _bgmTimer;
-
-                if (_bgmGame.volume == 0f) _bgmGame.Pause();
-                if (_bgmHScene.volume == 0f) _bgmHScene.Stop();
-            }
-
             if (_player.transform.rotation.eulerAngles.y != _currentAngle)
             {
                 float a;
@@ -105,16 +76,13 @@ namespace LewdieJam
             }
         }
 
-        public void EnableGameBgm()
+        public void PlayHScene()
         {
-            _bgmTimerTarget = 0f;
-            _bgmGame.UnPause();
-        }
-
-        public void EnableHSceneBgm()
-        {
-            _bgmTimerTarget = .4f;
-            _bgmHScene.Play();
+            _bgmGame.Pause();
+            VNManager.Instance.ShowHSceneStoryWithCallback(() =>
+            {
+                _bgmGame.UnPause();
+            });
         }
 
         public void SetRotationAngle(float angle)

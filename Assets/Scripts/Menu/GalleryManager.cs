@@ -36,6 +36,7 @@ namespace LewdieJam.Menu
 
         public void LoadHScene(HSceneInfo scene)
         {
+            _bgm.Stop();
             VNManager.Instance.ShowHSceneStory(scene);
         }
 
