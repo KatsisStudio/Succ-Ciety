@@ -177,7 +177,7 @@ namespace LewdieJam.Player
 
         public override void Die()
         {
-            PersistentData.PendingEnergy += Mathf.CeilToInt(1f + 1f * GameManager.Instance.GetStatValue(UpgradableStat.EnergyGained, GameManager.Instance.Info.EnergyCurveGain, GameManager.Instance.Info.MaxEnergyMultiplierGain));
+            PersistentData.PendingEnergy += Mathf.CeilToInt(_info.EnergyDropped + _info.EnergyDropped * GameManager.Instance.GetStatValue(UpgradableStat.EnergyGained, GameManager.Instance.Info.EnergyCurveGain, GameManager.Instance.Info.MaxEnergyMultiplierGain));
             GameManager.Instance.UpdateUI();
             if (_info.IsBoss)
             {

@@ -29,6 +29,7 @@ namespace LewdieJam.SO
         public bool CanBeCharmed;
         public bool IsBoss;
         public float DetectionRange;
+        public int EnergyDropped;
 
         [Header("Attack Projectile (if relevant)")]
         public float ProjectileSpeed;
