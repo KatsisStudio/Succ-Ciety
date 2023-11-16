@@ -63,7 +63,7 @@ namespace LewdieJam.Lobby
 
         private void ToggleAttachment(Attachment attachment)
         {
-            ToggleAttachment(attachment);
+            _live2D.ToggleAttachment(attachment);
             PersistentData.Attachments = _live2D.Attachments;
             UpdateUI();
         }
