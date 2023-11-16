@@ -18,6 +18,9 @@ namespace LewdieJam.Player
         [SerializeField]
         private Image _healthBar;
 
+        [SerializeField]
+        private AudioClip[] _atkSounds;
+
         public IInteractible CurrentInteraction { set; private get; }
 
         /// <summary>
@@ -54,12 +57,15 @@ namespace LewdieJam.Player
 
         private AEnemyController _charmed;
 
+        private AudioSource _source;
+
         public bool IsStunned { private get; set; }
 
         private void Awake()
         {
             AwakeParent();
             _anim = GetComponentInChildren<Animator>();
+            _source = GetComponentInChildren<AudioSource>();
         }
 
         private void Start()
@@ -170,7 +176,7 @@ namespace LewdieJam.Player
             return null;
         }
 
-        private IEnumerator Attack(Skill s, Action<IEnumerable<ACharacter>> attack, GameObject vfx, float reloadTime)
+        private IEnumerator Attack(Skill s, Action<IEnumerable<ACharacter>> attack, GameObject vfx, float reloadTime, AudioClip sound)
         {
             _skills[s] = false;
             _isAttacking = true;
@@ -185,6 +191,7 @@ namespace LewdieJam.Player
             }
             else
             {
+                _source.PlayOneShot(sound);
                 _sr.flipX = transform.position.x - atk.Point.x > 0f;
 
                 yield return new WaitForSeconds(_info.PreAttackWaitTime);
@@ -252,7 +259,7 @@ namespace LewdieJam.Player
                 else if (GameManager.Instance.CanPlay && _skills[Skill.MainAttack])
                 {
                     _anim.SetInteger("Attack", 3);
-                    StartCoroutine(Attack(Skill.MainAttack, NormalAttack, _info.MainAttackVfx, _info.MainAttackReloadTime));
+                    StartCoroutine(Attack(Skill.MainAttack, NormalAttack, _info.MainAttackVfx, _info.MainAttackReloadTime, _atkSounds[UnityEngine.Random.Range(0, _atkSounds.Length)]));
                 }
             }
         }
@@ -262,7 +269,7 @@ namespace LewdieJam.Player
             if (value.performed && GameManager.Instance.CanPlay && _skills[Skill.SubAttack])
             {
                 _anim.SetInteger("Attack", 2);
-                StartCoroutine(Attack(Skill.SubAttack, CharmAttack, _info.SubAttackVfx, _info.SubAttackReloadTime));
+                StartCoroutine(Attack(Skill.SubAttack, CharmAttack, _info.SubAttackVfx, _info.SubAttackReloadTime, null));
             }
         }
 
