@@ -96,6 +96,7 @@ namespace LewdieJam.Player
                     if (coll.CompareTag("Player") && _info.IsBoss)
                     {
                         GameManager.Instance.EnableBossHealthBar(_info.Name);
+                        GameManager.Instance.UpdateHealthBar(_health / (float)_info.BaseHealth);
                     }
 
                     var other = coll.GetComponent<ACharacter>();
