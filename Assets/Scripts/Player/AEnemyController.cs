@@ -178,6 +178,10 @@ namespace LewdieJam.Player
         {
             PersistentData.PendingEnergy += Mathf.CeilToInt(1f + 1f * GameManager.Instance.GetStatValue(UpgradableStat.EnergyGained, GameManager.Instance.Info.EnergyCurveGain, GameManager.Instance.Info.MaxEnergyMultiplierGain));
             GameManager.Instance.UpdateUI();
+            if (_info.IsBoss)
+            {
+                GameManager.Instance.DisableBossHealthBar();
+            }
             EnemyManager.Instance.Unregister(this);
         }
     }
