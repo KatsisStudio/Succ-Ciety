@@ -19,7 +19,10 @@ namespace LewdieJam.Player
         private Image _healthBar;
 
         [SerializeField]
-        private AudioClip[] _atkSounds, _kissSounds, _painSounds;
+        private AudioClip[] _atkSounds, _kissSounds, _painSounds, _gameoverSounds;
+
+        [SerializeField]
+        private GameObject _gameoverPopup;
 
         public IInteractible CurrentInteraction { set; private get; }
 
@@ -44,7 +47,7 @@ namespace LewdieJam.Player
 
         private bool _isDashing;
 
-        public bool CanMove => !_isAttacking && !IsStunned;
+        public bool CanMove => !_isAttacking && !IsStunned && IsAlive;
 
         protected override int MaxHealth => _info.BaseHealth + _info.BaseHealth * (int)GameManager.Instance.GetStatValue(UpgradableStat.BaseHealth, GameManager.Instance.Info.MaxHealthCurveGain, GameManager.Instance.Info.MaxHealthMultiplerGain);
 
@@ -148,6 +151,12 @@ namespace LewdieJam.Player
         {
             PersistentData.Energy += PersistentData.PendingEnergy / 2;
             PersistentData.PendingEnergy = 0;
+            _gameoverPopup.SetActive(true);
+            _source.PlayOneShot(_gameoverSounds[UnityEngine.Random.Range(0, _gameoverSounds.Length)]);
+        }
+
+        public void LoadLobby()
+        {
             SceneManager.LoadScene("Lobby");
         }
 
@@ -257,7 +266,7 @@ namespace LewdieJam.Player
                 {
                     VNManager.Instance.DisplayNextDialogue();
                 }
-                else if (GameManager.Instance.CanPlay && _skills[Skill.MainAttack])
+                else if (GameManager.Instance.CanPlay && CanMove && _skills[Skill.MainAttack])
                 {
                     _anim.SetInteger("Attack", 3);
                     StartCoroutine(Attack(Skill.MainAttack, NormalAttack, _info.MainAttackVfx, _info.MainAttackReloadTime, _atkSounds[UnityEngine.Random.Range(0, _atkSounds.Length)]));
@@ -267,7 +276,7 @@ namespace LewdieJam.Player
 
         public void OnUltimate(InputAction.CallbackContext value)
         {
-            if (value.performed && GameManager.Instance.CanPlay && _skills[Skill.SubAttack])
+            if (value.performed && GameManager.Instance.CanPlay && CanMove && _skills[Skill.SubAttack])
             {
                 _anim.SetInteger("Attack", 2);
                 StartCoroutine(Attack(Skill.SubAttack, CharmAttack, _info.SubAttackVfx, _info.SubAttackReloadTime, _kissSounds[UnityEngine.Random.Range(0, _kissSounds.Length)]));
@@ -276,7 +285,7 @@ namespace LewdieJam.Player
 
         public void OnDash(InputAction.CallbackContext value)
         {
-            if (value.performed && GameManager.Instance.CanPlay && _skills[Skill.Dash])
+            if (value.performed && GameManager.Instance.CanPlay && CanMove && _skills[Skill.Dash])
             {
                 StartCoroutine(Dash(2f));
             }
@@ -284,7 +293,7 @@ namespace LewdieJam.Player
 
         public void OnAction(InputAction.CallbackContext value)
         {
-            if (value.performed && GameManager.Instance.CanPlay && CurrentInteraction != null && CurrentInteraction.CanInteract(this))
+            if (value.performed && GameManager.Instance.CanPlay && CanMove && CurrentInteraction != null && CurrentInteraction.CanInteract(this))
             {
                 CurrentInteraction.Interact();
             }

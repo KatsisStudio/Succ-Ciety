@@ -75,7 +75,7 @@ namespace LewdieJam.Player
         public void RefreshTarget()
         {
             _target = _inRange
-                .Where(x => x.Team != Team)
+                .Where(x => x.Team != Team && x.IsAlive)
                 .OrderBy(x => Vector3.Distance(transform.position, x.transform.position))
                 .FirstOrDefault();
         }
@@ -184,6 +184,7 @@ namespace LewdieJam.Player
                 GameManager.Instance.DisableBossHealthBar();
             }
             EnemyManager.Instance.Unregister(this);
+            Destroy(gameObject);
         }
     }
 }

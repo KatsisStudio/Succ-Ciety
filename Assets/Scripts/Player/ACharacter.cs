@@ -22,6 +22,8 @@ namespace LewdieJam.Player
 
         protected bool _isAttacking;
 
+        public bool IsAlive => _health > 0; // No use targetting player after her death
+
         protected void AwakeParent()
         {
             _floorMask = 1 << LayerMask.NameToLayer("Floor");
@@ -57,8 +59,6 @@ namespace LewdieJam.Player
             if (_health <= 0)
             {
                 Die();
-
-                Destroy(gameObject);
                 EnemyManager.Instance.RefreshAllTargets();
             }
         }
