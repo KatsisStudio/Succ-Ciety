@@ -446,6 +446,14 @@ MonoBehaviour:
   - {fileID: 8300000, guid: db3bfc9900eacd84fb976fd5918f8340, type: 3}
   - {fileID: 8300000, guid: 9d402ce1e384f8243b72a30e5575d44d, type: 3}
   - {fileID: 8300000, guid: 5abcda121c134994ebe23cfed5caa497, type: 3}
+  _dashSounds:
+  - {fileID: 8300000, guid: 592fa3a0bb6f52c4ab05d0ab021c252e, type: 3}
+  - {fileID: 8300000, guid: 4245ec6bfdd40174fbe36491dfd534cf, type: 3}
+  - {fileID: 8300000, guid: dd348da4eef24a14999ff5fd3e8bdde7, type: 3}
+  - {fileID: 8300000, guid: 6a697a4d459ce104580fec5e83d561f2, type: 3}
+  - {fileID: 8300000, guid: 1d37655ddca5f5f46af58ca5d2e5aac2, type: 3}
+  - {fileID: 8300000, guid: 2a076df1e813ca542a74d1a024016328, type: 3}
+  - {fileID: 8300000, guid: 7ddbf8a10458cbb46a7fbc05fc78f063, type: 3}
   _gameoverPopup: {fileID: 557462076}
 --- !u!135 &177392693
 SphereCollider:

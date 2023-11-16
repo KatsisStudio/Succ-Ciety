@@ -19,7 +19,7 @@ namespace LewdieJam.Player
         private Image _healthBar;
 
         [SerializeField]
-        private AudioClip[] _atkSounds, _kissSounds, _painSounds, _gameoverSounds;
+        private AudioClip[] _atkSounds, _kissSounds, _painSounds, _gameoverSounds, _dashSounds;
 
         [SerializeField]
         private GameObject _gameoverPopup;
@@ -225,6 +225,7 @@ namespace LewdieJam.Player
             _skills[Skill.Dash] = false;
             _anim.SetBool("IsDashing", true);
             _isDashing = true;
+            _source.PlayOneShot(_dashSounds[UnityEngine.Random.Range(0, _dashSounds.Length)]);
             yield return new WaitForSeconds(_info.DashDuration);
             _anim.SetBool("IsDashing", false);
             _isDashing = false;
