@@ -19,7 +19,7 @@ namespace LewdieJam.Player
         private Image _healthBar;
 
         [SerializeField]
-        private AudioClip[] _atkSounds, _kissSounds;
+        private AudioClip[] _atkSounds, _kissSounds, _painSounds;
 
         public IInteractible CurrentInteraction { set; private get; }
 
@@ -125,6 +125,7 @@ namespace LewdieJam.Player
             {
                 StartCoroutine(DisplayInvulnerability());
                 _healthBar.transform.localScale = new Vector3(_health / (float)MaxHealth, 1f, 1f);
+                _source.PlayOneShot(_painSounds[UnityEngine.Random.Range(0, _painSounds.Length)]);
             }
         }
 
