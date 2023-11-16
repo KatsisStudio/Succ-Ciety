@@ -82,7 +82,7 @@ namespace LewdieJam
             VNManager.Instance.ShowHSceneStoryWithCallback(() =>
             {
                 _bgmGame.UnPause();
-            });
+            }, true);
         }
 
         public void SetRotationAngle(float angle)

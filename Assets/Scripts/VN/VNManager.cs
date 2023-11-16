@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace LewdieJam.VN
@@ -20,6 +21,9 @@ namespace LewdieJam.VN
 
         [SerializeField]
         private HSceneInfo _houseNotEnter;
+
+        [SerializeField]
+        private TextAsset _hSceneEnd;
 
         [SerializeField]
         private TextAsset _openDoorAsset;
@@ -38,7 +42,7 @@ namespace LewdieJam.VN
         private TMP_Text _nameText;
 
         [SerializeField]
-        private GameObject _openDoorQuestion;
+        private GameObject _openDoorQuestion, _endQuestion;
 
         [SerializeField]
         private Image _hSceneVisual;
@@ -63,12 +67,14 @@ namespace LewdieJam.VN
         private HSceneInfo _currHScene;
         private int _backgroundIndex;
 
+        private Action _hSceneEndCallback;
+
         private void Awake()
         {
             Instance = this;
         }
 
-        public bool IsPlayingStory => _container.activeInHierarchy || _openDoorQuestion.activeInHierarchy;
+        public bool IsPlayingStory => _container.activeInHierarchy || _openDoorQuestion.activeInHierarchy || _endQuestion.activeInHierarchy;
 
         private void Update()
         {
@@ -118,23 +124,48 @@ namespace LewdieJam.VN
         {
             _currHScene = hScene;
             _backgroundIndex = 0;
-            ShowHSceneStoryWithCallback(null);
+            ShowHSceneStoryWithCallback(null, false);
         }
 
         /// <summary>
         /// Use to start a H Scene
         /// </summary>
-        public void ShowHSceneStoryWithCallback(Action onDone)
+        public void ShowHSceneStoryWithCallback(Action onDone, bool showChoiceAtEnd)
         {
             _hSceneBgm.Play();
             _openDoorQuestion.SetActive(false);
             _hSceneVisual.gameObject.SetActive(true);
             _hSceneVisual.sprite = _currHScene.Sprites[0];
-            ShowStory(_currHScene.Story, () =>
+            _hSceneEndCallback = () =>
             {
                 _hSceneBgm.Stop();
                 onDone?.Invoke();
-            });
+            };
+            if (showChoiceAtEnd)
+            {
+                ShowStory(_currHScene.Story, () =>
+                {
+                    ShowStory(_hSceneEnd, () =>
+                    {
+                        _endQuestion.SetActive(true);
+                    });
+                });
+            }
+            else
+            {
+                ShowStory(_currHScene.Story, _hSceneEndCallback);
+            }
+        }
+
+        public void LoadLobby()
+        {
+            SceneManager.LoadScene("Lobby");
+        }
+
+        public void Continue()
+        {
+            _hSceneEndCallback();
+            _endQuestion.SetActive(false);
         }
 
         public void ShowStory(TextAsset asset, Action onDone)
@@ -236,8 +267,7 @@ namespace LewdieJam.VN
                 // We are slowly displaying a text, force the whole display
                 _display.ForceDisplay();
             }
-            else if (_story.canContinue && // There is text left to write
-                !_story.currentChoices.Any()) // We are not currently in a choice
+            else if (_story.canContinue) // There is text left to write
             {
                 DisplayStory(_story.Continue());
             }

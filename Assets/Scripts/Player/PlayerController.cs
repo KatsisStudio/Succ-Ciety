@@ -155,11 +155,6 @@ namespace LewdieJam.Player
             _source.PlayOneShot(_gameoverSounds[UnityEngine.Random.Range(0, _gameoverSounds.Length)]);
         }
 
-        public void LoadLobby()
-        {
-            SceneManager.LoadScene("Lobby");
-        }
-
         public void OnMovement(InputAction.CallbackContext value)
         {
             _mov = value.ReadValue<Vector2>();
