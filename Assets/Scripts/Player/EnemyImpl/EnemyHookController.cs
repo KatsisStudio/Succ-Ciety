@@ -34,7 +34,7 @@ namespace LewdieJam.Player.EnemyImpl
             if (HookTarget != null) // Our hook grabbed a fish
             {
                 var dir = (transform.position - HookTarget.transform.position).normalized;
-                HookTarget.transform.Translate(dir * _info.HookSpeed * Time.deltaTime);
+                HookTarget.transform.position = HookTarget.transform.position + dir * _info.HookSpeed * Time.deltaTime;
 
                 if (Vector3.Distance(transform.position, HookTarget.transform.position) < 1f)
                 {
@@ -73,7 +73,7 @@ namespace LewdieJam.Player.EnemyImpl
                 Destroy(_hookProjectile);
 
                 // Grab target if we hit it
-                if (HookTarget != null)
+                if (HookTarget != null && !HookTarget.IsStunned) // Better not try to grab a already stunned player for now...
                 {
                     HookTarget.IsStunned = true;
                 }

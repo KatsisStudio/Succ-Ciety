@@ -65,7 +65,7 @@ namespace LewdieJam.Player
 
         private AudioSource _source;
 
-        public bool IsStunned { private get; set; }
+        public bool IsStunned { get; set; }
 
         private void Awake()
         {
