@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.Player;
+using LewdieJam.Achievement;
 using LewdieJam.Game;
 using LewdieJam.Map;
 using LewdieJam.SO;
@@ -182,6 +183,7 @@ namespace LewdieJam.Player
             if (_info.IsBoss)
             {
                 GameManager.Instance.DisableBossHealthBar();
+                AchievementManager.Instance.Unlock(AchievementID.Dickus);
             }
             EnemyManager.Instance.Unregister(this);
             Destroy(gameObject);

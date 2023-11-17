@@ -1,4 +1,5 @@
 ﻿using Ink.Runtime;
+using LewdieJam.Achievement;
 using LewdieJam.SO;
 using System;
 using System.Collections;
@@ -72,6 +73,7 @@ namespace LewdieJam.VN
         private void Awake()
         {
             Instance = this;
+            SceneManager.LoadScene("AchievementManager", LoadSceneMode.Additive);
         }
 
         public bool IsPlayingStory => _container.activeInHierarchy || _openDoorQuestion.activeInHierarchy || _endQuestion.activeInHierarchy;
@@ -105,7 +107,10 @@ namespace LewdieJam.VN
             _currHScene = _houseNotEnter;
             _hSceneVisual.gameObject.SetActive(true);
             _hSceneVisual.sprite = _currHScene.Sprites[0];
-            ShowStory(_currHScene.Story, null);
+            ShowStory(_currHScene.Story, () =>
+            {
+                AchievementManager.Instance.Unlock(AchievementID.DontEnterScene);
+            });
         }
 
         /// <summary>
@@ -145,6 +150,7 @@ namespace LewdieJam.VN
             {
                 ShowStory(_currHScene.Story, () =>
                 {
+                    AchievementManager.Instance.Unlock(_currHScene.Achievement);
                     ShowStory(_hSceneEnd, () =>
                     {
                         _endQuestion.SetActive(true);

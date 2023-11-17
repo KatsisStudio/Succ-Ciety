@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using LewdieJam.Achievement;
+using UnityEngine;
 
 namespace LewdieJam.SO
 {
@@ -8,5 +9,6 @@ namespace LewdieJam.SO
         public string Name;
         public TextAsset Story;
         public Sprite[] Sprites;
+        public AchievementID Achievement;
     }
 }

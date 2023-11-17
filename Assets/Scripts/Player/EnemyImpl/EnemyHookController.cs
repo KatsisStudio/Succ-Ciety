@@ -1,4 +1,5 @@
-﻿using LewdieJam.Player.Attack;
+﻿using LewdieJam.Achievement;
+using LewdieJam.Player.Attack;
 using LewdieJam.VN;
 using System.Collections;
 using Unity.VisualScripting;
@@ -78,6 +79,7 @@ namespace LewdieJam.Player.EnemyImpl
                     if (HookTarget.Hooker != null)
                     {
                         HookTarget.Hooker.HookTarget = null;
+                        AchievementManager.Instance.Unlock(AchievementID.DoubleHook);
                     }
                     HookTarget.Hooker = this;
                 }
