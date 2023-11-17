@@ -50,9 +50,9 @@ namespace LewdieJam.Achievement
             { AchievementID.VanillaScene, new() { Name = "Still Better than Mint", Description = "Play the vanilla scene" } },
             { AchievementID.BigBoobsScene, new() { Name = "I'm Playing for the Plot", Description = "Play the big boobs scene" } },
             { AchievementID.FutanariScene, new() { Name = "Magical Wand", Description = "Play the futanari scene" } },
-            { AchievementID.PregnantScene, new() { Name = "Knocking at the Door", Description = "Play the pregnant scene" } },
+            { AchievementID.PregnantScene, new() { Name = "Big 'n Round", Description = "Play the pregnant scene" } },
             { AchievementID.DontEnterScene, new() { Name = "Well Educated", Description = "Refuse to enter inside a house" } },
-            { AchievementID.DoubleHook, new() { Name = "Hooked for You", Description = "Get hooked by an enemy while already being stunned" } },,
+            { AchievementID.DoubleHook, new() { Name = "Hooked for You", Description = "Get hooked by an enemy while already being stunned" } },
             { AchievementID.Dickus, new() { Name = "Big Nose", Description = "Beat Dickus" } }
         };
     }
