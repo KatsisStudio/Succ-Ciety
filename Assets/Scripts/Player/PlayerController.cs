@@ -215,17 +215,26 @@ namespace LewdieJam.Player
             _skills[s] = true;
         }
 
-        private IEnumerator Dash(float reloadTime)
+        private IEnumerator ReloadDash()
+        {
+            _anim.SetBool("IsDashing", false);
+            _isDashing = false;
+
+            yield return Reload(Skill.Dash, _info.DashReloadTime);
+        }
+
+        private IEnumerator Dash()
         {
             _skills[Skill.Dash] = false;
             _anim.SetBool("IsDashing", true);
             _isDashing = true;
             _source.PlayOneShot(_dashSounds[UnityEngine.Random.Range(0, _dashSounds.Length)]);
             yield return new WaitForSeconds(_info.DashDuration);
-            _anim.SetBool("IsDashing", false);
-            _isDashing = false;
 
-            yield return Reload(Skill.Dash, reloadTime);
+            if (_isDashing) // Check that dashing wasn't cancelled manually
+            {
+                yield return ReloadDash();
+            }
         }
 
         private void NormalAttack(IEnumerable<ACharacter> targets)
@@ -281,9 +290,16 @@ namespace LewdieJam.Player
 
         public void OnDash(InputAction.CallbackContext value)
         {
-            if (value.performed && GameManager.Instance.CanPlay && CanMove && _skills[Skill.Dash])
+            if (GameManager.Instance.CanPlay && CanMove)
             {
-                StartCoroutine(Dash(2f));
+                if (value.performed && _skills[Skill.Dash])
+                {
+                    StartCoroutine(Dash());
+                }
+                else if (value.phase == InputActionPhase.Canceled)
+                {
+                    StartCoroutine(ReloadDash());
+                }
             }
         }
 
