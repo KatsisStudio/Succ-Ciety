@@ -1,7 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 namespace LewdieJam.Achievement
 {
@@ -18,9 +20,30 @@ namespace LewdieJam.Achievement
         private static List<AchievementID> _unlockedAchievements = new();
         private static List<int> _tokensFound = new();
 
+        public int CurrentTokenCount { private set; get; }
+        public int TokenFoundCount => _tokensFound.Count;
+
         private void Awake()
         {
+            var tokens = FindObjectsByType<Token>(FindObjectsSortMode.None);
+            Assert.AreEqual(tokens.Length, tokens.Distinct().Count(), "Some spawned tokens have dupplicated IDs");
+
+            CurrentTokenCount = tokens.Length;
+
+            foreach (var t in tokens)
+            {
+                if (_tokensFound.Contains(t.ID))
+                {
+                    Destroy(t.gameObject);
+                }
+            }
+
             Instance = this;
+        }
+
+        public void GrabToken(int id)
+        {
+            _tokensFound.Add(id);
         }
 
         public static bool IsUnlocked(AchievementID id)

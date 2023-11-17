@@ -1,8 +1,10 @@
 ﻿using Assets.Scripts.Player;
+using LewdieJam.Achievement;
 using LewdieJam.Game;
 using LewdieJam.Player;
 using LewdieJam.SO;
 using LewdieJam.VN;
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -30,6 +32,9 @@ namespace LewdieJam
 
         [SerializeField]
         private AudioSource _bgmGame;
+
+        [SerializeField]
+        private TMP_Text _tokenFindInfo;
 
         public GameInfo Info => _info;
 
@@ -74,6 +79,25 @@ namespace LewdieJam
                     e.transform.rotation = Quaternion.Euler(_player.transform.rotation.x, a, _player.transform.rotation.z);
                 }
             }
+        }
+
+        public IEnumerator UpdateTokenDisplay()
+        {
+            _tokenFindInfo.gameObject.SetActive(true);
+
+            if (AchievementManager.Instance.TokenFoundCount == AchievementManager.Instance.CurrentTokenCount)
+            {
+                _tokenFindInfo.text = "Find the sewer entrance for a <i>special</i> reward";
+            }
+            else
+            {
+                var left = AchievementManager.Instance.CurrentTokenCount - AchievementManager.Instance.TokenFoundCount;
+                _tokenFindInfo.text = $"{left} token{(left > 1 ? "s" : string.Empty)}!";
+            }
+
+            yield return new WaitForSeconds(5f);
+
+            _tokenFindInfo.gameObject.SetActive(false);
         }
 
         public void PlayHScene()
