@@ -25,8 +25,15 @@ namespace LewdieJam.Menu
 
         public void PlayBGM(AudioClip clip)
         {
-            _bgm.clip = clip;
-            _bgm.Play();
+            if (_bgm.clip == clip)
+            {
+                _bgm.Stop();
+            }
+            else
+            {
+                _bgm.clip = clip;
+                _bgm.Play();
+            }
         }
 
         public void BackToMenu()
