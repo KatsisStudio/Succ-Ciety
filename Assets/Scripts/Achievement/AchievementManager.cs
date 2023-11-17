@@ -16,6 +16,7 @@ namespace LewdieJam.Achievement
         public static AchievementManager Instance { get; private set; }
 
         private static List<AchievementID> _unlockedAchievements = new();
+        private static List<int> _tokensFound = new();
 
         private void Awake()
         {
@@ -51,6 +52,7 @@ namespace LewdieJam.Achievement
             { AchievementID.BigBoobsScene, new() { Name = "I'm Playing for the Plot", Description = "Play the big boobs scene" } },
             { AchievementID.FutanariScene, new() { Name = "Magical Wand", Description = "Play the futanari scene" } },
             { AchievementID.PregnantScene, new() { Name = "Big 'n Round", Description = "Play the pregnant scene" } },
+            { AchievementID.TentacleScene, new() { Name = "Exploring New Holes", Description = "Play the secret scene" } },
             { AchievementID.DontEnterScene, new() { Name = "Well Educated", Description = "Refuse to enter inside a house" } },
             { AchievementID.DoubleHook, new() { Name = "Hooked for You", Description = "Get hooked by an enemy while already being stunned" } },
             { AchievementID.Dickus, new() { Name = "Big Nose", Description = "Beat Dickus" } }
@@ -63,6 +65,7 @@ namespace LewdieJam.Achievement
         BigBoobsScene,
         FutanariScene,
         PregnantScene,
+        TentacleScene,
         DontEnterScene,
         DoubleHook,
         Dickus
