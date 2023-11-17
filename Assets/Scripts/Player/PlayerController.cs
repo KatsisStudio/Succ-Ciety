@@ -24,6 +24,9 @@ namespace LewdieJam.Player
         [SerializeField]
         private GameObject _gameoverPopup;
 
+        [SerializeField]
+        private GameObject _target;
+
         public IInteractible CurrentInteraction { set; private get; }
 
         /// <summary>
@@ -69,6 +72,8 @@ namespace LewdieJam.Player
             AwakeParent();
             _anim = GetComponentInChildren<Animator>();
             _source = GetComponentInChildren<AudioSource>();
+
+            _target.transform.localScale = new(_info.Range, _info.Range, 1f);
         }
 
         private void Start()
@@ -90,10 +95,12 @@ namespace LewdieJam.Player
             {
                 _rb.velocity = new(0f, _rb.velocity.y, 0f);
                 _anim.SetFloat("Speed", 0f);
+                _target.SetActive(false);
             }
             else if (_isDashing)
             {
                 _rb.velocity = new Vector3(_dashDirection.x, 0f, _dashDirection.y) * _info.Speed * _info.DashSpeedMultiplier;
+                _target.SetActive(false);
             }
             else
             {
@@ -113,7 +120,20 @@ namespace LewdieJam.Player
                 {
                     _sr.flipX = _mov.x < 0f; 
                 }
+
+                var t = FireOnTarget(true);
+                if (t != null)
+                {
+                    _target.SetActive(true);
+                    var p = t.Point;
+                    _target.transform.position = new(p.x, _target.transform.position.y, p.z);
+                }
             }
+        }
+
+        public void LoadLobby()
+        {
+            SceneManager.LoadScene("Lobby");
         }
 
         protected override bool CanTakeDamage => !_isInvulnerabilityFrame;
@@ -160,7 +180,7 @@ namespace LewdieJam.Player
             _mov = value.ReadValue<Vector2>();
         }
 
-        private SpellHitInfo FireOnTarget()
+        private SpellHitInfo FireOnTarget(bool infoOnly)
         {
             if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out var hit, Mathf.Infinity, _floorMask))
             {
@@ -170,11 +190,17 @@ namespace LewdieJam.Player
                 var dirNorm = direction.normalized;
                 var targetPos = transform.position + dirNorm * _info.Range;
 
-                // Damage all enemies in range
-                var colliders = Physics.OverlapSphere(targetPos, _info.Range, _characterMask);
+                IEnumerable<ACharacter> hits = null;
+
+                if (!infoOnly)
+                {
+                    // Get all enemies in range
+                    var colliders = Physics.OverlapSphere(targetPos, _info.Range, _characterMask);
+                    hits = colliders.Where(x => x.CompareTag("Enemy") && x != null).Select(x => x.GetComponent<ACharacter>());
+                }
                 return new SpellHitInfo()
                 {
-                    Hits = colliders.Where(x => x.CompareTag("Enemy") && x != null).Select(x => x.GetComponent<ACharacter>()),
+                    Hits = hits,
                     Point = targetPos
                 };
             }
@@ -186,7 +212,7 @@ namespace LewdieJam.Player
             _skills[s] = false;
             _isAttacking = true;
 
-            var atk = FireOnTarget();
+            var atk = FireOnTarget(false);
 
             if (atk == null) // We fired outside of the map, not supposed to happen...
             {
