@@ -15,8 +15,9 @@ MonoBehaviour:
   Name: Tentacles
   Story: {fileID: 4900000, guid: 7d81bfc887f913348a860c39b8e1f07d, type: 3}
   Sprites:
-  - {fileID: 21300000, guid: 30f9f04a3a907374e92c94047e18851e, type: 3}
-  - {fileID: 21300000, guid: 103174ad31df8a6489418186912aba6a, type: 3}
-  - {fileID: 21300000, guid: 64a8b139b0c3ae64194754e0919b173c, type: 3}
-  - {fileID: 21300000, guid: 715621fa2ce1b814188998d096888f95, type: 3}
+  - {fileID: 21300000, guid: 540236244af088b44974647668e15d36, type: 3}
+  - {fileID: 21300000, guid: 0bc7c914b961fa54997483c391bbc2fc, type: 3}
+  - {fileID: 21300000, guid: 48c2af1f59ee68f48bb5aaedf06db0e5, type: 3}
+  - {fileID: 21300000, guid: e72bba61ef1b6a443bb4ccc9cf56e929, type: 3}
+  - {fileID: 21300000, guid: 80565810405268244bcb04327e3cde84, type: 3}
   Achievement: 4
