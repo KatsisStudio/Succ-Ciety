@@ -10,7 +10,7 @@ namespace LewdieJam.Player.EnemyImpl
     public class EnemyHookController : AEnemyController
     {
         public bool IsWaitingForProjectile { set; private get; }
-        public PlayerController HookTarget { set; private get; }
+        public PlayerController HookTarget { set; get; }
         private float _pendingProjectileTimer;
 
         private GameObject _hookProjectile;
@@ -38,7 +38,7 @@ namespace LewdieJam.Player.EnemyImpl
 
                 if (Vector3.Distance(transform.position, HookTarget.transform.position) < 1f)
                 {
-                    HookTarget.IsStunned = false;
+                    HookTarget.Hooker = null;
                     HookTarget = null;
                 }
                 return true;
@@ -66,16 +66,20 @@ namespace LewdieJam.Player.EnemyImpl
                 IsWaitingForProjectile = true;
                 HookTarget = null;
                 _pendingProjectileTimer = _info.ProjectileSpeed / _info.ProjectileMaxDistance;
-                while (IsWaitingForProjectile && _pendingProjectileTimer > 0f)
+                while (IsWaitingForProjectile && _pendingProjectileTimer > 0f) // We wait for the ball to touch something or timeout
                 {
                     yield return new WaitForNextFrameUnit();
                 }
                 Destroy(_hookProjectile);
 
                 // Grab target if we hit it
-                if (HookTarget != null && !HookTarget.IsStunned) // Better not try to grab a already stunned player for now...
+                if (HookTarget != null)
                 {
-                    HookTarget.IsStunned = true;
+                    if (HookTarget.Hooker != null)
+                    {
+                        HookTarget.Hooker.HookTarget = null;
+                    }
+                    HookTarget.Hooker = this;
                 }
             }
 
@@ -87,7 +91,7 @@ namespace LewdieJam.Player.EnemyImpl
         {
             if (HookTarget != null)
             {
-                HookTarget.IsStunned = false;
+                HookTarget.Hooker = null;
             }
             if (_hookProjectile != null)
             {

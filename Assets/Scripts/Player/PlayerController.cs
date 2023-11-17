@@ -1,5 +1,6 @@
 using LewdieJam.Game;
 using LewdieJam.Map;
+using LewdieJam.Player.EnemyImpl;
 using LewdieJam.SO;
 using LewdieJam.VN;
 using System;
@@ -50,7 +51,7 @@ namespace LewdieJam.Player
 
         private bool _isDashing;
 
-        public bool CanMove => !_isAttacking && !IsStunned && IsAlive;
+        public bool CanMove => !_isAttacking && Hooker == null && IsAlive;
 
         protected override int MaxHealth => _info.BaseHealth + _info.BaseHealth * (int)GameManager.Instance.GetStatValue(UpgradableStat.BaseHealth, GameManager.Instance.Info.MaxHealthCurveGain, GameManager.Instance.Info.MaxHealthMultiplerGain);
 
@@ -65,7 +66,7 @@ namespace LewdieJam.Player
 
         private AudioSource _source;
 
-        public bool IsStunned { get; set; }
+        public EnemyHookController Hooker { set; get; }
 
         private void Awake()
         {
