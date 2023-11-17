@@ -21,7 +21,8 @@ namespace LewdieJam.Achievement
 
         public void Interact()
         {
-            VNManager.Instance.ShowHSceneStory(_hScene);
+            VNManager.Instance.InitHScene(_hScene);
+            GameManager.Instance.PlayHScene();
         }
 
         private void OnTriggerEnter(Collider other)

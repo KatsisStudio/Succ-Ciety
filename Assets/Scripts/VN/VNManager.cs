@@ -91,10 +91,15 @@ namespace LewdieJam.VN
             }
         }
 
-        public void ShowOpenDoorQuestion(HSceneInfo hScene)
+        public void InitHScene(HSceneInfo hScene)
         {
             _currHScene = hScene;
             _backgroundIndex = 0;
+        }
+
+        public void ShowOpenDoorQuestion(HSceneInfo hScene)
+        {
+            InitHScene(hScene);
             ShowStory(_openDoorAsset, () =>
             {
                 _openDoorQuestion.SetActive(true);
@@ -127,8 +132,7 @@ namespace LewdieJam.VN
         /// <param name="hScene"></param>
         public void ShowHSceneStory(HSceneInfo hScene)
         {
-            _currHScene = hScene;
-            _backgroundIndex = 0;
+            InitHScene(hScene);
             ShowHSceneStoryWithCallback(null, false);
         }
 
