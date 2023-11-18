@@ -11,7 +11,7 @@ namespace LewdieJam.Player.EnemyImpl
     public class EnemyHookController : AEnemyController
     {
         public bool IsWaitingForProjectile { set; private get; }
-        public PlayerController HookTarget { set; get; }
+        public ACharacter HookTarget { set; get; }
         private float _pendingProjectileTimer;
 
         private GameObject _hookProjectile;
@@ -76,7 +76,7 @@ namespace LewdieJam.Player.EnemyImpl
                 // Grab target if we hit it
                 if (HookTarget != null)
                 {
-                    if (HookTarget.Hooker != null)
+                    if (HookTarget.Hooker != null && HookTarget.Hooker && HookTarget.Hooker.HookTarget is PlayerController)
                     {
                         HookTarget.Hooker.HookTarget = null;
                         AchievementManager.Instance.Unlock(AchievementID.DoubleHook);

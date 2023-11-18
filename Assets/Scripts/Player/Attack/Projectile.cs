@@ -13,6 +13,10 @@ namespace LewdieJam.Player.Attack
             {
                 Owner.HookTarget = collision.collider.GetComponent<PlayerController>();
             }
+            else if (collision.collider.CompareTag("Enemy"))
+            {
+                Owner.HookTarget = collision.collider.GetComponent<AEnemyController>();
+            }
             Owner.IsWaitingForProjectile = false;
             Destroy(gameObject);
         }

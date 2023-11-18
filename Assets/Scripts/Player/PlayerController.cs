@@ -1,6 +1,5 @@
 using LewdieJam.Game;
 using LewdieJam.Map;
-using LewdieJam.Player.EnemyImpl;
 using LewdieJam.SO;
 using LewdieJam.VN;
 using System;
@@ -67,8 +66,6 @@ namespace LewdieJam.Player
         private AEnemyController _charmed;
 
         private AudioSource _source;
-
-        public EnemyHookController Hooker { set; get; }
 
         private void Awake()
         {

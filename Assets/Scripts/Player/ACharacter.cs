@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.Player;
+using LewdieJam.Player.EnemyImpl;
 using UnityEngine;
 
 namespace LewdieJam.Player
@@ -15,6 +16,8 @@ namespace LewdieJam.Player
 
         protected int _floorMask;
         protected int _characterMask;
+
+        public EnemyHookController Hooker { set; get; }
 
         protected virtual int MaxHealth => _info.BaseHealth;
 

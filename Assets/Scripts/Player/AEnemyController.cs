@@ -135,7 +135,7 @@ namespace LewdieJam.Player
             UpdateParent();
 
             // Movements & attacks
-            if (VNManager.Instance.IsPlayingStory) // Whatever the situation, we don't do anything the VN phase!
+            if (VNManager.Instance.IsPlayingStory || Hooker != null) // Whatever the situation, we don't do anything the VN phase!
             {
                 _rb.velocity = new(0f, _rb.velocity.y, 0f);
             }
