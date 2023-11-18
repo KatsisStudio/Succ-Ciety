@@ -27195,14 +27195,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Streetlight2 (5)
       objectReference: {fileID: 0}
-    - target: {fileID: 468776555017862761, guid: 22243c49ed124924f9b954c364483b4d, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
-    - target: {fileID: 993814920324621523, guid: 22243c49ed124924f9b954c364483b4d, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 99.99998
-      objectReference: {fileID: 0}
     - target: {fileID: 993814920324621523, guid: 22243c49ed124924f9b954c364483b4d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.5299264
@@ -27242,10 +27234,6 @@ PrefabInstance:
     - target: {fileID: 993814920324621523, guid: 22243c49ed124924f9b954c364483b4d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -359.979
-      objectReference: {fileID: 0}
-    - target: {fileID: 7424127788194809550, guid: 22243c49ed124924f9b954c364483b4d, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
