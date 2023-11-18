@@ -89,6 +89,21 @@ namespace LewdieJam.Player.EnemyImpl
             _isAttacking = false;
         }
 
+        protected override void OnCharmed()
+        {
+            base.OnCharmed();
+            
+            if (HookTarget != null)
+            {
+                HookTarget.Hooker = null;
+            }
+            HookTarget = null;
+            if (_hookProjectile != null)
+            {
+                Destroy(_hookProjectile);
+            }
+        }
+
         private void OnDestroy()
         {
             if (HookTarget != null)

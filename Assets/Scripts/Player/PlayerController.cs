@@ -145,9 +145,9 @@ namespace LewdieJam.Player
 
         public override Team Team => Team.Allie;
 
-        public override void TakeDamage(int damage)
+        public override void TakeDamage(ACharacter source, int damage)
         {
-            base.TakeDamage(damage);
+            base.TakeDamage(source, damage);
 
             if (damage > 0)
             {
@@ -273,7 +273,7 @@ namespace LewdieJam.Player
             var damage = _info.AttackForce + Mathf.CeilToInt(GameManager.Instance.GetStatValue(UpgradableStat.AtkPower, GameManager.Instance.Info.AtkCurveGain, GameManager.Instance.Info.MaxAtkMultiplerGain));
             foreach (var coll in targets)
             {
-                coll.TakeDamage(damage);
+                coll.TakeDamage(this, damage);
             }
         }
 

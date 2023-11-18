@@ -48,7 +48,7 @@ namespace LewdieJam.Player
 
         protected virtual bool CanTakeDamage => true;
 
-        public virtual void TakeDamage(int damage)
+        public virtual void TakeDamage(ACharacter source, int damage)
         {
             if (!CanTakeDamage || damage == 0)
             {

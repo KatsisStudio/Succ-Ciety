@@ -47,6 +47,8 @@ namespace LewdieJam.Player
                     _charmedEffect = Instantiate(_charmedPrefab, transform);
                 }
 
+                _isAttacking = false;
+
                 OnCharmed();
             }
             get => _isCharmed;
@@ -54,9 +56,9 @@ namespace LewdieJam.Player
 
         public override Team Team => IsCharmed ? Team.Allie : Team.Enemy;
 
-        public override void TakeDamage(int damage)
+        public override void TakeDamage(ACharacter source, int damage)
         {
-            base.TakeDamage(damage);
+            base.TakeDamage(source, damage);
 
             if (_info.IsBoss)
             {
@@ -64,7 +66,7 @@ namespace LewdieJam.Player
                 GameManager.Instance.UpdateHealthBar(_health / (float)_info.BaseHealth);
             }
 
-            if (damage > 0 && IsCharmed)
+            if (damage > 0 && IsCharmed && source is PlayerController)
             {
                 IsCharmed = false;
             }

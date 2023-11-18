@@ -25,17 +25,6 @@ namespace LewdieJam.Player.EnemyImpl
             StartCoroutine(WaitAndAttack());
         }
 
-        protected override void OnCharmed()
-        {
-            base.OnCharmed();
-
-            if (_attackTarget != null)
-            {
-                Destroy(_attackTarget);
-                _attackTarget = null;
-            }
-        }
-
         private IEnumerator WaitAndAttack()
         {
             _isAttacking = true;
@@ -65,7 +54,7 @@ namespace LewdieJam.Player.EnemyImpl
                         var other = collider.GetComponent<ACharacter>();
                         if (other.Team != Team)
                         {
-                            other.TakeDamage(_info.AttackForce);
+                            other.TakeDamage(this, _info.AttackForce);
                         }
                     }
                 }
@@ -75,6 +64,17 @@ namespace LewdieJam.Player.EnemyImpl
 
                 yield return new WaitForSeconds(_info.MainAttackReloadTime);
                 _isAttacking = false;
+            }
+        }
+
+        protected override void OnCharmed()
+        {
+            base.OnCharmed();
+
+            if (_attackTarget != null)
+            {
+                Destroy(_attackTarget);
+                _attackTarget = null;
             }
         }
 
