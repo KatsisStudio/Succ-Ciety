@@ -42,6 +42,7 @@ namespace LewdieJam.Player.EnemyImpl
                     HookTarget.Hooker = null;
                     HookTarget = null;
                 }
+                _anim.SetBool("IsWalking", false);
                 return true;
             }
             return false;
