@@ -19,7 +19,8 @@ namespace LewdieJam.Player.EnemyImpl
 
             // Display attack hint
             _attackTarget = Instantiate(_hintCircle, pos, _hintCircle.transform.rotation);
-            _attackTarget.transform.localScale = new(_info.Range * 2f, _info.Range * 2f, 1f);
+            _attackTarget.transform.localScale = new(_info.Range / 10f, _info.Range / 10f, 1f);
+            _attackTarget.GetComponent<SpriteRenderer>().color = _info.IsBoss ? Color.red : new Color(226f / 255f, 0f, 195f / 255f);
             _rb.velocity = new(0f, _rb.velocity.y, 0f);
 
             StartCoroutine(WaitAndAttack());
