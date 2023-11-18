@@ -139,25 +139,46 @@ namespace LewdieJam.Player
             }
             else if (UpdateSetAction())
             { }
-            else if (_target == null || _isAttacking) // Do nothing
+            else if (_isAttacking) // Do nothing
             {
                 _rb.velocity = new(0f, _rb.velocity.y, 0f);
             }
             else
             {
-                if (Vector3.Distance(_target.transform.position, transform.position) < _info.Range) // Start attack toward player
+                if (_target != null && Vector3.Distance(_target.transform.position, transform.position) < _info.Range) // Start attack toward target
                 {
                     var dir = (_target.transform.position - transform.position).normalized;
 
                     Attack(dir);
                 }
-                else // Move toward player
+                else // Move toward target
                 {
-                    var dir = (_target.transform.position - transform.position).normalized;
-                    _rb.velocity = dir * _info.Speed;
-                    if (dir.x != 0f)
+                    ACharacter target;
+                    if (IsCharmed && Vector3.Distance(PlayerController.Instance.transform.position, transform.position) > 5f)
                     {
-                        _sr.flipX = dir.x < 0f;
+                        target = PlayerController.Instance;
+                    }
+                    else if (_target == null) // We are not charmed and we don't have a target
+                    {
+                        target = null;
+                    }
+                    else
+                    {
+                        target = _target;
+                    }
+
+                    if (target == null)
+                    {
+                        _rb.velocity = new(0f, _rb.velocity.y, 0f);
+                    }
+                    else
+                    {
+                        var dir = (target.transform.position - transform.position).normalized;
+                        _rb.velocity = dir * _info.Speed;
+                        if (dir.x != 0f)
+                        {
+                            _sr.flipX = dir.x < 0f;
+                        }
                     }
                 }
             }

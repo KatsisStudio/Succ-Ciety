@@ -28,6 +28,8 @@ namespace LewdieJam.Player
         [SerializeField]
         private GameObject _target;
 
+        public static PlayerController Instance { get; private set; }
+
         public IInteractible CurrentInteraction { set; private get; }
 
         /// <summary>
@@ -73,6 +75,8 @@ namespace LewdieJam.Player
             AwakeParent();
             _anim = GetComponentInChildren<Animator>();
             _source = GetComponentInChildren<AudioSource>();
+
+            Instance = this;
 
             _target.transform.localScale = new(_info.Range, _info.Range, 1f);
         }
