@@ -19,7 +19,7 @@ namespace LewdieJam.Player.EnemyImpl
         protected override void Attack(Vector3 dir)
         {
             var pos = transform.position + (dir * _sr.transform.localScale.x * 15f);
-            _sr.flipX = transform.position.x - pos.x > 0f;
+            _sr.flipX = transform.position.x - pos.x < 0f;
 
             StartCoroutine(WaitAndAttack(dir, pos));
         }

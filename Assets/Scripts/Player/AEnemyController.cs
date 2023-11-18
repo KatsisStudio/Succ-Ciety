@@ -185,7 +185,7 @@ namespace LewdieJam.Player
                         _rb.velocity = dir * _info.Speed;
                         if (dir.x != 0f)
                         {
-                            _sr.flipX = dir.x < 0f;
+                            _sr.flipX = dir.x > 0f;
                         }
                     }
                 }

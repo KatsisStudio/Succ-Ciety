@@ -15,7 +15,7 @@ namespace LewdieJam.Player.EnemyImpl
         {
             var pos = transform.position + (dir * _info.Range) + (dir * _sr.transform.localScale.x * 10f);
             pos = new(pos.x, 0.19f, pos.z);
-            _sr.flipX = transform.position.x - pos.x > 0f;
+            _sr.flipX = transform.position.x - pos.x < 0f;
 
             // Display attack hint
             _attackTarget = Instantiate(_hintCircle, pos, _hintCircle.transform.rotation);
