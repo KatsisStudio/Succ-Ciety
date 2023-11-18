@@ -1,6 +1,5 @@
 ﻿using Assets.Scripts.Player;
 using LewdieJam.Achievement;
-using LewdieJam.Game;
 using LewdieJam.Persistency;
 using LewdieJam.Player;
 using LewdieJam.SO;
