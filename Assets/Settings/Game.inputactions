@@ -767,6 +767,45 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "Minigame",
+            "id": "854adf7e-fece-486a-94e7-ad78be9e0d54",
+            "actions": [
+                {
+                    "name": "Jump",
+                    "type": "Button",
+                    "id": "137ba36f-e549-4e12-b8a6-99aae6396e3d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "645de087-5941-4f32-b8fc-1014667d6ca4",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6227ea64-5228-4c5c-a38d-81bc99df3e50",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [
