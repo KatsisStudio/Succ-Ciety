@@ -1,5 +1,6 @@
 using LewdieJam.Game;
 using LewdieJam.Map;
+using LewdieJam.Persistency;
 using LewdieJam.SO;
 using LewdieJam.VN;
 using System;
@@ -171,8 +172,9 @@ namespace LewdieJam.Player
 
         public override void Die()
         {
-            PersistentData.Energy += PersistentData.PendingEnergy / 2;
-            PersistentData.PendingEnergy = 0;
+            PersistencyManager.Instance.SaveData.Energy += PersistencyManager.Instance.SaveData.PendingEnergy / 2;
+            PersistencyManager.Instance.SaveData.PendingEnergy = 0;
+            PersistencyManager.Instance.Save();
             _gameoverPopup.SetActive(true);
             _source.PlayOneShot(_gameoverSounds[UnityEngine.Random.Range(0, _gameoverSounds.Length)]);
         }

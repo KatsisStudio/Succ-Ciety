@@ -1,6 +1,7 @@
 ﻿using Assets.Scripts.Player;
 using LewdieJam.Achievement;
 using LewdieJam.Game;
+using LewdieJam.Persistency;
 using LewdieJam.Player;
 using LewdieJam.SO;
 using LewdieJam.VN;
@@ -85,13 +86,13 @@ namespace LewdieJam
         {
             _tokenFindInfo.gameObject.SetActive(true);
 
-            if (AchievementManager.Instance.TokenFoundCount == AchievementManager.Instance.CurrentTokenCount)
+            if (PersistencyManager.Instance.SaveData.TokenFoundCount == AchievementManager.Instance.CurrentTokenCount)
             {
                 _tokenFindInfo.text = "Find the sewer entrance for a <i>special</i> reward";
             }
             else
             {
-                var left = AchievementManager.Instance.CurrentTokenCount - AchievementManager.Instance.TokenFoundCount;
+                var left = AchievementManager.Instance.CurrentTokenCount - PersistencyManager.Instance.SaveData.TokenFoundCount;
                 _tokenFindInfo.text = $"{left} token{(left > 1 ? "s" : string.Empty)}!";
             }
 
@@ -134,14 +135,14 @@ namespace LewdieJam
 
         public float GetStatValue(UpgradableStat stat, AnimationCurve curve, float maxVal)
         {
-            return curve.Evaluate(PersistentData.GetStatValue(stat) / (float)_info.MaxLevel) * maxVal;
+            return curve.Evaluate(PersistencyManager.Instance.SaveData.GetStatValue(stat) / (float)_info.MaxLevel) * maxVal;
         }
 
         public bool CanPlay => !VNManager.Instance.IsPlayingStory;
 
         public void UpdateUI()
         {
-            _energyDisplay.text = $"Energy: {PersistentData.Energy} ({PersistentData.PendingEnergy})";
+            _energyDisplay.text = $"Energy: {PersistencyManager.Instance.SaveData.Energy} ({PersistencyManager.Instance.SaveData.PendingEnergy})";
         }
     }
 }

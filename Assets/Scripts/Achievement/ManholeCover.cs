@@ -1,4 +1,5 @@
 ﻿using LewdieJam.Map;
+using LewdieJam.Persistency;
 using LewdieJam.Player;
 using LewdieJam.SO;
 using LewdieJam.VN;
@@ -16,7 +17,7 @@ namespace LewdieJam.Achievement
 
         public bool CanInteract(PlayerController pc)
         {
-            return AchievementManager.Instance.TokenFoundCount == AchievementManager.Instance.CurrentTokenCount;
+            return PersistencyManager.Instance.SaveData.TokenFoundCount == AchievementManager.Instance.CurrentTokenCount;
         }
 
         public void Interact()
@@ -27,7 +28,7 @@ namespace LewdieJam.Achievement
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.CompareTag("Player") && AchievementManager.Instance.TokenFoundCount == AchievementManager.Instance.CurrentTokenCount)
+            if (other.CompareTag("Player") && PersistencyManager.Instance.SaveData.TokenFoundCount == AchievementManager.Instance.CurrentTokenCount)
             {
                 _actionText.SetActive(true);
                 other.GetComponent<PlayerController>().CurrentInteraction = this;

@@ -2,6 +2,7 @@
 using LewdieJam.Achievement;
 using LewdieJam.Game;
 using LewdieJam.Map;
+using LewdieJam.Persistency;
 using LewdieJam.SO;
 using LewdieJam.VN;
 using System.Collections.Generic;
@@ -201,7 +202,7 @@ namespace LewdieJam.Player
 
         public override void Die()
         {
-            PersistentData.PendingEnergy += Mathf.CeilToInt(_info.EnergyDropped + _info.EnergyDropped * GameManager.Instance.GetStatValue(UpgradableStat.EnergyGained, GameManager.Instance.Info.EnergyCurveGain, GameManager.Instance.Info.MaxEnergyMultiplierGain));
+            PersistencyManager.Instance.SaveData.PendingEnergy += Mathf.CeilToInt(_info.EnergyDropped + _info.EnergyDropped * GameManager.Instance.GetStatValue(UpgradableStat.EnergyGained, GameManager.Instance.Info.EnergyCurveGain, GameManager.Instance.Info.MaxEnergyMultiplierGain));
             GameManager.Instance.UpdateUI();
             if (_info.IsBoss)
             {

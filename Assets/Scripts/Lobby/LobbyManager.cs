@@ -1,4 +1,5 @@
 ﻿using LewdieJam.Game;
+using LewdieJam.Persistency;
 using LewdieJam.SO;
 using System;
 using System.Linq;
@@ -48,7 +49,7 @@ namespace LewdieJam.Lobby
 #if UNITY_EDITOR
             if (_giveLotOfEnergy)
             {
-                PersistentData.Energy += 100000;
+                PersistencyManager.Instance.SaveData.Energy += 100000;
             }
 #endif
 
@@ -64,18 +65,19 @@ namespace LewdieJam.Lobby
         private void ToggleAttachment(Attachment attachment)
         {
             _live2D.ToggleAttachment(attachment);
-            PersistentData.Attachments = _live2D.Attachments;
+            PersistencyManager.Instance.SaveData.Attachments = _live2D.Attachments;
+            PersistencyManager.Instance.Save();
             UpdateUI();
         }
         public void ToggleLargeBreastsAttachment() => ToggleAttachment(Attachment.LargeBreasts);
         public void ToggleFutanariAttachment() => ToggleAttachment(Attachment.Futanari);
         public void TogglePregnantAttachment() => ToggleAttachment(Attachment.Pregnant);
 
-        private float Stat01 => PersistentData.Stats.Values.Sum() / ((float)Enum.GetValues(typeof(UpgradableStat)).Length * _gameInfo.MaxLevel);
+        private float Stat01 => PersistencyManager.Instance.SaveData.Stats.Values.Sum() / ((float)Enum.GetValues(typeof(UpgradableStat)).Length * _gameInfo.MaxLevel);
 
         public void UpdateUI()
         {
-            _energy.text = PersistentData.Energy.ToString();
+            _energy.text = PersistencyManager.Instance.SaveData.Energy.ToString();
             var index = Mathf.FloorToInt(Stat01 * (_gameInfo.HornLevels.Length - 1));
             _live2D.SetHornLevel(index);
             _hornLevel.text = index.ToString();
@@ -99,7 +101,7 @@ namespace LewdieJam.Lobby
             var delta = _gameInfo.MaxBuyCost - _gameInfo.MinBuyCost;
             foreach (var stat in _allStats)
             {
-                stat.UpdateValue(PersistentData.GetStatValue(stat.Key));
+                stat.UpdateValue(PersistencyManager.Instance.SaveData.GetStatValue(stat.Key));
 
                 if (stat.Level >= _gameInfo.MaxLevel)
                 {
@@ -112,7 +114,7 @@ namespace LewdieJam.Lobby
                     var val = _gameInfo.CostProgression.Evaluate(stat.Level / (float)_gameInfo.MaxLevel);
                     // Then do a cross product to get the actual price
                     var prod = Mathf.CeilToInt(val * delta + _gameInfo.MinBuyCost);
-                    stat.ToggleButton(PersistentData.Energy >= prod);
+                    stat.ToggleButton(PersistencyManager.Instance.SaveData.Energy >= prod);
                     stat.Cost = prod;
                 }
             }

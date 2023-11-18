@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using LewdieJam.Persistency;
+using UnityEngine;
 
 namespace LewdieJam.Achievement
 {
@@ -18,7 +19,7 @@ namespace LewdieJam.Achievement
         {
             if (other.CompareTag("Player"))
             {
-                AchievementManager.Instance.GrabToken(ID);
+                PersistencyManager.Instance.SaveData.GrabToken(ID);
                 GameManager.Instance.StartCoroutine(GameManager.Instance.UpdateTokenDisplay());
                 Destroy(gameObject);
             }

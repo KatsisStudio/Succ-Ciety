@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using LewdieJam.Persistency;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
@@ -17,11 +18,7 @@ namespace LewdieJam.Achievement
 
         public static AchievementManager Instance { get; private set; }
 
-        private static List<AchievementID> _unlockedAchievements = new();
-        private static List<int> _tokensFound = new();
-
         public int CurrentTokenCount { private set; get; }
-        public int TokenFoundCount => _tokensFound.Count;
 
         private void Awake()
         {
@@ -32,7 +29,7 @@ namespace LewdieJam.Achievement
 
             foreach (var t in tokens)
             {
-                if (_tokensFound.Contains(t.ID))
+                if (PersistencyManager.Instance.SaveData.WasIDFound(t.ID))
                 {
                     Destroy(t.gameObject);
                 }
@@ -41,17 +38,9 @@ namespace LewdieJam.Achievement
             Instance = this;
         }
 
-        public void GrabToken(int id)
-        {
-            _tokensFound.Add(id);
-        }
-
-        public static bool IsUnlocked(AchievementID id)
-            => _unlockedAchievements.Contains(id);
-
         public void Unlock(AchievementID achievement)
         {
-            if (IsUnlocked(achievement))
+            if (PersistencyManager.Instance.SaveData.IsUnlocked(achievement))
             {
                 return;
             }
@@ -59,7 +48,7 @@ namespace LewdieJam.Achievement
             _title.text = data.Name;
             _description.text = data.Description;
             _achievementPanel.SetActive(true);
-            _unlockedAchievements.Add(achievement);
+            PersistencyManager.Instance.SaveData.Unlock(achievement);
             StartCoroutine(WaitAndClosePopup());
         }
 

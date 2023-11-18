@@ -1,4 +1,5 @@
 ﻿using LewdieJam.Game;
+using LewdieJam.Persistency;
 using LewdieJam.Player;
 using LewdieJam.SO;
 using LewdieJam.VN;
@@ -16,8 +17,8 @@ namespace LewdieJam.Map
         [SerializeField]
         private TMP_Text _requirement;
 
-        private bool HaveEnoughEnergy => PersistentData.Energy + PersistentData.PendingEnergy >= _info.EnergyRequired;
-        private bool HaveRightAttachments => PersistentData.Attachments.HasFlag(_info.RequiredAttachment);
+        private bool HaveEnoughEnergy => PersistencyManager.Instance.SaveData.Energy + PersistencyManager.Instance.SaveData.PendingEnergy >= _info.EnergyRequired;
+        private bool HaveRightAttachments => PersistencyManager.Instance.SaveData.Attachments.HasFlag(_info.RequiredAttachment);
 
         private bool CanEnterHouse
             => HaveEnoughEnergy && HaveRightAttachments;
@@ -84,18 +85,19 @@ namespace LewdieJam.Map
 
         public void Interact()
         {
-            if (_info.EnergyRequired > PersistentData.PendingEnergy)
+            if (_info.EnergyRequired > PersistencyManager.Instance.SaveData.PendingEnergy)
             {
-                var rest = _info.EnergyRequired - PersistentData.PendingEnergy;
-                PersistentData.PendingEnergy = 0;
-                PersistentData.Energy -= rest;
+                var rest = _info.EnergyRequired - PersistencyManager.Instance.SaveData.PendingEnergy;
+                PersistencyManager.Instance.SaveData.PendingEnergy = 0;
+                PersistencyManager.Instance.SaveData.Energy -= rest;
             }
             else
             {
-                PersistentData.PendingEnergy -= _info.EnergyRequired;
+                PersistencyManager.Instance.SaveData.PendingEnergy -= _info.EnergyRequired;
             }
             GameManager.Instance.UpdateUI();
             VNManager.Instance.ShowOpenDoorQuestion(_info.HScene);
+            PersistencyManager.Instance.Save();
             UpdateCanEnterUI();
         }
     }

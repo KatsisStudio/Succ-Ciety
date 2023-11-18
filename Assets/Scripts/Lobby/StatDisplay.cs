@@ -1,4 +1,5 @@
 ﻿using LewdieJam.Game;
+using LewdieJam.Persistency;
 using LewdieJam.SO;
 using TMPro;
 using UnityEngine;
@@ -23,10 +24,12 @@ namespace LewdieJam.Lobby
         {
             _add.onClick.AddListener(new(() =>
             {
-                PersistentData.Energy -= Cost;
+                PersistencyManager.Instance.SaveData.Energy -= Cost;
 
-                if (PersistentData.Stats.ContainsKey(Key)) PersistentData.Stats[Key]++;
-                else PersistentData.Stats.Add(Key, 1);
+                if (PersistencyManager.Instance.SaveData.Stats.ContainsKey(Key)) PersistencyManager.Instance.SaveData.Stats[Key]++;
+                else PersistencyManager.Instance.SaveData.Stats.Add(Key, 1);
+
+                PersistencyManager.Instance.Save();
 
                 LobbyManager.Instance.UpdateUI();
             }));
