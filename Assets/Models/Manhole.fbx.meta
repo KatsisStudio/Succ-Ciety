@@ -1,24 +1,9 @@
 fileFormatVersion: 2
-guid: 92505efc7671a044a99d5e2ea6beea8b
+guid: 315845ac0ef01874aa4844b5f5616a4d
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Accessory_Door1
-    second: {fileID: 2100000, guid: 0d717c030e4c8244ca8dbd17853c9760, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Accessory_Window1
-    second: {fileID: 2100000, guid: c509e1cadf139e14fa30504570b8025a, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Building_MainCharacterApartment
-    second: {fileID: 2100000, guid: b04efa7bd7c65fd438aa8957dc39741f, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0
