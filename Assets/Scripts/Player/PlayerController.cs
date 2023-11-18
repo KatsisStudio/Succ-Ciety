@@ -76,7 +76,7 @@ namespace LewdieJam.Player
 
             Instance = this;
 
-            _target.transform.localScale = new(_info.Range, _info.Range, 1f);
+            _target.transform.localScale = new(_info.Range / 20f, _info.Range / 20f, 1f);
         }
 
         private void Start()
