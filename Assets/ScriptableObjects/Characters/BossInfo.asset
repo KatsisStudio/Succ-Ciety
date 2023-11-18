@@ -23,7 +23,7 @@ MonoBehaviour:
   MainAttackReloadTime: 1
   SubAttackReloadTime: 0
   DashReloadTime: 0
-  MainAttackVfx: {fileID: 7288265501917199766, guid: ec17082cbb09d794c876a19f26522c9f, type: 3}
+  MainAttackVfx: {fileID: 3278552866389505513, guid: b61b25eb81061324e9516c4daa3bbf79, type: 3}
   SubAttackVfx: {fileID: 0}
   DashDuration: 0
   DashSpeedMultiplier: 0
