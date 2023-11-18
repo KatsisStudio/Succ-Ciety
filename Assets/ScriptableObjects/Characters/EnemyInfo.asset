@@ -22,7 +22,8 @@ MonoBehaviour:
   PostAttackWaitTime: 0
   MainAttackReloadTime: 0.5
   SubAttackReloadTime: 0
-  MainAttackVfx: {fileID: 0}
+  DashReloadTime: 0
+  MainAttackVfx: {fileID: 7288265501917199766, guid: ec17082cbb09d794c876a19f26522c9f, type: 3}
   SubAttackVfx: {fileID: 0}
   DashDuration: 0
   DashSpeedMultiplier: 0
