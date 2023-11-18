@@ -93,7 +93,7 @@ namespace LewdieJam
             else
             {
                 var left = AchievementManager.Instance.CurrentTokenCount - PersistencyManager.Instance.SaveData.TokenFoundCount;
-                _tokenFindInfo.text = $"{left} token{(left > 1 ? "s" : string.Empty)}!";
+                _tokenFindInfo.text = $"{left} token{(left > 1 ? "s" : string.Empty)} left!";
             }
 
             yield return new WaitForSeconds(5f);
