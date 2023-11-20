@@ -1,6 +1,5 @@
 ﻿using Assets.Scripts.Player;
 using LewdieJam.Achievement;
-using LewdieJam.Game;
 using LewdieJam.Map;
 using LewdieJam.Persistency;
 using LewdieJam.SO;
@@ -26,6 +25,8 @@ namespace LewdieJam.Player
         private GameObject _charmedEffect;
 
         protected Animator _anim;
+
+        public EnemySpawner Spawner { set; private get; }
 
         private bool _isCharmed;
         public bool IsCharmed
@@ -215,6 +216,7 @@ namespace LewdieJam.Player
                 AchievementManager.Instance.Unlock(AchievementID.Dickus);
             }
             EnemyManager.Instance.Unregister(this);
+            Spawner.Unregister(gameObject);
             Destroy(gameObject);
         }
     }
