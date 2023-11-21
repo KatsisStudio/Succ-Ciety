@@ -41,6 +41,11 @@ namespace LewdieJam.Menu
             SceneManager.LoadScene("Menu");
         }
 
+        public void LoadSecret()
+        {
+            SceneManager.LoadScene("Minigame");
+        }
+
         public void LoadHScene(HSceneInfo scene)
         {
             _bgm.Stop();
