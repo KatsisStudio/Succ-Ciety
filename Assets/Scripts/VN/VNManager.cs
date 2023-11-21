@@ -94,10 +94,7 @@ namespace LewdieJam.VN
                         var elem = choice;
                         button.GetComponent<Button>().onClick.AddListener(() =>
                         {
-                            _story.ChoosePath(elem.targetPath);
-                            for (int i = 0; i < _choiceContainer.childCount; i++)
-                                Destroy(_choiceContainer.GetChild(i).gameObject);
-                            DisplayStory(_story.Continue());
+                            DoChoice(elem);
                         });
                     }
                 }
@@ -114,9 +111,24 @@ namespace LewdieJam.VN
                 if (_skipTimer < 0)
                 {
                     _skipTimer = _skipTimerRef;
-                    DisplayNextDialogue();
+                    if (_story.currentChoices.Any())
+                    {
+                        DoChoice(_story.currentChoices[0]);
+                    }
+                    else
+                    {
+                        DisplayNextDialogue();
+                    }
                 }
             }
+        }
+
+        private void DoChoice(Choice c)
+        {
+            _story.ChoosePath(c.targetPath);
+            for (int i = 0; i < _choiceContainer.childCount; i++)
+                Destroy(_choiceContainer.GetChild(i).gameObject);
+            DisplayStory(_story.Continue());
         }
 
         public void InitHScene(HSceneInfo hScene)
