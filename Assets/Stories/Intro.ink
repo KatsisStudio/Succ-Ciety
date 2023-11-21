@@ -11,16 +11,35 @@ The flame inside me felt too good to resist...
 ->wakeup
 // Bedroom
 ===wakeup===
-"h...y.... ou....up!"
+"h...y.... ou....up!" #Speaker Tattoo
     * ["H-huh? Is someone calling for me?"]
-        "Can... even hear me...?"
-            -- I think its getting clearer..
+        "Can... even hear me...?" #Speaker Tattoo
+            -- I think its getting clearer...
     * ["Five more minutes... I don't wanna go to class yet..."]
-        "I'm... your professor...!"
+        "I'm... your professor...!" #Speaker Tattoo
             ** [Try to go back to sleep]
             ** [Sleep through your responsibilites]
-                -- "You're not going to stand me up!"
+                -- "You're not going to stand me up!" #Speaker Tattoo
                 
-- "I said wake up!"
+- "I said wake up!" #Speaker Tattoo
     
+-> introductions
+
+===introductions===
+"Fine fine! I'm awake, I'm awake..." *yawn* #Speaker Nova
+"Huh? I know I heard someone but there's nobody here..." #Speaker Nova
+"Wait! Why would there be someone in my room at... 1am?! I don't have any roommates anymore..." #Speaker Nova
+"Personally, I prefer the term "womb mate" but we can work that out later." #Speaker Tattoo
+"Who said that?!" #Speaker Nova
+"Look down!" #Speaker Tattoo
+"Who gave me a tattoo in the middle of the night?! And... it's talking to me?" #Speaker Nova
+"Not talking. Communicating? Yes. But be happy I don't have a mouth down here." #Speaker Nova
+"What are you doing?! I'm not some cheap water tattoo! Stop rubbing me like I'm gonna come out! You're only going to..." #Speaker Nova
+Before I could hear the rest, a sharp ping shot straight to my brain and I was back on my bed with my legs twitching.
+
+
+-> lobby
+
+===lobby===
+
 -> DONE
