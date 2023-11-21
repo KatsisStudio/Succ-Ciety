@@ -36,6 +36,9 @@ namespace LewdieJam
         [SerializeField]
         private TMP_Text _tokenFindInfo;
 
+        [SerializeField]
+        private TextAsset _story;
+
         public GameInfo Info => _info;
 
         [SerializeField]
@@ -50,6 +53,11 @@ namespace LewdieJam
             SceneManager.LoadScene("Map", LoadSceneMode.Additive);
             SceneManager.LoadScene("VN", LoadSceneMode.Additive);
             UpdateUI();
+        }
+
+        private void Start()
+        {
+            VNManager.Instance.ShowStory(_story, null);
         }
 
         private void Update()

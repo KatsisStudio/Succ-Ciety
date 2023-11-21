@@ -57,6 +57,12 @@ namespace LewdieJam.VN
         [SerializeField]
         private List<AudioClip> _moans;
 
+        [SerializeField]
+        private Transform _choiceContainer;
+
+        [SerializeField]
+        private GameObject _choicePrefab;
+
         private bool _isPlayingMoans;
 
         private bool _isSkipEnabled;
@@ -74,6 +80,27 @@ namespace LewdieJam.VN
         {
             Instance = this;
             SceneManager.LoadScene("AchievementManager", LoadSceneMode.Additive);
+
+            _display.OnDisplayDone += (_sender, _e) =>
+            {
+                if (_story.currentChoices.Any())
+                {
+                    foreach (var choice in _story.currentChoices)
+                    {
+                        var button = Instantiate(_choicePrefab, _choiceContainer);
+                        button.GetComponentInChildren<TMP_Text>().text = choice.text;
+
+                        var elem = choice;
+                        button.GetComponent<Button>().onClick.AddListener(() =>
+                        {
+                            _story.ChoosePath(elem.targetPath);
+                            for (int i = 0; i < _choiceContainer.childCount; i++)
+                                Destroy(_choiceContainer.GetChild(i).gameObject);
+                            DisplayStory(_story.Continue());
+                        });
+                    }
+                }
+            };
         }
 
         public bool IsPlayingStory => _container.activeInHierarchy || _openDoorQuestion.activeInHierarchy || _endQuestion.activeInHierarchy;
@@ -277,7 +304,7 @@ namespace LewdieJam.VN
                 // We are slowly displaying a text, force the whole display
                 _display.ForceDisplay();
             }
-            else if (_story.canContinue) // There is text left to write
+            else if (_story.canContinue && !_story.currentChoices.Any()) // There is text left to write
             {
                 DisplayStory(_story.Continue());
             }
