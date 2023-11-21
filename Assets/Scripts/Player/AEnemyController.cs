@@ -216,7 +216,10 @@ namespace LewdieJam.Player
                 AchievementManager.Instance.Unlock(AchievementID.Dickus);
             }
             EnemyManager.Instance.Unregister(this);
-            Spawner.Unregister(gameObject);
+            if (Spawner != null)
+            {
+                Spawner.Unregister(gameObject);
+            }
             Destroy(gameObject);
         }
     }
