@@ -1701,7 +1701,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -40, y: -40}
+  m_SizeDelta: {x: -40, y: -20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1621081225
 MonoBehaviour:
@@ -1735,11 +1735,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'New Text
-
-    New Text
-
-    New Text'
+  m_text: At the far end of the hallway, there was a pink shimmering light. Each
+    step towards the light was met with a growing warmth that crept up my body as
+    if welcoming me to myself.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9d2257794e4b9c546873c7ffb64a3d8a, type: 2}
   m_sharedMaterial: {fileID: 4986702736682280390, guid: 9d2257794e4b9c546873c7ffb64a3d8a, type: 2}
