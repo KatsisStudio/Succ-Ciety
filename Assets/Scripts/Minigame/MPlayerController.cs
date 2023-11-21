@@ -22,6 +22,9 @@ namespace LewdieJam.Minigame
         [SerializeField]
         private GameObject _accidentVfx;
 
+        [SerializeField]
+        private GameObject _victoryPopup;
+
         private void Awake()
         {
             _rb = GetComponent<Rigidbody>();
@@ -45,16 +48,25 @@ namespace LewdieJam.Minigame
             }
         }
 
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.CompareTag("Victory"))
+            {
+                _victoryPopup.SetActive(true);
+                _rb.velocity = Vector3.zero;
+            }
+        }
+
         private IEnumerator WaitAndRetry()
         {
-            yield return new WaitForSeconds(3f);
+            yield return new WaitForSeconds(2f);
 
             SceneManager.LoadScene("Minigame");
         }
 
         private void FixedUpdate()
         {
-            if (!_isDead)
+            if (!_isDead && !_victoryPopup.activeInHierarchy)
             {
                 if (transform.position.z > _zDest)
                 {
@@ -69,10 +81,15 @@ namespace LewdieJam.Minigame
 
         public void OnJump(InputAction.CallbackContext value)
         {
-            if (value.performed && !_isDead)
+            if (value.performed && !_isDead && !_victoryPopup.activeInHierarchy)
             {
                 _zDest += _zOffset;
             }
+        }
+
+        public void Complete()
+        {
+            SceneManager.LoadScene("Menu");
         }
     }
 }

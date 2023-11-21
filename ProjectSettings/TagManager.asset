@@ -8,6 +8,7 @@ TagManager:
   - SpawnPoint
   - CameraZone
   - Car
+  - Victory
   layers:
   - Default
   - TransparentFX
