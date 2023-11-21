@@ -42,6 +42,11 @@ namespace LewdieJam.Lobby
             SceneManager.LoadScene("Main");
         }
 
+        public void LoadMenu()
+        {
+            SceneManager.LoadScene("Menu");
+        }
+
         private void Awake()
         {
             Instance = this;
