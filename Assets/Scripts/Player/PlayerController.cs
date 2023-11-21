@@ -319,7 +319,18 @@ namespace LewdieJam.Player
 
         public void OnDash(InputAction.CallbackContext value)
         {
-            if (GameManager.Instance.CanPlay && CanMove)
+            if (VNManager.Instance.IsPlayingStory)
+            {
+                if (value.phase == InputActionPhase.Started)
+                {
+                    VNManager.Instance.ToggleSkip(true);
+                }
+                else if (value.phase == InputActionPhase.Canceled)
+                {
+                    VNManager.Instance.ToggleSkip(false);
+                }
+            }
+            else if (GameManager.Instance.CanPlay && CanMove)
             {
                 if (value.performed && _skills[Skill.Dash])
                 {

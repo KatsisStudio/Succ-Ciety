@@ -7,6 +7,7 @@ namespace LewdieJam.Persistency
 {
     public class SaveData
     {
+        public bool SawIntro { set; get; }
 
         public List<AchievementID> UnlockedAchievements { set; get; } = new();
         public List<int> TokensFound { set; get; } = new();

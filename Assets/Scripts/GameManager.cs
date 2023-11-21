@@ -57,7 +57,14 @@ namespace LewdieJam
 
         private void Start()
         {
-            VNManager.Instance.ShowStory(_story, null);
+            if (!PersistencyManager.Instance.SaveData.SawIntro)
+            {
+                VNManager.Instance.ShowStory(_story, () =>
+                {
+                    PersistencyManager.Instance.SaveData.SawIntro = true;
+                    PersistencyManager.Instance.Save();
+                });
+            }
         }
 
         private void Update()
