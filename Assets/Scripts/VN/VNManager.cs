@@ -5,6 +5,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -222,15 +223,15 @@ namespace LewdieJam.VN
 
             foreach (var tag in _story.currentTags)
             {
-                var s = tag.ToUpperInvariant().Split(' ');
+                var s = tag.Split(' ');
                 var content = string.Join(' ', s.Skip(1)).ToUpperInvariant();
-                switch (s[0])
+                switch (s[0].ToUpperInvariant())
                 {
                     case "SPEAKER":
                         if (content == "NONE") _currentCharacter = string.Empty;
                         else
                         {
-                            _currentCharacter = content;
+                            _currentCharacter = string.Join(' ', s.Skip(1));
                         }
                         break;
 
@@ -267,6 +268,9 @@ namespace LewdieJam.VN
                         break;
                 }
             }
+
+            text = Regex.Replace(text, "\\*([^\\*]+)\\*", "<i>$1</i>");
+
             _display.ToDisplay = text;
             if (string.IsNullOrEmpty(_currentCharacter))
             {
