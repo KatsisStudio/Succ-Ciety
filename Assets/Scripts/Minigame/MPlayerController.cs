@@ -1,6 +1,8 @@
 ﻿using Cinemachine;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 namespace LewdieJam.Minigame
 {
@@ -17,6 +19,9 @@ namespace LewdieJam.Minigame
         [SerializeField]
         private CinemachineVirtualCamera _cam;
 
+        [SerializeField]
+        private GameObject _accidentVfx;
+
         private void Awake()
         {
             _rb = GetComponent<Rigidbody>();
@@ -30,10 +35,21 @@ namespace LewdieJam.Minigame
                 _cam.Follow = null;
                 _isDead = true;
 
+                Instantiate(_accidentVfx, collision.contacts[0].point, _accidentVfx.transform.rotation);
+
                 var or = transform.position;
                 var car = collision.collider.transform.position;
-                _rb.AddForce((new Vector3(or.x - car.x, 0, 0).normalized + Vector3.up) * 100f, ForceMode.Impulse);
+                _rb.AddForce((new Vector3(or.x - car.x, 0, 0).normalized + Vector3.up) * 50f, ForceMode.Impulse);
+
+                StartCoroutine(WaitAndRetry());
             }
+        }
+
+        private IEnumerator WaitAndRetry()
+        {
+            yield return new WaitForSeconds(3f);
+
+            SceneManager.LoadScene("Minigame");
         }
 
         private void FixedUpdate()
