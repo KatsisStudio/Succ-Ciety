@@ -75,11 +75,13 @@ namespace LewdieJam.Player.EnemyImpl
                 {
                     yield return new WaitForNextFrameUnit();
                 }
+
                 Destroy(_hookProjectile);
 
                 // Grab target if we hit it
                 if (HookTarget != null)
                 {
+                    Destroy(Instantiate(_info.SubAttackVfx, HookTarget.transform.position, _info.SubAttackVfx.transform.rotation), .3f); // On hit VFX
                     if (HookTarget.Hooker != null && HookTarget.Hooker && HookTarget.Hooker.HookTarget is PlayerController)
                     {
                         HookTarget.Hooker.HookTarget = null;
