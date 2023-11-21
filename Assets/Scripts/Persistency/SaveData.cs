@@ -16,6 +16,9 @@ namespace LewdieJam.Persistency
         public Dictionary<UpgradableStat, int> Stats { set; get; } = new();
         public Attachment Attachments { set; get; }
 
+        public List<Attachment> VisitedHouses { set; get; } = new();
+        public bool DidWinGame =>VisitedHouses.Count == 4; // TODO: Don't hardcode?
+
         public void GrabToken(int id)
         {
             TokensFound.Add(id);

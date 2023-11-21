@@ -97,6 +97,10 @@ namespace LewdieJam.Map
             }
             GameManager.Instance.UpdateUI();
             VNManager.Instance.ShowOpenDoorQuestion(_info.HScene);
+            if (!PersistencyManager.Instance.SaveData.VisitedHouses.Contains(_info.RequiredAttachment))
+            {
+                PersistencyManager.Instance.SaveData.VisitedHouses.Add(_info.RequiredAttachment);
+            }
             PersistencyManager.Instance.Save();
             UpdateCanEnterUI();
         }
