@@ -15,7 +15,8 @@ MonoBehaviour:
   Name: Vanilla
   Story: {fileID: 4900000, guid: 4892b4cf0c8595c4a9ece83d85018dc9, type: 3}
   Sprites:
-  - {fileID: 21300000, guid: 30f9f04a3a907374e92c94047e18851e, type: 3}
-  - {fileID: 21300000, guid: 103174ad31df8a6489418186912aba6a, type: 3}
-  - {fileID: 21300000, guid: 64a8b139b0c3ae64194754e0919b173c, type: 3}
-  - {fileID: 21300000, guid: 715621fa2ce1b814188998d096888f95, type: 3}
+  - {fileID: 21300000, guid: ade4b4b8b48f951458006a44dba05dd7, type: 3}
+  - {fileID: 21300000, guid: 4b69a4ec1c4a18c4daf47d0e31067319, type: 3}
+  - {fileID: 21300000, guid: 4d973c2c7caf286429b3e8ee65656e20, type: 3}
+  - {fileID: 21300000, guid: 4b9ad4f2b392b5442b6ee1140fed0111, type: 3}
+  Achievement: 0

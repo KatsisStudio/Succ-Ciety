@@ -15,8 +15,8 @@ MonoBehaviour:
   Name: Pregnant
   Story: {fileID: 4900000, guid: d580c0dfbccd46e47b296c655abd2e69, type: 3}
   Sprites:
-  - {fileID: 21300000, guid: e9f76726798d0f04984d9d949895d1ea, type: 3}
-  - {fileID: 21300000, guid: 47fc0b2553d67dc46836d29930095ea3, type: 3}
-  - {fileID: 21300000, guid: b1b62cdd4043b0947b4e33f62c23beb3, type: 3}
-  - {fileID: 21300000, guid: 281c96748a35625408bc1e5efed44c05, type: 3}
+  - {fileID: 21300000, guid: b79ffe076a59dfb48934eefb0835bc7c, type: 3}
+  - {fileID: 21300000, guid: b6ae81bbf43ed5943927fd112a06040b, type: 3}
+  - {fileID: 21300000, guid: d6ff81440301b4548a1ab038424c1f87, type: 3}
+  - {fileID: 21300000, guid: e31f1c626e392fb4c8c91690897b1459, type: 3}
   Achievement: 3
