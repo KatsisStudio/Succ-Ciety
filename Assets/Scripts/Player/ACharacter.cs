@@ -41,12 +41,17 @@ namespace LewdieJam.Player
             _health = MaxHealth;
         }
 
+        public static void UpdateSrSortingOrder(Transform t, SpriteRenderer sr)
+        {
+            var targetPos = (t.rotation.eulerAngles.y > 45 && t.rotation.eulerAngles.y < 135f)
+                || (t.rotation.eulerAngles.y > 225 && t.rotation.eulerAngles.y < 315)
+                ? t.position.x : t.position.z;
+            sr.sortingOrder = (int)(-targetPos * 100f);
+        }
+
         protected void UpdateParent()
         {
-            var targetPos = (transform.rotation.eulerAngles.y > 45 && transform.rotation.eulerAngles.y < 135f)
-                || (transform.rotation.eulerAngles.y > 225 && transform.rotation.eulerAngles.y < 315)
-                ? transform.position.x : transform.position.z;
-            _sr.sortingOrder = (int)(-targetPos * 100f);
+            UpdateSrSortingOrder(transform, _sr);
         }
 
         protected virtual bool CanTakeDamage => true;

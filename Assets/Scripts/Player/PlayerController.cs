@@ -27,6 +27,12 @@ namespace LewdieJam.Player
         [SerializeField]
         private GameObject _target;
 
+        [SerializeField]
+        private Transform _targetArrow;
+        private SpriteRenderer _targetArrowSr;
+
+        private Transform _goalDestination;
+
         public static PlayerController Instance { get; private set; }
 
         public IInteractible CurrentInteraction { set; private get; }
@@ -73,6 +79,8 @@ namespace LewdieJam.Player
             _anim = GetComponentInChildren<Animator>();
             _source = GetComponentInChildren<AudioSource>();
 
+            _targetArrowSr = _targetArrow.GetComponent<SpriteRenderer>();
+
             Instance = this;
 
             _target.transform.localScale = new(_info.Range / 20f, _info.Range / 20f, 1f);
@@ -84,6 +92,8 @@ namespace LewdieJam.Player
 
             var spawnPoint = GameObject.FindGameObjectWithTag("SpawnPoint");
             transform.position = new(spawnPoint.transform.position.x, transform.position.y, spawnPoint.transform.position.z);
+
+            UpdateTarget();
         }
 
         private void Update()
@@ -131,6 +141,21 @@ namespace LewdieJam.Player
                     _target.transform.position = new(p.x, _target.transform.position.y, p.z);
                 }
             }
+
+            if (_goalDestination != null)
+            {
+                var dir = (_goalDestination.transform.position - transform.position).normalized * 2f;
+                _targetArrow.transform.position = new(transform.position.x + dir.x, _target.transform.position.y, transform.position.z + dir.z);
+                _targetArrow.transform.LookAt(_goalDestination.transform.position, Vector3.up);
+                _targetArrow.transform.rotation = Quaternion.Euler(90f, _targetArrow.transform.rotation.eulerAngles.y, 0f);
+                UpdateSrSortingOrder(_targetArrow.transform, _targetArrowSr);
+            }
+        }
+
+        public void UpdateTarget()
+        {
+            _goalDestination = HouseManager.Instance.GetNextTarget();
+            _targetArrow.gameObject.SetActive(_goalDestination != null);
         }
 
         public void LoadLobby()
