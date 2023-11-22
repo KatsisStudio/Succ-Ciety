@@ -80,6 +80,10 @@ PrefabInstance:
       propertyPath: m_Radius
       value: 2.31
       objectReference: {fileID: 0}
+    - target: {fileID: 6830886887430689240, guid: 9e9dd8a23119b3743aeb6dc87330ea5c, type: 3}
+      propertyPath: m_Center.y
+      value: -0.23
+      objectReference: {fileID: 0}
     - target: {fileID: 8062912476312455978, guid: 9e9dd8a23119b3743aeb6dc87330ea5c, type: 3}
       propertyPath: m_Controller
       value: 
