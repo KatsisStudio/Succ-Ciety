@@ -15,8 +15,8 @@ MonoBehaviour:
   Name: Paizuri
   Story: {fileID: 4900000, guid: 19f3520e2f3c3af48b13e33f5cf88e39, type: 3}
   Sprites:
-  - {fileID: 21300000, guid: 5583ad261183d0d40b475449e0443839, type: 3}
-  - {fileID: 21300000, guid: f6b95117bb2a92f4e87b873e13596aaf, type: 3}
-  - {fileID: 21300000, guid: 21ca464d6632d3648ac2927ccbf8e7e6, type: 3}
-  - {fileID: 21300000, guid: aa26bc778d134394f82897bbfc66bd84, type: 3}
+  - {fileID: 21300000, guid: 6b713dab16d40274298859169cd87ac6, type: 3}
+  - {fileID: 21300000, guid: 9d527ea3908b52948aaab760195b0544, type: 3}
+  - {fileID: 21300000, guid: 13723087117b86a44bc04edd2d349355, type: 3}
+  - {fileID: 21300000, guid: 65694bc1a26027b499cb3e1386f5e884, type: 3}
   Achievement: 1
