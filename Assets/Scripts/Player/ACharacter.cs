@@ -1,6 +1,7 @@
 ﻿using Assets.Scripts.Player;
 using LewdieJam.Player.EnemyImpl;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace LewdieJam.Player
 {
@@ -8,6 +9,9 @@ namespace LewdieJam.Player
     {
         [SerializeField]
         protected SO.CharacterInfo _info;
+
+        [SerializeField]
+        protected Image _healthBar;
 
         protected Rigidbody _rb;
         protected SpriteRenderer _sr;
@@ -64,10 +68,17 @@ namespace LewdieJam.Player
             }
 
             _health -= damage;
-            if (_health <= 0)
+            if (_health < 0) _health = 0;
+            if (_health == 0)
             {
                 Die();
                 EnemyManager.Instance.RefreshAllTargets();
+            }
+
+            if (_healthBar != null)
+            {
+                _healthBar.transform.localScale = new Vector3(_health / (float)MaxHealth, 1f, 1f);
+                _healthBar.gameObject.SetActive(true);
             }
         }
 

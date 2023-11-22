@@ -27,7 +27,7 @@ namespace LewdieJam.Player.EnemyImpl
         protected override bool UpdateSetAction()
         {
             // Update timer
-            if (_pendingProjectileTimer > 0f)
+            if (_pendingProjectileTimer > 0f)   
             {
                 _pendingProjectileTimer -= Time.deltaTime;
             }
@@ -42,7 +42,7 @@ namespace LewdieJam.Player.EnemyImpl
                     HookTarget.Hooker = null;
                     HookTarget = null;
                 }
-                _anim.SetBool("IsWalking", false);
+                // _anim.SetBool("IsWalking", false);
                 return true;
             }
             return false;
@@ -51,12 +51,12 @@ namespace LewdieJam.Player.EnemyImpl
         private IEnumerator WaitAndAttack(Vector3 dir, Vector3 atkPos)
         {
             _isAttacking = true;
-            _anim.SetBool("IsWalking", false);
-            _anim.SetInteger("AttackState", 1);
+            // _anim.SetBool("IsWalking", false);
+            // _anim.SetInteger("AttackState", 1);
             yield return new WaitForSeconds(_info.PreAttackWaitTime - .325f);
-            _anim.SetInteger("AttackState", 2);
+            // _anim.SetInteger("AttackState", 2);
             yield return new WaitForSeconds(.325f);
-            _anim.SetInteger("AttackState", 0);
+            // _anim.SetInteger("AttackState", 0);
 
             if (!VNManager.Instance.IsPlayingStory) // Only hit if the player didn't load a story meanwhile
             {

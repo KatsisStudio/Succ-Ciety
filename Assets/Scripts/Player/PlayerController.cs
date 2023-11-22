@@ -9,15 +9,11 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 namespace LewdieJam.Player
 {
     public class PlayerController : ACharacter
     {
-        [SerializeField]
-        private Image _healthBar;
-
         [SerializeField]
         private AudioClip[] _atkSounds, _kissSounds, _painSounds, _gameoverSounds, _dashSounds;
 
@@ -174,7 +170,6 @@ namespace LewdieJam.Player
             if (damage > 0)
             {
                 StartCoroutine(DisplayInvulnerability());
-                _healthBar.transform.localScale = new Vector3(_health / (float)MaxHealth, 1f, 1f);
                 _source.PlayOneShot(_painSounds[UnityEngine.Random.Range(0, _painSounds.Length)]);
             }
         }

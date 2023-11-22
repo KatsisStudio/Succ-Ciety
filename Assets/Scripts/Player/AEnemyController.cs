@@ -139,21 +139,21 @@ namespace LewdieJam.Player
             // Movements & attacks
             if (VNManager.Instance.IsPlayingStory || Hooker != null) // Whatever the situation, we don't do anything the VN phase!
             {
-                _anim.SetBool("IsWalking", false);
+                // _anim.SetBool("IsWalking", false);
                 _rb.velocity = new(0f, _rb.velocity.y, 0f);
             }
             else if (UpdateSetAction())
             { }
             else if (_isAttacking) // Do nothing
             {
-                _anim.SetBool("IsWalking", false);
+                // _anim.SetBool("IsWalking", false);
                 _rb.velocity = new(0f, _rb.velocity.y, 0f);
             }
             else
             {
                 if (_target != null && Vector3.Distance(_target.transform.position, transform.position) < _info.Range) // Start attack toward target
                 {
-                    _anim.SetBool("IsWalking", false);
+                    // _anim.SetBool("IsWalking", false);
                     var dir = (_target.transform.position - transform.position).normalized;
 
                     Attack(dir);
@@ -176,12 +176,12 @@ namespace LewdieJam.Player
 
                     if (target == null)
                     {
-                        _anim.SetBool("IsWalking", false);
+                        // _anim.SetBool("IsWalking", false);
                         _rb.velocity = new(0f, _rb.velocity.y, 0f);
                     }
                     else
                     {
-                        _anim.SetBool("IsWalking", true);
+                        // _anim.SetBool("IsWalking", true);
                         var dir = (target.transform.position - transform.position).normalized;
                         _rb.velocity = dir * _info.Speed;
                         if (dir.x != 0f)

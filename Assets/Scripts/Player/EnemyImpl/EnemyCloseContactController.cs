@@ -30,12 +30,12 @@ namespace LewdieJam.Player.EnemyImpl
         {
             _isAttacking = true;
 
-            _anim.SetBool("IsWalking", false);
-            _anim.SetInteger("AttackState", 1);
+            // _anim.SetBool("IsWalking", false);
+            // _anim.SetInteger("AttackState", 1);
             yield return new WaitForSeconds(_info.PreAttackWaitTime - .325f);
-            _anim.SetInteger("AttackState", 2);
+            // _anim.SetInteger("AttackState", 2);
             yield return new WaitForSeconds(.325f);
-            _anim.SetInteger("AttackState", 0);
+            // _anim.SetInteger("AttackState", 0);
 
             if (_attackTarget != null) // We didn't got charmed mid attack
             {

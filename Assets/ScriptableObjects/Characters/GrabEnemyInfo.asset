@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: 
   Speed: 6.5
-  BaseHealth: 10
+  BaseHealth: 15
   Range: 15
   AnimController: {fileID: 9100000, guid: 3b04c1dca40fc8a46a228bb58f91e7f4, type: 2}
   AttackForce: 5
