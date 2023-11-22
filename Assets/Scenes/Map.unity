@@ -41125,6 +41125,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6103944397721190490, guid: ccb5db8091dd6664395ebb82687a4b27, type: 3}
+      propertyPath: _info
+      value: 
+      objectReference: {fileID: 11400000, guid: fbcdf380d392e794bace19c9758b3c60, type: 2}
+    - target: {fileID: 6103944397721190490, guid: ccb5db8091dd6664395ebb82687a4b27, type: 3}
       propertyPath: _hScene
       value: 
       objectReference: {fileID: 11400000, guid: 985cbf877ca4f424b85a1f2c145de3b7, type: 2}
