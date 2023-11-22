@@ -15,8 +15,8 @@ MonoBehaviour:
   Name: Futanari
   Story: {fileID: 4900000, guid: 8cc7102f0146a514c808977696846b69, type: 3}
   Sprites:
-  - {fileID: 21300000, guid: 92e443b93e6d4804a9accf2c64ba07e7, type: 3}
-  - {fileID: 21300000, guid: 997dc66c65f2a4d4797e830b71834343, type: 3}
-  - {fileID: 21300000, guid: 502e02420ffeb0a458f5d6406d503557, type: 3}
-  - {fileID: 21300000, guid: d7439c8f5cc099a47ad73ea66d94b42d, type: 3}
+  - {fileID: 21300000, guid: dcd2607b49004584a8bc28684f317cbc, type: 3}
+  - {fileID: 21300000, guid: fc78ca03a67b5e24396791ac147a4585, type: 3}
+  - {fileID: 21300000, guid: 91c8024dc96d8bf4bb379a98b732db0e, type: 3}
+  - {fileID: 21300000, guid: 8cc13ac142a754b4a95262882db71549, type: 3}
   Achievement: 2
