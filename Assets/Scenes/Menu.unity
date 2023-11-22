@@ -7516,7 +7516,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 500, y: 750}
+  m_SizeDelta: {x: 500, y: 650}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &401450484
 MonoBehaviour:
@@ -34310,24 +34310,19 @@ MonoBehaviour:
 
     Fractal Stella:
 
-    Concept Art, Programming
+    2D Art, Game Design,
+    QA
 
 
-    Fragant
-    Pauline:
-
-    2D Art
-
-
-    EnMallas:
+    Fragant Pauline:
 
     2D Art
 
 
     SukeBancho:
 
-    Story,
-    Sound Design
+    Story, Voice Acting,
+    SFX
 
 
     WordedPuppet:
