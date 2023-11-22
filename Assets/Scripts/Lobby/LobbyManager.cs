@@ -90,6 +90,7 @@ namespace LewdieJam.Lobby
             var breastsColors = b.colors;
             breastsColors.normalColor = PersistencyManager.Instance.SaveData.Attachments.HasFlag(attachment) ? Color.green : Color.white;
             breastsColors.selectedColor = breastsColors.normalColor;
+            breastsColors.highlightedColor = breastsColors.normalColor;
             breastsColors.pressedColor = new(0f, .8f, 0f);
             b.colors = breastsColors;
         }
