@@ -58,11 +58,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4109329217684411043, guid: 9e9dd8a23119b3743aeb6dc87330ea5c, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.2
+      value: 0.25476128
       objectReference: {fileID: 0}
     - target: {fileID: 4109329217684411043, guid: 9e9dd8a23119b3743aeb6dc87330ea5c, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.2
+      value: 0.25476128
+      objectReference: {fileID: 0}
+    - target: {fileID: 4109329217684411043, guid: 9e9dd8a23119b3743aeb6dc87330ea5c, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.6228292
       objectReference: {fileID: 0}
     - target: {fileID: 4432876011320472982, guid: 9e9dd8a23119b3743aeb6dc87330ea5c, type: 3}
       propertyPath: m_Size.x
@@ -74,7 +78,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6830886887430689240, guid: 9e9dd8a23119b3743aeb6dc87330ea5c, type: 3}
       propertyPath: m_Radius
-      value: 2
+      value: 2.31
       objectReference: {fileID: 0}
     - target: {fileID: 8062912476312455978, guid: 9e9dd8a23119b3743aeb6dc87330ea5c, type: 3}
       propertyPath: m_Controller
