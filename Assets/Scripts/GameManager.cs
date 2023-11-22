@@ -124,6 +124,7 @@ namespace LewdieJam
             VNManager.Instance.ShowHSceneStoryWithCallback(() =>
             {
                 _bgmGame.UnPause();
+                PlayerController.Instance.UpdateTarget();
             }, true);
         }
 
