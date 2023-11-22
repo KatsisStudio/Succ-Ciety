@@ -27,7 +27,7 @@ namespace LewdieJam.Lobby
         private TMP_Text _hornLevel;
 
         [SerializeField]
-        private Button[] _buttonsPerHornLevels;
+        private Button _bigBreastsB, _futanariB, _pregnantB;
 
         [Header("Live2D")]
         [SerializeField]
@@ -64,6 +64,11 @@ namespace LewdieJam.Lobby
             _energyStat.Key = UpgradableStat.EnergyGained;
 
             _live2D.SetHornLevel(Mathf.FloorToInt(Stat01 * (_gameInfo.HornLevels.Length - 1)));
+
+            if (PersistencyManager.Instance.SaveData.Attachments.HasFlag(Attachment.LargeBreasts)) _live2D.ToggleAttachment(Attachment.LargeBreasts);
+            if (PersistencyManager.Instance.SaveData.Attachments.HasFlag(Attachment.Futanari)) _live2D.ToggleAttachment(Attachment.Futanari);
+            if (PersistencyManager.Instance.SaveData.Attachments.HasFlag(Attachment.Pregnant)) _live2D.ToggleAttachment(Attachment.Pregnant);
+
             UpdateUI();
         }
 
@@ -80,6 +85,15 @@ namespace LewdieJam.Lobby
 
         private float Stat01 => PersistencyManager.Instance.SaveData.Stats.Values.Sum() / ((float)Enum.GetValues(typeof(UpgradableStat)).Length * _gameInfo.MaxLevel);
 
+        private void SetButtonColor(Button b, Attachment attachment)
+        {
+            var breastsColors = b.colors;
+            breastsColors.normalColor = PersistencyManager.Instance.SaveData.Attachments.HasFlag(attachment) ? Color.green : Color.white;
+            breastsColors.selectedColor = breastsColors.normalColor;
+            breastsColors.pressedColor = new(0f, .8f, 0f);
+            b.colors = breastsColors;
+        }
+
         public void UpdateUI()
         {
             _energy.text = PersistencyManager.Instance.SaveData.Energy.ToString();
@@ -87,11 +101,17 @@ namespace LewdieJam.Lobby
             _live2D.SetHornLevel(index);
             _hornLevel.text = index.ToString();
 
-            for (int i = 0; i < _buttonsPerHornLevels.Length; i++)
+            var buttons = new[]
+            {
+                _bigBreastsB,
+                _futanariB,
+                _pregnantB
+            };
+            for (int i = 0; i < buttons.Length; i++)
             {
                 if (index > i * 2)
                 {
-                    _buttonsPerHornLevels[i].interactable = true;
+                    buttons[i].interactable = true;
                 }
                 else
                 {
@@ -123,6 +143,10 @@ namespace LewdieJam.Lobby
                     stat.Cost = prod;
                 }
             }
+
+            SetButtonColor(_bigBreastsB, Attachment.LargeBreasts);
+            SetButtonColor(_futanariB, Attachment.Futanari);
+            SetButtonColor(_pregnantB, Attachment.Pregnant);
 
             _live2D.SetDirty();
         }
