@@ -7,7 +7,7 @@ namespace LewdieJam.Menu
     {
         public void PlayGame()
         {
-            SceneManager.LoadScene("Lobby");
+            SceneManager.LoadScene("Main");
         }
 
         public void LoadGallery()

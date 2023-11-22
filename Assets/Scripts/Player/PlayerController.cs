@@ -176,6 +176,7 @@ namespace LewdieJam.Player
             PersistencyManager.Instance.Save();
             _gameoverPopup.SetActive(true);
             _source.PlayOneShot(_gameoverSounds[UnityEngine.Random.Range(0, _gameoverSounds.Length)]);
+            GameManager.Instance.PlayGameOverBgm();
         }
 
         public void OnMovement(InputAction.CallbackContext value)

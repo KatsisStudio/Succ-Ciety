@@ -39,6 +39,9 @@ namespace LewdieJam
         [SerializeField]
         private TextAsset _story;
 
+        [SerializeField]
+        private AudioClip _gameOverClip;
+
         public GameInfo Info => _info;
 
         [SerializeField]
@@ -122,6 +125,12 @@ namespace LewdieJam
             {
                 _bgmGame.UnPause();
             }, true);
+        }
+
+        public void PlayGameOverBgm()
+        {
+            _bgmGame.clip = _gameOverClip;
+            _bgmGame.Play();
         }
 
         public void SetRotationAngle(float angle)
