@@ -1,3 +1,2 @@
-Placeholder Should I enter?
-Placeholder No #background next
+Should I enter?
 -> DONE
