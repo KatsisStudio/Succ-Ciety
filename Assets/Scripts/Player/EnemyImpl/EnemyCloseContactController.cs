@@ -33,6 +33,10 @@ namespace LewdieJam.Player.EnemyImpl
             // _anim.SetBool("IsWalking", false);
             // _anim.SetInteger("AttackState", 1);
             yield return new WaitForSeconds(_info.PreAttackWaitTime - .325f);
+            if (_info.SubAttackVfx != null)
+            {
+                Destroy(Instantiate(_info.SubAttackVfx.gameObject, transform.position, _info.SubAttackVfx.transform.rotation), .325f);
+            }
             // _anim.SetInteger("AttackState", 2);
             yield return new WaitForSeconds(.325f);
             // _anim.SetInteger("AttackState", 0);
