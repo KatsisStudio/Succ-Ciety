@@ -95,7 +95,7 @@ namespace LewdieJam.Lobby
         public void UpdateUI()
         {
             _energy.text = PersistencyManager.Instance.SaveData.Energy.ToString();
-            var index = Mathf.FloorToInt(Stat01 * _gameInfo.HornLevels.Length - 1);
+            var index = Mathf.FloorToInt(Stat01 * (_gameInfo.HornLevels.Length - 1));
             _artManager.SetHornLevel(index);
             _hornLevel.text = index.ToString();
 
