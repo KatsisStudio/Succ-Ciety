@@ -29,9 +29,8 @@ namespace LewdieJam.Lobby
         [SerializeField]
         private Button _bigBreastsB, _futanariB, _pregnantB;
 
-        [Header("Live2D")]
         [SerializeField]
-        private Live2DManager _live2D;
+        private LobbyArtManager _artManager;
 
         [Header("Debug")]
         [SerializeField]
@@ -63,19 +62,17 @@ namespace LewdieJam.Lobby
             _atkSpeedStat.Key = UpgradableStat.CharmPower;
             _energyStat.Key = UpgradableStat.EnergyGained;
 
-            _live2D.SetHornLevel(Mathf.FloorToInt(Stat01 * (_gameInfo.HornLevels.Length - 1)));
-
-            if (PersistencyManager.Instance.SaveData.Attachments.HasFlag(Attachment.LargeBreasts)) _live2D.ToggleAttachment(Attachment.LargeBreasts);
-            if (PersistencyManager.Instance.SaveData.Attachments.HasFlag(Attachment.Futanari)) _live2D.ToggleAttachment(Attachment.Futanari);
-            if (PersistencyManager.Instance.SaveData.Attachments.HasFlag(Attachment.Pregnant)) _live2D.ToggleAttachment(Attachment.Pregnant);
+            _artManager.ToggleAttachment(PersistencyManager.Instance.SaveData.Attachments);
 
             UpdateUI();
         }
 
         private void ToggleAttachment(Attachment attachment)
         {
-            _live2D.ToggleAttachment(attachment);
-            PersistencyManager.Instance.SaveData.Attachments = _live2D.Attachments;
+            if (PersistencyManager.Instance.SaveData.Attachments == attachment) attachment = Attachment.None;
+
+            _artManager.ToggleAttachment(attachment);
+            PersistencyManager.Instance.SaveData.Attachments = attachment;
             PersistencyManager.Instance.Save();
             UpdateUI();
         }
@@ -88,7 +85,7 @@ namespace LewdieJam.Lobby
         private void SetButtonColor(Button b, Attachment attachment)
         {
             var breastsColors = b.colors;
-            breastsColors.normalColor = PersistencyManager.Instance.SaveData.Attachments.HasFlag(attachment) ? Color.green : Color.white;
+            breastsColors.normalColor = PersistencyManager.Instance.SaveData.Attachments == attachment ? Color.green : Color.white;
             breastsColors.selectedColor = breastsColors.normalColor;
             breastsColors.highlightedColor = breastsColors.normalColor;
             breastsColors.pressedColor = new(0f, .8f, 0f);
@@ -98,8 +95,8 @@ namespace LewdieJam.Lobby
         public void UpdateUI()
         {
             _energy.text = PersistencyManager.Instance.SaveData.Energy.ToString();
-            var index = Mathf.FloorToInt(Stat01 * (_gameInfo.HornLevels.Length - 1));
-            _live2D.SetHornLevel(index);
+            var index = Mathf.FloorToInt(Stat01 * (_gameInfo.HornLevels.Length - 2) + 1);
+            _artManager.SetHornLevel(index);
             _hornLevel.text = index.ToString();
 
             var buttons = new[]
@@ -148,8 +145,6 @@ namespace LewdieJam.Lobby
             SetButtonColor(_bigBreastsB, Attachment.LargeBreasts);
             SetButtonColor(_futanariB, Attachment.Futanari);
             SetButtonColor(_pregnantB, Attachment.Pregnant);
-
-            _live2D.SetDirty();
         }
     }
 }
