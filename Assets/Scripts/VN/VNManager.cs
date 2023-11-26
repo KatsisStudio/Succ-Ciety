@@ -19,7 +19,14 @@ namespace LewdieJam.VN
         public static VNManager Instance { private set; get; }
 
         [SerializeField]
+        private VNCharacterInfo[] _characters;
+        private VNCharacterInfo _currentCharacter;
+
+        [SerializeField]
         private TextDisplay _display;
+
+        [SerializeField]
+        private Image _characterImage;
 
         [SerializeField]
         private HSceneInfo _houseNotEnter;
@@ -29,8 +36,6 @@ namespace LewdieJam.VN
 
         [SerializeField]
         private TextAsset _openDoorAsset;
-
-        private string _currentCharacter;
 
         private Story _story;
 
@@ -221,7 +226,7 @@ namespace LewdieJam.VN
         public void ShowStory(TextAsset asset, Action onDone)
         {
             Debug.Log($"[STORY] Playing {asset.name}");
-            _currentCharacter = string.Empty;
+            _currentCharacter = null;
             _onDone = onDone;
             _story = new(asset.text);
             _isSkipEnabled = false;
@@ -240,10 +245,14 @@ namespace LewdieJam.VN
                 switch (s[0].ToUpperInvariant())
                 {
                     case "SPEAKER":
-                        if (content == "NONE") _currentCharacter = string.Empty;
+                        if (content == "NONE") _currentCharacter = null;
                         else
                         {
-                            _currentCharacter = string.Join(' ', s.Skip(1));
+                            _currentCharacter = _characters.FirstOrDefault(x => x.Name.ToUpperInvariant() == content);
+                            if (_currentCharacter == null)
+                            {
+                                Debug.LogError($"[STORY] Unable to find character {content}");
+                            }
                         }
                         break;
 
@@ -284,14 +293,18 @@ namespace LewdieJam.VN
             text = Regex.Replace(text, "\\*([^\\*]+)\\*", "<i>$1</i>");
 
             _display.ToDisplay = text;
-            if (string.IsNullOrEmpty(_currentCharacter))
+
+            if (_currentCharacter == null)
             {
                 _namePanel.SetActive(false);
+                _characterImage.gameObject.SetActive(false);
             }
             else
             {
                 _namePanel.SetActive(true);
-                _nameText.text = _currentCharacter;
+                _nameText.text = _currentCharacter.DisplayName;
+                _characterImage.gameObject.SetActive(true);
+                _characterImage.sprite = _currentCharacter.Image;
             }
         }
 
