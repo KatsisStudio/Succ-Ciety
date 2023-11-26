@@ -23,7 +23,6 @@ namespace LewdieJam.Lobby
 
         public void SetHornLevel(int level)
         {
-            if (level > 0) level--;
             _hornImage.sprite = _horns[level];
         }
     }
