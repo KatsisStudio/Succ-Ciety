@@ -749,6 +749,7 @@ MonoBehaviour:
   - Attachment: 4
     Sprite: {fileID: 21300000, guid: ec0131a0870ce0e42b717b432f7f3ea5, type: 3}
   _horns:
+  - {fileID: 21300000, guid: 9eba0ea7ad8509e4480e0ff7a469340a, type: 3}
   - {fileID: 21300000, guid: d1e421a586e78f24491b96b600843fc8, type: 3}
   - {fileID: 21300000, guid: adac23e1f58d6b342b7c119dec8f723d, type: 3}
   - {fileID: 21300000, guid: 5d4d1d2578edb1c439f23ef514925625, type: 3}

@@ -13,8 +13,6 @@ namespace LewdieJam.SO
 
         public float Range;
 
-        public RuntimeAnimatorController AnimController;
-
         [Header("Attack")]
         public int AttackForce;
         public float PreAttackWaitTime, PostAttackWaitTime;
