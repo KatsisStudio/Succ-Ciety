@@ -35,7 +35,13 @@ namespace LewdieJam.Player.EnemyImpl
             yield return new WaitForSeconds(_info.PreAttackWaitTime - .325f);
             if (_info.SubAttackVfx != null)
             {
-                Destroy(Instantiate(_info.SubAttackVfx.gameObject, transform.position, _info.SubAttackVfx.transform.rotation), .325f);
+                var direction = transform.position - _attackTarget.transform.position;
+                direction.y = 0f;
+
+                var dickVfx = Instantiate(_info.SubAttackVfx.gameObject, transform.position + Vector3.down, _info.SubAttackVfx.transform.rotation);
+                dickVfx.transform.rotation = Quaternion.LookRotation(direction, Vector3.up);
+                dickVfx.transform.rotation = Quaternion.Euler(dickVfx.transform.rotation.eulerAngles.x, dickVfx.transform.rotation.eulerAngles.y + 180f, dickVfx.transform.rotation.eulerAngles.z);
+                Destroy(dickVfx, .325f);
             }
             // _anim.SetInteger("AttackState", 2);
             yield return new WaitForSeconds(.325f);

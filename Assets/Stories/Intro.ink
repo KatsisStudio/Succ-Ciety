@@ -81,7 +81,7 @@ Begrudgingly, I started making my way to the lobby. I had the feeling it would b
 "Humans refer to them as "paralysis demons" but they're more like stray figments of imagination. They nestle in corners of your brain and come out at night looking for essence as well. Just in a far more brutish way." #Speaker Tattoo
 "So... they want the same thing as us?" #Speaker Nova
 "Firstly: Don't group me with you. Second: No. They like to snack on essence to maintain their forms. The more they snack, the stronger they get. They don't like succubi since they take essence and leave. Figments can sense a general area where a potent essence source is, but they can't pinpoint exactly where." #Speaker Tattoo
-"They also aren't a bad source of essence themselves, but they aren't as potent. Meaning its more dangerous and effort to extract from them than from a potent source. Still useful, but not the main goal." #Speaker Tatto
+"They also aren't a bad source of essence themselves, but they aren't as potent. Meaning its more dangerous and effort to extract from them than from a potent source. Still useful, but not the main goal." #Speaker Tattoo
 "I think I understand... I'm ready to give this a go!" #Speaker Nova
 "Alright. Let's try to find that source nearby. Shouldn't be too far for you." #Speaker Tattoo
 
