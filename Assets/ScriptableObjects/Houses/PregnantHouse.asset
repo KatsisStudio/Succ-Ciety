@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: PregnantHouse
   m_EditorClassIdentifier: 
   EnergyRequired: 20
-  RequiredAttachment: 4
+  RequiredAttachment: 3
   HScene: {fileID: 11400000, guid: 639fc541cc904424fb250c1ed0c27035, type: 2}
