@@ -26,7 +26,7 @@ The flame inside me felt too good to resist...
 -> introductions
 
 ===introductions===
-"Fine fine! I'm awake, I'm awake..." yawn // italics for non-quote actions #Speaker Nova
+"Fine fine! I'm awake, I'm awake..." *yawn #Speaker Nova
 "Huh? I know I heard someone but there's nobody here..." #Speaker Nova
 "Wait! Why would there be someone in my room at... 1am?! I don't have any roommates anymore..." #Speaker Nova
 "Personally, I prefer the term "womb mate" but we can work that out later." #Speaker Tattoo
@@ -57,7 +57,7 @@ Begrudgingly, I started making my way to the lobby. I had the feeling it would b
     - "There's your answer." #Speaker Tattoo
 "That... doesn't explain a lot..." #Speaker Nova
 "Ugh! You ever heard of a succubus before? Like that popular one you see in video games a lot." #Speaker Tattoo
-"You mean Morrigan?" #Speaker Nova
+"You mean Maroogan?" #Speaker Nova
 "Yeah. Her. She's similar to how they work but clearly with some... liberties... taken from the real deal. Just think of it as a cosplay that lets you actually do what her job is." #Speaker Tattoo
 "But without the accent and large wings?" #Speaker Nova
 "Some of them have both. Not specifically scottish, but that's what happens when your kind spread out across the world over the course of a millennia. All of them have the same job though: Extract essence." #Speaker Tattoo
@@ -88,11 +88,3 @@ Begrudgingly, I started making my way to the lobby. I had the feeling it would b
 -> DONE 
 
 //First Hunt start
-
-
-
-
-
-
-
--> DONE
