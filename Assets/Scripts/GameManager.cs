@@ -128,6 +128,16 @@ namespace LewdieJam
             }, true);
         }
 
+        public void PlayDoorRefuse()
+        {
+            _bgmGame.Pause();
+            VNManager.Instance.ShowDoorRefuseStoryWithCallback(() =>
+            {
+                _bgmGame.UnPause();
+                PlayerController.Instance.UpdateTarget();
+            });
+        }
+
         public void PlayGameOverBgm()
         {
             _bgmGame.clip = _gameOverClip;

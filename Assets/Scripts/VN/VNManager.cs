@@ -154,7 +154,7 @@ namespace LewdieJam.VN
             });
         }
 
-        public void ShowDoorRefuseStory()
+        public void ShowDoorRefuseStoryWithCallback(Action callback)
         {
             _hSceneBgm.clip = _dontEnterClip;
             _hSceneBgm.Play();
@@ -165,6 +165,7 @@ namespace LewdieJam.VN
             ShowStory(_currHScene.Story, () =>
             {
                 AchievementManager.Instance.Unlock(AchievementID.DontEnterScene);
+                callback();
             });
         }
 
@@ -174,6 +175,11 @@ namespace LewdieJam.VN
         public void LoadHSceneGameManagerBridge()
         {
             GameManager.Instance.PlayHScene();
+        }
+
+        public void LoadDoorRefureGameManagerBridge()
+        {
+            GameManager.Instance.PlayDoorRefuse();
         }
 
         /// <summary>

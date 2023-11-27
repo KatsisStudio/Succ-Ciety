@@ -1528,7 +1528,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1864248195}
         m_TargetAssemblyTypeName: LewdieJam.VN.VNManager, Assembly-CSharp
-        m_MethodName: ShowDoorRefuseStory
+        m_MethodName: LoadDoorRefureGameManagerBridge
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
