@@ -36,7 +36,7 @@ Some shot off into different directions, raining down onto the ground with a moi
 Even for as large as her cock felt, bulging and throbbing relentlessly, it couldn't ever hope to be released without my choice.
 After the last few drops finally pittered out and covered the top of my chest, I finally let go of my breasts. Allowing them to rest on her legs and for her cock to fall back onto her with a cute thwack.
 Her body soon fell back as well, and her breathing steadied as she drifted off to sleep.
-"You don't need to swallow it, you know?" #Speaker Tattoo
-"How could I not? I have a sweet tooth. And her pixie stick was too irresistable!" #Speaker Nova
-"Don't come crying to me if your foot starts feeling weird then..." #Speaker Tattoo
+You don't need to swallow it, you know? #Speaker Tattoo
+How could I not? I have a sweet tooth. And her pixie stick was too irresistable! #Speaker Nova
+Don't come crying to me if your foot starts feeling weird then... #Speaker Tattoo
 -> DONE
