@@ -7,15 +7,11 @@ namespace LewdieJam.Player.Attack
     {
         public EnemyHookController Owner { set; get; }
 
-        private void OnCollisionEnter(Collision collision)
+        private void OnTriggerEnter(Collider other)
         {
-            if (collision.collider.CompareTag("Player"))
+            if (other.TryGetComponent<ACharacter>(out var c) && c.Team != Owner.Team)
             {
-                Owner.HookTarget = collision.collider.GetComponent<PlayerController>();
-            }
-            else if (collision.collider.CompareTag("Enemy"))
-            {
-                Owner.HookTarget = collision.collider.GetComponent<AEnemyController>();
+                Owner.HookTarget = c;
             }
             Owner.IsWaitingForProjectile = false;
             Destroy(gameObject);
