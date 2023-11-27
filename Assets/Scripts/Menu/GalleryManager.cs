@@ -14,6 +14,9 @@ namespace LewdieJam.Menu
         private Live2DManager _live2d;
 
         [SerializeField]
+        private LobbyArtManager _artManager;
+
+        [SerializeField]
         private AudioSource _bgm;
 
         [SerializeField]
@@ -29,6 +32,8 @@ namespace LewdieJam.Menu
         private void Start()
         {
             _oldLobby.SetActive(false);
+            _artManager.SetHornLevel(0);
+            _artManager.ToggleAttachment(Attachment.None);
         }
 
         public void PlayBGM(AudioClip clip)
@@ -67,24 +72,27 @@ namespace LewdieJam.Menu
                 VNManager.Instance.DisplayNextDialogue();
             }
         }
-        public void ToggleLargeBreastsAttachment() => _live2d.ToggleAttachment(Attachment.LargeBreasts);
-        public void ToggleFutanariAttachment() => _live2d.ToggleAttachment(Attachment.Futanari);
-        public void TogglePregnantAttachment() => _live2d.ToggleAttachment(Attachment.Pregnant);
+        public void ToggleNone() => _artManager.ToggleAttachment(Attachment.None);
+        public void ToggleLargeBreastsAttachment() => _artManager.ToggleAttachment(Attachment.LargeBreasts);
+        public void ToggleFutanariAttachment() => _artManager.ToggleAttachment(Attachment.Futanari);
+        public void TogglePregnantAttachment() => _artManager.ToggleAttachment(Attachment.Pregnant);
 
-        public void HornLevelUp()
+        public void HornLevelUp(bool useNewLobby)
         {
             if (_hornLevel < 5)
             {
                 _hornLevel++;
-                _live2d.SetHornLevel(_hornLevel);
+                if (useNewLobby) _artManager.SetHornLevel(_hornLevel);
+                else _live2d.SetHornLevel(_hornLevel);
             }
         }
-        public void HornLevelDown()
+        public void HornLevelDown(bool useNewLobby)
         {
             if (_hornLevel > 0)
             {
                 _hornLevel--;
-                _live2d.SetHornLevel(_hornLevel);
+                if (useNewLobby) _artManager.SetHornLevel(_hornLevel);
+                else _live2d.SetHornLevel(_hornLevel);
             }
         }
     }
