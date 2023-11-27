@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0d145586c6cd734db00f0c8b434213e, type: 3}
   m_Name: PregnantHouse
   m_EditorClassIdentifier: 
-  EnergyRequired: 50
+  EnergyRequired: 75
   RequiredAttachment: 3
   HScene: {fileID: 11400000, guid: 639fc541cc904424fb250c1ed0c27035, type: 2}

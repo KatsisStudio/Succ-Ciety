@@ -29,7 +29,7 @@ MonoBehaviour:
   CanBeCharmed: 1
   IsBoss: 0
   DetectionRange: 7
-  EnergyDropped: 1
+  EnergyDropped: 5
   ProjectileSpeed: 0
   ProjectileMaxDistance: 0
   HookSpeed: 0
