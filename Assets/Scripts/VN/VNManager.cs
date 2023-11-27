@@ -69,6 +69,9 @@ namespace LewdieJam.VN
         [SerializeField]
         private GameObject _choicePrefab;
 
+        [SerializeField]
+        private AudioClip _hSceneClip, _dontEnterClip;
+
         private bool _isPlayingMoans;
 
         private bool _isSkipEnabled;
@@ -153,6 +156,8 @@ namespace LewdieJam.VN
 
         public void ShowDoorRefuseStory()
         {
+            _hSceneBgm.clip = _dontEnterClip;
+            _hSceneBgm.Play();
             _openDoorQuestion.SetActive(false);
             _currHScene = _houseNotEnter;
             _hSceneVisual.gameObject.SetActive(true);
@@ -186,6 +191,7 @@ namespace LewdieJam.VN
         /// </summary>
         public void ShowHSceneStoryWithCallback(Action onDone, bool showChoiceAtEnd)
         {
+            _hSceneBgm.clip = _hSceneClip;
             _hSceneBgm.Play();
             _openDoorQuestion.SetActive(false);
             _hSceneVisual.gameObject.SetActive(true);
