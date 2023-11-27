@@ -2,7 +2,7 @@
 
 ===Vanilla===
 For a moment, I was surprised by how quiet the dream was. It was a quiet and pretty room filled with plushies and computer equipment that I couldn't recognize.
-When I started to think I entered the wrong house, I could feel someone's warm breath on the side of my ear. Even just glancing at them set my heart aflutter. They were far more than just "cute". They were ADORABLE!
+When I started to think I entered the wrong house, I could feel someone's warm breath on the side of my ear. Even just glancing at them set my heart aflutter. They were far more than just cute. They were ADORABLE!
 Before I could appreciate their dress, I felt something rubbing against my thigh coming from their direction and the softest hand gripping my ass from behind.
 My eyes met theirs for a brief moment before I wrapped my arms around them and pressed my lips to theirs. Even their lips were soft and their perfume was making my head buzz in delight.
 The rubbing against my thigh soon turned into humping as soon as we fell onto the bed. Everytime I pulled my lips away, the excitement in their eyes pulled me right back without any word. 
@@ -31,6 +31,6 @@ Their arms wrapped tightly around me as they huffed and let everything out deep 
 I didn't want the sensation to end. My chest was burning and their seed felt as if it was the only thing that could put it out. 
 By the time I could think again, they were still ontop of me. Sound asleep as their cock stayed lodged deep inside me. I could feel the excess still dripping on my skin.
 I wrapped my arms and legs around them. They wouldn't probably wouldn't remember this dream, but I would. I wanted to wrap them in my warmth as best I could before the exhuastion took my body and I laid spread on their bed.
-"Who would have guessed someone so cute could be a lustful little minx..." #Speaker Tattoo
-"They. Them. Cock..." #Speaker Nova
+Who would have guessed someone so cute could be a lustful little minx... #Speaker Tattoo
+They. Them. Cock... #Speaker Nova
 -> DONE
