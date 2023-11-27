@@ -220,7 +220,7 @@ namespace LewdieJam.Player
                 {
                     // Get all enemies in range
                     var colliders = Physics.OverlapSphere(targetPos, _info.Range, _characterMask);
-                    hits = colliders.Where(x => x.CompareTag("Enemy") && x != null).Select(x => x.GetComponent<ACharacter>());
+                    hits = colliders.Where(x => x != null && x.CompareTag("Enemy")).Select(x => x.GetComponent<ACharacter>());
                 }
                 return new SpellHitInfo()
                 {
