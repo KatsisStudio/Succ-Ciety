@@ -86,6 +86,7 @@ namespace LewdieJam.Player
         {
             StartParent();
 
+            GameManager.Instance.UpdateUI();
             var spawnPoint = GameObject.FindGameObjectWithTag("SpawnPoint");
             transform.position = new(spawnPoint.transform.position.x, transform.position.y, spawnPoint.transform.position.z);
 
