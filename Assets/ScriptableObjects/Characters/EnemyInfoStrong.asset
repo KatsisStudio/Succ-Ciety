@@ -28,7 +28,7 @@ MonoBehaviour:
   DashSpeedMultiplier: 0
   CanBeCharmed: 1
   IsBoss: 0
-  DetectionRange: 5
+  DetectionRange: 7
   EnergyDropped: 1
   ProjectileSpeed: 0
   ProjectileMaxDistance: 0

@@ -16,7 +16,6 @@ MonoBehaviour:
   Speed: 6.5
   BaseHealth: 20
   Range: 2
-  AnimController: {fileID: 9100000, guid: 3b04c1dca40fc8a46a228bb58f91e7f4, type: 2}
   AttackForce: 5
   PreAttackWaitTime: 1
   PostAttackWaitTime: 0
@@ -29,7 +28,7 @@ MonoBehaviour:
   DashSpeedMultiplier: 0
   CanBeCharmed: 1
   IsBoss: 0
-  DetectionRange: 5
+  DetectionRange: 7
   EnergyDropped: 1
   ProjectileSpeed: 0
   ProjectileMaxDistance: 0
