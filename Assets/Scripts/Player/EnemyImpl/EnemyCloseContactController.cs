@@ -38,7 +38,7 @@ namespace LewdieJam.Player.EnemyImpl
                 var direction = transform.position - _attackTarget.transform.position;
                 direction.y = 0f;
 
-                var dickVfx = Instantiate(_info.SubAttackVfx.gameObject, _attackTarget.transform.position + Vector3.up, _info.SubAttackVfx.transform.rotation);
+                var dickVfx = Instantiate(_info.SubAttackVfx.gameObject, _attackTarget.transform.position + Vector3.up * 2f, _info.SubAttackVfx.transform.rotation);
                 dickVfx.transform.rotation = Quaternion.LookRotation(direction, Vector3.up);
                 dickVfx.transform.rotation = Quaternion.Euler(dickVfx.transform.rotation.eulerAngles.x, dickVfx.transform.rotation.eulerAngles.y + 180f, dickVfx.transform.rotation.eulerAngles.z);
                 Destroy(dickVfx, .325f);
