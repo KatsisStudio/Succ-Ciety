@@ -18,7 +18,7 @@ namespace LewdieJam.Map
         private TMP_Text _requirement;
 
         private bool HaveEnoughEnergy => PersistencyManager.Instance.SaveData.Energy + PersistencyManager.Instance.SaveData.PendingEnergy >= _info.EnergyRequired;
-        private bool HaveRightAttachments => PersistencyManager.Instance.SaveData.Attachments == _info.RequiredAttachment;
+        private bool HaveRightAttachments => _info.RequiredAttachment == Attachment.None || PersistencyManager.Instance.SaveData.Attachments == _info.RequiredAttachment;
 
         private bool CanEnterHouse
             => HaveEnoughEnergy && HaveRightAttachments;
