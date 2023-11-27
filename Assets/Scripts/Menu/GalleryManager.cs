@@ -16,11 +16,19 @@ namespace LewdieJam.Menu
         [SerializeField]
         private AudioSource _bgm;
 
+        [SerializeField]
+        private GameObject _oldLobby;
+
         private int _hornLevel;
 
         private void Awake()
         {
             SceneManager.LoadScene("VN", LoadSceneMode.Additive);
+        }
+
+        private void Start()
+        {
+            _oldLobby.SetActive(false);
         }
 
         public void PlayBGM(AudioClip clip)
