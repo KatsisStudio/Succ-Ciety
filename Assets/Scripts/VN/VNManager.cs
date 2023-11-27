@@ -162,10 +162,18 @@ namespace LewdieJam.VN
             _currHScene = _houseNotEnter;
             _hSceneVisual.gameObject.SetActive(true);
             _hSceneVisual.sprite = _currHScene.Sprites[0];
+            _hSceneEndCallback = () =>
+            {
+                _hSceneBgm.Stop();
+                callback();
+            };
             ShowStory(_currHScene.Story, () =>
             {
                 AchievementManager.Instance.Unlock(AchievementID.DontEnterScene);
-                callback();
+                ShowStory(_hSceneEnd, () =>
+                {
+                    _endQuestion.SetActive(true);
+                });
             });
         }
 
