@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea08c59177200e64d8fab517d511b36d, type: 3}
+  m_Name: EnemyInfoStrong
+  m_EditorClassIdentifier: 
+  Name: 
+  Speed: 7
+  BaseHealth: 40
+  Range: 3
+  AttackForce: 10
+  PreAttackWaitTime: 0.5
+  PostAttackWaitTime: 0
+  MainAttackReloadTime: 0.5
+  SubAttackReloadTime: 0
+  DashReloadTime: 0
+  MainAttackVfx: {fileID: 7288265501917199766, guid: ec17082cbb09d794c876a19f26522c9f, type: 3}
+  SubAttackVfx: {fileID: 0}
+  DashDuration: 0
+  DashSpeedMultiplier: 0
+  CanBeCharmed: 1
+  IsBoss: 0
+  DetectionRange: 5
+  EnergyDropped: 1
+  ProjectileSpeed: 0
+  ProjectileMaxDistance: 0
+  HookSpeed: 0
