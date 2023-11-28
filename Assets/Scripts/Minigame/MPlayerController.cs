@@ -29,6 +29,7 @@ namespace LewdieJam.Minigame
         private void Awake()
         {
             _rb = GetComponent<Rigidbody>();
+            SceneManager.LoadScene("AchievementManager", LoadSceneMode.Additive);
         }
 
         private void OnCollisionEnter(Collision collision)
