@@ -5,10 +5,10 @@ using LewdieJam.Persistency;
 using LewdieJam.SO;
 using LewdieJam.VN;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 namespace LewdieJam.Menu
 {
@@ -32,11 +32,20 @@ namespace LewdieJam.Menu
         [SerializeField]
         private GameObject _achievementPrefab;
 
+        [SerializeField]
+        private GameObject _secretScene;
+
         private int _hornLevel;
 
         private void Awake()
         {
             SceneManager.LoadScene("VN", LoadSceneMode.Additive);
+
+            if (!PersistencyManager.Instance.SaveData.IsUnlocked(AchievementID.TentacleScene))
+            {
+                _secretScene.GetComponent<Button>().interactable = false;
+                _secretScene.GetComponentInChildren<TMP_Text>().text = "Not Unlocked";
+            }
         }
 
         private void Start()
