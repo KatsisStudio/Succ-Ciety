@@ -17,7 +17,7 @@ MonoBehaviour:
   BaseHealth: 100
   Range: 4
   AttackForce: 15
-  PreAttackWaitTime: 2
+  PreAttackWaitTime: 1
   PostAttackWaitTime: 1
   MainAttackReloadTime: 1
   SubAttackReloadTime: 0

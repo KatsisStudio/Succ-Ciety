@@ -9,6 +9,7 @@ TagManager:
   - CameraZone
   - Car
   - Victory
+  - Checkpoint
   layers:
   - Default
   - TransparentFX

@@ -1,4 +1,5 @@
 ﻿using Cinemachine;
+using LewdieJam.Achievement;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -11,7 +12,7 @@ namespace LewdieJam.Minigame
         private Rigidbody _rb;
 
         private float _zDest;
-        private const float _zOffset = 12f;
+        private float _zOffset = 12f;
         private const float _speed = 10f;
 
         private bool _isDead;
@@ -28,6 +29,7 @@ namespace LewdieJam.Minigame
         private void Awake()
         {
             _rb = GetComponent<Rigidbody>();
+            SceneManager.LoadScene("AchievementManager", LoadSceneMode.Additive);
         }
 
         private void OnCollisionEnter(Collision collision)
@@ -54,6 +56,11 @@ namespace LewdieJam.Minigame
             {
                 _victoryPopup.SetActive(true);
                 _rb.velocity = Vector3.zero;
+                AchievementManager.Instance.Unlock(AchievementID.Minigame);
+            }
+            else if (other.CompareTag("Checkpoint"))
+            {
+                _zOffset += 12f;
             }
         }
 

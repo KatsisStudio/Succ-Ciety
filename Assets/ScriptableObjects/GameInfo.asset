@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d93bc48f4cfb4245aa05cbcf9c77214, type: 3}
   m_Name: GameInfo
   m_EditorClassIdentifier: 
-  MinBuyCost: 100
-  MaxBuyCost: 2000
+  MinBuyCost: 10
+  MaxBuyCost: 50
   MaxLevel: 10
   CostProgression:
     serializedVersion: 2
@@ -96,28 +96,10 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  MinAtkSpeedGain: 0.2
-  AtkSpeedCurveGain:
+  CharmAtkMultiplerGain: 0
+  CharmCurveGain:
     serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 1
-      outSlope: 1
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 1
-      outSlope: 1
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
+    m_Curve: []
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
