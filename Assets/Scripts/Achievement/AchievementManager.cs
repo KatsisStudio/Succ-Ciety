@@ -67,7 +67,8 @@ namespace LewdieJam.Achievement
             { AchievementID.TentacleScene, new() { Name = "Exploring New Holes", Description = "Play the secret scene" } },
             { AchievementID.DontEnterScene, new() { Name = "Well Educated", Description = "Refuse to enter inside a house" } },
             { AchievementID.DoubleHook, new() { Name = "Hooked for You", Description = "Get hooked by an enemy while already being stunned" } },
-            { AchievementID.Dickus, new() { Name = "Big Nose", Description = "Beat Dickus" } }
+            { AchievementID.Dickus, new() { Name = "Big Nose", Description = "Beat Dickus" } },
+            { AchievementID.Minigame, new() { Name = "Why did the Chicken Cross the Road?", Description = "Win the secret minigame" } }
         };
     }
 
@@ -80,7 +81,8 @@ namespace LewdieJam.Achievement
         TentacleScene,
         DontEnterScene,
         DoubleHook,
-        Dickus
+        Dickus,
+        Minigame
     }
 
     public record Achievement

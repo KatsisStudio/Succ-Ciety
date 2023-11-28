@@ -1,4 +1,5 @@
 ﻿using Cinemachine;
+using LewdieJam.Achievement;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -54,6 +55,7 @@ namespace LewdieJam.Minigame
             {
                 _victoryPopup.SetActive(true);
                 _rb.velocity = Vector3.zero;
+                AchievementManager.Instance.Unlock(AchievementID.Minigame);
             }
             else if (other.CompareTag("Checkpoint"))
             {
