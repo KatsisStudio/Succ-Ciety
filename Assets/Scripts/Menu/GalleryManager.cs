@@ -1,7 +1,11 @@
-﻿using LewdieJam.Game;
+﻿using LewdieJam.Achievement;
+using LewdieJam.Game;
 using LewdieJam.Lobby;
+using LewdieJam.Persistency;
 using LewdieJam.SO;
 using LewdieJam.VN;
+using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -22,6 +26,12 @@ namespace LewdieJam.Menu
         [SerializeField]
         private GameObject _oldLobby;
 
+        [SerializeField]
+        private Transform _achievementContainer;
+
+        [SerializeField]
+        private GameObject _achievementPrefab;
+
         private int _hornLevel;
 
         private void Awake()
@@ -34,6 +44,14 @@ namespace LewdieJam.Menu
             _oldLobby.SetActive(false);
             _artManager.SetHornLevel(0);
             _artManager.ToggleAttachment(Attachment.None);
+
+            foreach (var achievement in AchievementManager.Instance.Achievements)
+            {
+                var a = Instantiate(_achievementPrefab, _achievementContainer);
+                var txts = a.GetComponentsInChildren<TMP_Text>();
+                txts[0].text = PersistencyManager.Instance.SaveData.IsUnlocked(achievement.Key) ? achievement.Value.Name : "???";
+                txts[1].text = achievement.Value.Description;
+            }
         }
 
         public void PlayBGM(AudioClip clip)
