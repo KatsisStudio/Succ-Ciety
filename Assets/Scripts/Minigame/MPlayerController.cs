@@ -11,7 +11,7 @@ namespace LewdieJam.Minigame
         private Rigidbody _rb;
 
         private float _zDest;
-        private const float _zOffset = 12f;
+        private float _zOffset = 12f;
         private const float _speed = 10f;
 
         private bool _isDead;
@@ -54,6 +54,10 @@ namespace LewdieJam.Minigame
             {
                 _victoryPopup.SetActive(true);
                 _rb.velocity = Vector3.zero;
+            }
+            else if (other.CompareTag("Checkpoint"))
+            {
+                _zOffset += 12f;
             }
         }
 
