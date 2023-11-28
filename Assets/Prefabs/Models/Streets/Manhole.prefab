@@ -1,0 +1,105 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &8898403996224702983
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 315845ac0ef01874aa4844b5f5616a4d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.232542
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 315845ac0ef01874aa4844b5f5616a4d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.0063940845
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 315845ac0ef01874aa4844b5f5616a4d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -4.1410675
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 315845ac0ef01874aa4844b5f5616a4d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071067
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 315845ac0ef01874aa4844b5f5616a4d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 315845ac0ef01874aa4844b5f5616a4d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 315845ac0ef01874aa4844b5f5616a4d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 315845ac0ef01874aa4844b5f5616a4d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 315845ac0ef01874aa4844b5f5616a4d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 315845ac0ef01874aa4844b5f5616a4d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 315845ac0ef01874aa4844b5f5616a4d, type: 3}
+      propertyPath: m_Name
+      value: Manhole
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 315845ac0ef01874aa4844b5f5616a4d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3101737393089615252}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 315845ac0ef01874aa4844b5f5616a4d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 9092209546938319160}
+  m_SourcePrefab: {fileID: 100100000, guid: 315845ac0ef01874aa4844b5f5616a4d, type: 3}
+--- !u!1 &8627791430362789718 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 315845ac0ef01874aa4844b5f5616a4d, type: 3}
+  m_PrefabInstance: {fileID: 8898403996224702983}
+  m_PrefabAsset: {fileID: 0}
+--- !u!135 &3101737393089615252
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8627791430362789718}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 1.5
+  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+--- !u!114 &9092209546938319160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8627791430362789718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c03f2235894d0c40b612951ec65d05a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _actionText: {fileID: 0}
+  _hScene: {fileID: 11400000, guid: edc1458f59f357c45b230fc197195f06, type: 2}
