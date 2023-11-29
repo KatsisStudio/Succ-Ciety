@@ -48,7 +48,7 @@ namespace LewdieJam.Player
         private bool _isInvulnerabilityFrame;
 
         private float _invultDuration = 2f;
-        private float _invultFrameIntensity = .5f;
+        private float _invultFrameIntensity = .25f;
 
         private Animator _anim;
 
@@ -183,7 +183,7 @@ namespace LewdieJam.Player
             {
                 yield return new WaitForSeconds(_invultFrameIntensity);
                 state = !state;
-                _sr.color = state ? Color.white : new Color(1f, 1f, 1f, 0f);
+                _sr.color = state ? Color.white : Color.red;
             }
 
             _sr.color = Color.white;
