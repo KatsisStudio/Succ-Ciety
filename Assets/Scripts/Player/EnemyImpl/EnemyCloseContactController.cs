@@ -30,8 +30,11 @@ namespace LewdieJam.Player.EnemyImpl
         {
             _isAttacking = true;
 
-            // _anim.SetBool("IsWalking", false);
-            // _anim.SetInteger("AttackState", 1);
+            if (_info.IsBoss)
+            {
+                _anim.SetBool("IsWalking", false);
+                _anim.SetInteger("AttackState", 1);
+            }
             yield return new WaitForSeconds(_info.PreAttackWaitTime - .325f);
             if (_info.SubAttackVfx != null)
             {
@@ -43,9 +46,15 @@ namespace LewdieJam.Player.EnemyImpl
                 dickVfx.transform.rotation = Quaternion.Euler(dickVfx.transform.rotation.eulerAngles.x, dickVfx.transform.rotation.eulerAngles.y + 180f, dickVfx.transform.rotation.eulerAngles.z);
                 Destroy(dickVfx, .325f);
             }
-            // _anim.SetInteger("AttackState", 2);
+            if (_info.IsBoss)
+            {
+                _anim.SetInteger("AttackState", 2);
+            }
             yield return new WaitForSeconds(.325f);
-            // _anim.SetInteger("AttackState", 0);
+            if (_info.IsBoss)
+            {
+                _anim.SetInteger("AttackState", 0);
+            }
 
             if (_attackTarget != null) // We didn't got charmed mid attack
             {
