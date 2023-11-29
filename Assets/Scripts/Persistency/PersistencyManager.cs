@@ -55,9 +55,6 @@ namespace LewdieJam.Persistency
 
         public void Save()
         {
-#if UNITY_EDITOR
-            Debug.Log("Saving Data: " + _saveData);
-#endif
             File.WriteAllText($"{Application.persistentDataPath}/save.bin", Encrypt(JsonConvert.SerializeObject(_saveData)));
         }
 

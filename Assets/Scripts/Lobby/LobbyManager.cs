@@ -62,7 +62,10 @@ namespace LewdieJam.Lobby
             _energyStat.Key = UpgradableStat.EnergyGained;
 
             _artManager.ToggleAttachment(PersistencyManager.Instance.SaveData.Attachments);
+        }
 
+        private void Start()
+        {
             UpdateUI();
         }
 
@@ -123,7 +126,7 @@ namespace LewdieJam.Lobby
             var delta = _gameInfo.MaxBuyCost - _gameInfo.MinBuyCost;
             foreach (var stat in _allStats)
             {
-                stat.UpdateValue(PersistencyManager.Instance.SaveData.GetStatValue(stat.Key));
+                stat.UpdateValue(PersistencyManager.Instance.SaveData.GetStatValue(stat.Key), _gameInfo.MaxLevel);
 
                 if (stat.Level >= _gameInfo.MaxLevel)
                 {

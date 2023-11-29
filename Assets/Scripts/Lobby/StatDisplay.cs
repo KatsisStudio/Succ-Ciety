@@ -11,16 +11,33 @@ namespace LewdieJam.Lobby
         public UpgradableStat Key { get; set; }
 
         [SerializeField]
+        private TMP_Text _label;
+
+        private string _baseText;
+
+        [SerializeField]
         private TMP_Text _value;
 
         public int Level { private set; get; }
-        public int Cost { set; get; }
+        private int _cost;
+        public int Cost
+        {
+            set
+            {
+                _cost = value;
+
+                _label.text = $"{_baseText} ({_cost})";
+            }
+            get => _cost;
+        }
 
         [SerializeField]
         private Button _add;
 
         private void Awake()
         {
+            _baseText = _label.text;
+
             _add.onClick.AddListener(new(() =>
             {
                 PersistencyManager.Instance.SaveData.Energy -= Cost;
@@ -34,10 +51,15 @@ namespace LewdieJam.Lobby
             }));
         }
 
-        public void UpdateValue(int value)
+        public void UpdateValue(int value, int max)
         {
             Level = value;
             _value.text = value.ToString();
+
+            if (value == max)
+            {
+                _label.text = $"{_baseText}";
+            }
         }
 
         public void ToggleButton(bool value)
