@@ -112,6 +112,7 @@ namespace LewdieJam.Lobby
                 if (index > i * 2)
                 {
                     buttons[i].interactable = true;
+                    buttons[i].GetComponentInChildren<TMP_Text>().enabled = false;
                 }
                 else
                 {
