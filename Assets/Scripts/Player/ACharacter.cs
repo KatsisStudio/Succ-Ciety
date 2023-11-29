@@ -50,7 +50,7 @@ namespace LewdieJam.Player
             var targetPos = (t.rotation.eulerAngles.y > 45 && t.rotation.eulerAngles.y < 135f)
                 || (t.rotation.eulerAngles.y > 225 && t.rotation.eulerAngles.y < 315)
                 ? t.position.x : t.position.z;
-            sr.sortingOrder = (int)(-targetPos * 100f);
+            sr.sortingOrder = (int)(-targetPos * 100f + 10_000_000f);
         }
 
         protected void UpdateParent()
