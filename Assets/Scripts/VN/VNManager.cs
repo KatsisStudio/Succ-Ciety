@@ -238,6 +238,9 @@ namespace LewdieJam.VN
 
         public void LoadLobby()
         {
+            PersistencyManager.Instance.SaveData.Energy += PersistencyManager.Instance.SaveData.PendingEnergy;
+            PersistencyManager.Instance.SaveData.PendingEnergy = 0;
+            PersistencyManager.Instance.Save();
             SceneManager.LoadScene("Lobby");
         }
 
