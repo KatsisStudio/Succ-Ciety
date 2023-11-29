@@ -18,7 +18,7 @@ namespace LewdieJam.Lobby
         private GameInfo _gameInfo;
 
         [SerializeField]
-        private StatDisplay _healthStat, _atkPowerStat, _atkSpeedStat, _energyStat;
+        private StatDisplay _healthStat, _atkPowerStat, _energyStat;
 
         [SerializeField]
         private TMP_Text _energy;
@@ -59,7 +59,6 @@ namespace LewdieJam.Lobby
 
             _healthStat.Key = UpgradableStat.BaseHealth;
             _atkPowerStat.Key = UpgradableStat.AtkPower;
-            _atkSpeedStat.Key = UpgradableStat.CharmPower;
             _energyStat.Key = UpgradableStat.EnergyGained;
 
             _artManager.ToggleAttachment(PersistencyManager.Instance.SaveData.Attachments);
@@ -119,7 +118,7 @@ namespace LewdieJam.Lobby
 
             StatDisplay[] _allStats = new[]
             {
-                _healthStat, _atkPowerStat, _atkSpeedStat, _energyStat
+                _healthStat, _atkPowerStat, _energyStat
             };
             var delta = _gameInfo.MaxBuyCost - _gameInfo.MinBuyCost;
             foreach (var stat in _allStats)

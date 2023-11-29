@@ -1,5 +1,4 @@
-﻿using LewdieJam.Game;
-using LewdieJam.Persistency;
+﻿using LewdieJam.Persistency;
 using LewdieJam.SO;
 using TMPro;
 using UnityEngine;
