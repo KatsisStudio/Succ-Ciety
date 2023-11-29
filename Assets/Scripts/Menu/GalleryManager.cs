@@ -5,8 +5,6 @@ using LewdieJam.Persistency;
 using LewdieJam.SO;
 using LewdieJam.VN;
 using TMPro;
-using Unity.VisualScripting;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
