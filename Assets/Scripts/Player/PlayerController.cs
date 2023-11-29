@@ -6,6 +6,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -28,6 +29,8 @@ namespace LewdieJam.Player
         private SpriteRenderer _targetArrowSr;
 
         private Transform _goalDestination;
+
+        private TMP_Text _healthDisplay;
 
         public static PlayerController Instance { get; private set; }
 
@@ -75,6 +78,8 @@ namespace LewdieJam.Player
             _anim = GetComponentInChildren<Animator>();
             _source = GetComponentInChildren<AudioSource>();
 
+            _healthDisplay = GetComponentInChildren<TMP_Text>();
+
             _targetArrowSr = _targetArrow.GetComponent<SpriteRenderer>();
 
             Instance = this;
@@ -89,6 +94,7 @@ namespace LewdieJam.Player
             GameManager.Instance.UpdateUI();
             var spawnPoint = GameObject.FindGameObjectWithTag("SpawnPoint");
             transform.position = new(spawnPoint.transform.position.x, transform.position.y, spawnPoint.transform.position.z);
+            _healthDisplay.text = _health.ToString();
 
             UpdateTarget();
         }
@@ -170,6 +176,7 @@ namespace LewdieJam.Player
 
             if (damage > 0)
             {
+                _healthDisplay.text = _health.ToString();
                 StartCoroutine(DisplayInvulnerability());
                 _source.PlayOneShot(_painSounds[UnityEngine.Random.Range(0, _painSounds.Length)]);
             }
