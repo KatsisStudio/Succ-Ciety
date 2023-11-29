@@ -5,6 +5,8 @@
         None = 0,
         LargeBreasts,
         Futanari,
-        Pregnant
+        Pregnant,
+
+        Tentacles // Quick fix for VN code
     }
 }

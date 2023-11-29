@@ -1,4 +1,5 @@
 ﻿using LewdieJam.Achievement;
+using LewdieJam.Game;
 using UnityEngine;
 
 namespace LewdieJam.SO
@@ -10,5 +11,6 @@ namespace LewdieJam.SO
         public TextAsset Story;
         public Sprite[] Sprites;
         public AchievementID Achievement;
+        public Attachment Attachment;
     }
 }

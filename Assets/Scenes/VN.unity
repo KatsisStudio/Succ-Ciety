@@ -2085,6 +2085,33 @@ MonoBehaviour:
   _hSceneBgm: {fileID: 1213644325}
   _moansPlayer: {fileID: 1925480}
   _moans:
+  - Attachment: 2
+    Clips:
+    - {fileID: 8300000, guid: 78ceaa042e9d0b7409dbb74dde0de9f3, type: 3}
+    - {fileID: 8300000, guid: 2557978664459174098a5a64477649b5, type: 3}
+    - {fileID: 8300000, guid: 239f69e4959e638488b2f4a3d5ff003d, type: 3}
+    - {fileID: 8300000, guid: a02bbac5113399d4ba4b64278f730b99, type: 3}
+    - {fileID: 8300000, guid: d4d132602ecbb8245ac8df0bd1168af1, type: 3}
+  - Attachment: 3
+    Clips:
+    - {fileID: 8300000, guid: 905b3c1c0942ccc428033c3a1243522f, type: 3}
+    - {fileID: 8300000, guid: 43bdf5cda48b6d3408c1f0f186bec7de, type: 3}
+    - {fileID: 8300000, guid: 13ab4c2cb6788e24497d26cc34d04e38, type: 3}
+    - {fileID: 8300000, guid: 0b1a9ad99c3924741b5573b51fe67f38, type: 3}
+  - Attachment: 4
+    Clips:
+    - {fileID: 8300000, guid: b426436b7003519438faa4f5b4c6650c, type: 3}
+    - {fileID: 8300000, guid: cd9e8000a74f0d74e901daee760cabc2, type: 3}
+    - {fileID: 8300000, guid: 19085f0f6cbbdb945a5c6ee24d4dc819, type: 3}
+    - {fileID: 8300000, guid: d3b8434a5e387e243b3a1cda74973f8c, type: 3}
+    - {fileID: 8300000, guid: af0617799d13e19448729eaf369be053, type: 3}
+  - Attachment: 0
+    Clips:
+    - {fileID: 8300000, guid: 933291d45c8736e448fd94f85af7b827, type: 3}
+    - {fileID: 8300000, guid: 4576d8b8e0ee7f34baa9215be3465f62, type: 3}
+    - {fileID: 8300000, guid: 482cb71b90ab327428b303a5ec1781f8, type: 3}
+    - {fileID: 8300000, guid: 7ebe08902b77bbe4789c3425ca18a46f, type: 3}
+  _fallbackMoans:
   - {fileID: 8300000, guid: 396602177c0942f44a98c2c5b865d615, type: 3}
   - {fileID: 8300000, guid: 9ecce76a88abbfc498e1e8edc7289116, type: 3}
   - {fileID: 8300000, guid: 1bc7040585301684eb3154f30faeb5ea, type: 3}

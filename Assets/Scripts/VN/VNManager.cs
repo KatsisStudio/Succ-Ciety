@@ -1,5 +1,6 @@
 ﻿using Ink.Runtime;
 using LewdieJam.Achievement;
+using LewdieJam.Game;
 using LewdieJam.SO;
 using System;
 using System.Collections;
@@ -61,7 +62,10 @@ namespace LewdieJam.VN
         private AudioSource _moansPlayer;
 
         [SerializeField]
-        private List<AudioClip> _moans;
+        private Moans[] _moans;
+
+        [SerializeField]
+        private List<AudioClip> _fallbackMoans;
 
         [SerializeField]
         private Transform _choiceContainer;
@@ -328,14 +332,26 @@ namespace LewdieJam.VN
             }
         }
 
+        public List<AudioClip> GetMoans()
+        {
+            var moans = _moans.FirstOrDefault(x => x.Attachment == _currHScene.Attachment);
+            if (moans == null)
+            {
+                Debug.LogWarning($"Can't find moans for {_currHScene.Attachment}, using fallback clips");
+                return _fallbackMoans;
+            }
+            return moans.Clips;
+        }
+
         public IEnumerator PlayNextMoan()
         {
             while (_isPlayingMoans)
             {
-                var index = UnityEngine.Random.Range(0, _moans.Count);
-                _moansPlayer.clip = _moans[index];
-                _moans.RemoveAt(index);
-                _moans.Insert(0, _moansPlayer.clip);
+                var moans = GetMoans();
+                var index = UnityEngine.Random.Range(0, moans.Count);
+                _moansPlayer.clip = moans[index];
+                moans.RemoveAt(index);
+                moans.Insert(0, _moansPlayer.clip);
                 _moansPlayer.Play();
 
                 yield return new WaitForSeconds(_moansPlayer.clip.length);
@@ -369,5 +385,12 @@ namespace LewdieJam.VN
 
         public void ToggleSkip(bool value)
             => _isSkipEnabled = value;
+
+        [Serializable]
+        public class Moans
+        {
+            public Attachment Attachment;
+            public List<AudioClip> Clips;
+        }
     }
 }
