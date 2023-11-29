@@ -5,6 +5,8 @@ using LewdieJam.Persistency;
 using LewdieJam.SO;
 using LewdieJam.VN;
 using TMPro;
+using Unity.VisualScripting;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -90,6 +92,21 @@ namespace LewdieJam.Menu
         {
             _bgm.Stop();
             VNManager.Instance.ShowHSceneStory(scene);
+        }
+
+        public void OnDash(InputAction.CallbackContext value)
+        {
+            if (VNManager.Instance.IsPlayingStory)
+            {
+                if (value.phase == InputActionPhase.Started)
+                {
+                    VNManager.Instance.ToggleSkip(true);
+                }
+                else if (value.phase == InputActionPhase.Canceled)
+                {
+                    VNManager.Instance.ToggleSkip(false);
+                }
+            }
         }
 
         public void OnClick(InputAction.CallbackContext value)
