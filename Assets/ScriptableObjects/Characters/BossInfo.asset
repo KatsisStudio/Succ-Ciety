@@ -15,7 +15,7 @@ MonoBehaviour:
   Name: Dickens
   Speed: 5
   BaseHealth: 100
-  Range: 4
+  Range: 3.5
   AttackForce: 15
   PreAttackWaitTime: 1
   PostAttackWaitTime: 1

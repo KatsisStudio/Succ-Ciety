@@ -19,7 +19,7 @@ namespace LewdieJam.Player.EnemyImpl
 
             // Display attack hint
             _attackTarget = Instantiate(_hintCircle, pos, _hintCircle.transform.rotation);
-            _attackTarget.transform.localScale = new(_info.Range / 10f, _info.Range / 10f, 1f);
+            _attackTarget.transform.localScale = new(_info.Range / 7f, _info.Range / 7f, 1f);
             _attackTarget.GetComponent<SpriteRenderer>().color = _info.IsBoss ? Color.red : new Color(226f / 255f, 0f, 195f / 255f);
             _rb.velocity = new(0f, _rb.velocity.y, 0f);
 
@@ -106,6 +106,15 @@ namespace LewdieJam.Player.EnemyImpl
             if (_attackTarget != null)
             {
                 Destroy(_attackTarget);
+            }
+        }
+
+        private void OnDrawGizmos()
+        {
+            if (_attackTarget != null)
+            {
+                Gizmos.color = new Color(1f, 0f, 0f, .2f);
+                Gizmos.DrawSphere(_attackTarget.transform.position, _info.Range);
             }
         }
     }

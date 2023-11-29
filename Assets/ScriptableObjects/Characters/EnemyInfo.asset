@@ -15,7 +15,7 @@ MonoBehaviour:
   Name: 
   Speed: 6.5
   BaseHealth: 20
-  Range: 2
+  Range: 1.5
   AttackForce: 5
   PreAttackWaitTime: 1
   PostAttackWaitTime: 0
