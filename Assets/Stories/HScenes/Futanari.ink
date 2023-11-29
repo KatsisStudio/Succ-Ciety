@@ -22,8 +22,8 @@ I was losing track of if I was more turned on by the cock pressing against my in
 The harder he thrusted, the more I could feel his balls pressing against mine from behind.
 They felt so incredibly warm and heavy. I could feel the pressure swelling and my legs shaking as I try to keep it in.
 
-I had tried anal before but this time was different. Every few strokes, my heart would drop and I felt as if I was cumming. #background next #moans off
-No matter how tight my jaw would get, the moment that button was pressed against, I would make a sound I never knew I could make before. Like a jolt of electricity firing directly into my brain to make me meowl.
+I had tried anal before but this time was different. Every few strokes, my heart would drop and I felt as if I was cumming. #background next 
+No matter how tight my jaw would get, the moment that "button" was pressed against, I would make a sound I never knew I could make before. Like a jolt of electricity firing directly into my brain to make me meowl.
 I couldn't resist it anymore. It felt too good to hold back. 
 I bucked my hips back towards him as he kept thrusting into me. Each moan I let out was accompanied by a rushing sensation coursing through my cock. 
 It felt as vile as it felt liberating. My body coudln't stop shaking as each strand shot out and clung to the wall. 
@@ -32,13 +32,13 @@ This thing waving between my legs was emptying itself all over the floor as plea
 My legs were trembling as the last of their strength was starting to give way. With a few more thrusts from behind, I could feel him cumming too.
 The pulsing of his balls against the backside of mine was too much for me. When he let go of my arms, I slowly slumpt to the ground with my ass in the air.
 
-My face was red and I was sweating. I couldn't stop panting and my body just kept trembling.  #background next
+My face was red and I was sweating. I couldn't stop panting and my body just kept trembling.  #background next #moans off
 Sooner than I could notice, I felt his cum steadily leaking out of me and running down the back of my balls and underside of my still twitching shaft.
 I reached my arms behind me and spread my ass to let the rest flow out of me. 
 His warm cum steadily marking more and more of me in itself made my brain tingle. 
 Every spark in my brain made my cock twitch and spurt a little bit more on the ground before my heart calmed back down to its normal pace.
-I... want to use this more... #Speaker Nova
-You can get one on your own time. And don't get to used to that sensitivity. #Speaker Tattoo
-Pull on it too hard... and well... #Speaker Tattoo
-I'll teach you a way my daddy taught me to deal with that. Here's a hint: Just use someone else's mouth #Speaker Tattoo
+"I... want to use this more..." #Speaker Nova
+"You can get one on your own time. And don't get to used to that sensitivity." #Speaker Tattoo
+"Pull on it too hard... and well..." #Speaker Tattoo
+"I'll teach you a way my daddy taught me to deal with that. Here's a hint: Just use someone else's mouth" #Speaker Tattoo
 -> DONE
