@@ -33,7 +33,11 @@ namespace LewdieJam.Player
         {
             set
             {
-                if (!_info.CanBeCharmed) return;
+                if (!_info.CanBeCharmed)
+                {
+                    AchievementManager.Instance.Unlock(AchievementID.CharmDickus);
+                    return;
+                }
 
                 _isCharmed = value;
 
