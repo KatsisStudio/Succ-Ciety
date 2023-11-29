@@ -26,6 +26,9 @@ namespace LewdieJam.Minigame
         [SerializeField]
         private GameObject _victoryPopup;
 
+        [SerializeField]
+        private GameObject _exitText;
+
         private void Awake()
         {
             _rb = GetComponent<Rigidbody>();
@@ -36,6 +39,8 @@ namespace LewdieJam.Minigame
         {
             if (collision.collider.CompareTag("Car") && !_isDead)
             {
+                _exitText.gameObject.SetActive(true);
+
                 _cam.LookAt = null;
                 _cam.Follow = null;
                 _isDead = true;
@@ -94,9 +99,17 @@ namespace LewdieJam.Minigame
             }
         }
 
+        public void OnComplete(InputAction.CallbackContext value)
+        {
+            if (value.performed)
+            {
+                Complete();
+            }
+        }
+
         public void Complete()
         {
-            SceneManager.LoadScene("Menu");
+            SceneManager.LoadScene("Gallery");
         }
     }
 }

@@ -11,7 +11,7 @@ What's that? #Speaker Tattoo
 Lucy? She's a cat I see from time to time. She's super cute! She does this really funny thing with her tongue where she- #Speaker Nova
 Not that! That! #Speaker Tattoo
 
-An amorphis heap of tentacles had spooled out from under the cat's cloak.  #background next
+An amorphis heap of tentacles had spooled out from under the cat's cloak.  #background next #Speaker None
 There was too much mass for it to be coming from its body. Or... could it?
 I couldn't tell where the bottom was anymore. They reached far above me and were surrounding me before I could even hope to notice. It was everywhere, everything, all the once. 
 I felt the little hampster running on its wheel in my head give up the more I tried to understand it. 
